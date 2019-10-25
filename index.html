@@ -27,7 +27,7 @@ function getUrlValue(varName) {
 }
 
 var id=getUrlValue('id');
-if(id!='') document.getElementById('photo').src="img/swa"+id+".jpg";
+if(!!id) document.getElementById('photo').src="img/swa"+id+".jpg";
 </script>
 <div>Вы можете перевести любую посильную сумму в благодарность автору</div>
 <div id="money" class="art">
