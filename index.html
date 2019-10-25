@@ -12,7 +12,23 @@
 </style>
 </head>
 <body>
-<img class="art" src="img/swa3.jpg" alt="">
+<img id="photo" class="art" src="img/swa3.jpg" alt="">
+<script>
+function getUrlValue(varName) {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return hash[1];
+}
+
+var id=getUrlValue('id');
+if(id!='') document.getElementById('photo').src="img/swa"+id+".jpg";
+</script>
 <div>Вы можете перевести любую посильную сумму в благодарность автору</div>
 <div id="money" class="art">
 <iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%20%D0%B8%20%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D1%8C&targets-hint=&default-sum=50&button-text=11&payment-type-choice=on&mobile-payment-type-choice=on&comment=on&hint=%D0%9F%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%D1%81%D1%8C%2C%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%BD%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%B8%20%D0%BD%D0%B5%20%D1%82%D0%B0%D0%B9%D0%BD%D0%B0&successURL=&quickpay=shop&account=410014716327015" width="450px" height="350px" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
