@@ -131,12 +131,12 @@ function showContents(){
 		nx++;
 	};
 }
-function showStory(idx){
+function showStory(ndx){
 	alert('idx='+idx);
 	let story='';
 	document.getElementById('texts').innerHTML='';
 	let request = new XMLHttpRequest;
-	request.open('GET', 'text/'+idx+'.txt', true);
+	request.open('GET', 'text/'+ndx+'.txt', true);
 	request.send();
 	request.onload = function () {
 			story = request.response;
