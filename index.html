@@ -112,6 +112,7 @@ function setCookie(name, value) {
 function showContents(){
 	document.getElementById('contents').innerHTML='<ul>';
 	let listStory = document.createElement("<li>");
+	document.getElementById('contents').appendChild(listStory);
 	let nx=1;
 	let name_story = '';
 	while (nx<=show_idx){
@@ -133,4 +134,7 @@ function showContents(){
 <div id="contents" style="width:25%; height: 100%; left:0px;"></div>
 <div id="texts" class="textstory" style="width:75%; height: 100%; left:25%;"></div>
 </body>
+<script>
+showContents();
+</script>
 </html>
