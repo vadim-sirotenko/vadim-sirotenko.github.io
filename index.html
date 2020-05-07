@@ -41,6 +41,9 @@ h1 {
 	align-content: center;
 	font-size: 140%;
 }
+li {
+	cursor: pointer;
+}
 .textstory {
     height: 100%;
     width: 0;
@@ -120,11 +123,11 @@ function showContents(){
 		request.onload = function () {
 			name_story = request.response;
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li_last = document.createElement('li');
-			li_last.innerHTML = name_story;
-			li_last.setAttribute('onclick', 'showStory('+nx+')');
-			ol.append(li_last);
 		};
+		li_last = document.createElement('li');
+		li_last.innerHTML = name_story;
+		li_last.setAttribute('onclick', '\'showStory('+nx+')\'');
+		ol.append(li_last);
 		nx++;
 	};
 }
