@@ -142,7 +142,7 @@ function showStory(indx){
 	request.send();
 	request.onload = function () {
 		story = request.response;
-		document.getElementById('texts').innerHTML=story;
+		document.getElementById('texts').textContent=story;
 	};
 }
 </script>
