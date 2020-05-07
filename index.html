@@ -22,7 +22,7 @@ html {
 	width: 100%;
 	min-height:100%;	
 }
-	body {
+body {
 	height: 100%;
 	width: 100%;
 	min-height:100%;
@@ -111,7 +111,7 @@ function setCookie(name, value) {
 	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
 }
 function showContents(){
-	let ol = document.createElement("ui");
+	let ol = document.createElement("ul");
 	document.getElementById('contents').prepend(ol);
 //	document.getElementById('contents').appendChild(listStory);
 	let nx=1;
@@ -124,22 +124,22 @@ function showContents(){
 			name_story = request.response;
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li_last = document.createElement('li');
+			ol.append(li_last);
 			li_last.innerHTML = nx+')&nbsp;'+name_story;
 			li_last.setAttribute('onclick', 'showStory('+nx+')');
-			ol.append(li_last);
 		};
 		nx++;
 	};
 }
-function showStory(ndx){
-	alert('ndx='+ndx);
+function showStory(indx){
+	alert('ndx='+indx);
 	let story='';
 	document.getElementById('texts').innerHTML='';
 	let request = new XMLHttpRequest;
-	request.open('GET', 'text/'+ndx+'.txt', true);
+	request.open('GET', 'text/'+indx+'.txt', true);
 	request.send();
 	request.onload = function () {
-			story = request.response;
+		story = request.response;
 	};
 	document.getElementById('texts').innerHTML=story;
 }
