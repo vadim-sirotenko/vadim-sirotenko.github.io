@@ -109,7 +109,7 @@ function setCookie(name, value) {
 	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
 }
 function showContents(){
-	document.getElementById('contents').innerHTML='<ul>';
+	document.getElementById('contents').innerHTML='<ul id="stories">';
 	let listStory = document.createElement("<li>");
 	document.getElementById('contents').appendChild(listStory);
 	let nx=1;
@@ -122,7 +122,7 @@ function showContents(){
 			name_story = request.response;
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			listStory = document.createElement('<li onclick="showStory()" >'+name_story+'</li>');
-			document.getElementById('contents').appendChild(listStory);
+			document.getElementById('stories').appendChild(listStory);
 		};
 		nx++;
 	};
