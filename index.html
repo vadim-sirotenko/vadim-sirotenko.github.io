@@ -2,36 +2,135 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Спасибо!¯\_(ツ)_/¯</title>
+<link rel="shortcut icon" href="img/lighthouse.ico" type="image/x-icon">
+<title>Одесские баранки.&nbsp;¯\_(ツ)_/¯</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Вадим Сиротенко">
+<meta name="title" content="Иные миры">
+<meta name="description" content="Космические похождения, пришельцы">
+<meta name="keywords" content="космос, анекдот, истории, смех, юмор">
+<meta property="og:url" content="https://inyemiry.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Иные миры" />
+<meta property="og:description" content="Похождения по иным мирам, пришельцы на Земле" />
+<meta property="og:image" content="https://inyemiry.github.io/img/author.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="fb:app_id" content="1559991960821213" />
+<meta property="fb:pages" content="108221997181803">
 <style>
-.art {
-	width: 450px;
+html {
+	height: 100%;
+	width: 100%;
+	min-height:100%;	
+}
+	body {
+	height: 100%;
+	width: 100%;
+	min-height:100%;
+	margin: 0;
+	top: 0px;
+	left: 0px;
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: url('img/author.jpg');
+	user-select: none;
+}
+h1 {
+	align-content: center;
+	font-size: 140%;
+}
+.textstory {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    background-image: url('img/author.jpg');
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	user-select: none;
+    overflow: auto;
+    transition: 0.5s;
+    padding-top: 2%;
+}
+.reader_age {
+	position: absolute;
+	bottom: 10px;
+	right: 0%;
+	display: inline-block;
+	margin: 10px;
+	padding: 4px;
+	outline: 1px solid #fff;
+	font-size: 32px;
+	font-weight: bold;
+	color: #ff0000;
+	border: 3px solid black;
+	border-radius: 50% 50% 50% 50%;
+	cursor: pointer;
+}
+.telegram_share {
+	position: absolute;
+	bottom: 0.5%;
+	left: 205px;
 	height: auto;
+	width: auto;
+    	background-color: #2178ef;
+	background-image: url('img/telegram.png');
+	background-size: 24px, 24px;
+	background-repeat: no-repeat;
+	background-position: left top;
+	border-radius: 3px;
+	float: left;
+	color: #ffffff;
+	text-decoration: none;
+	padding: 2px;
+}
+@media screen and (max-height: 100%) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
 }
 </style>
+<script>
+var max_idx=26;
+var idx=1;
+var show_idx=0;
+document.oncontextmenu = function (){return false};
+function getCookie(name) {
+	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+function setCookie(name, value) {
+	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
+}
+function showContents(){
+	document.getElementById('contents').innerHTML='<ul>';
+	let listStory = document.createElement("<li>");
+	let nx=1;
+	let name_story = '';
+	while (nx<=show_idx){
+		let request = new XMLHttpRequest;
+		request.open('GET', 'text/'+nx+'.txt', true);
+		request.send();
+		request.onload = function () {
+			name_story = request.response;
+			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+			listStory = document.createElement('<li onclick="showStory()" >'+name_story+'</li>');
+			document.getElementById('contents').appendChild(listStory);
+		};
+		nx++;
+	};
+}
+</script>
 </head>
 <body>
-<img id="photo" class="art" src="img/swa3.jpg" alt="">
-<script>
-function getUrlValue(varName) {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
-    }
-    return hash[1];
-}
-
-var id=getUrlValue('id');
-if(!!id) document.getElementById('photo').src="img/swa"+id+".jpg";
-</script>
-<div>Вы можете перевести любую посильную сумму в благодарность автору</div>
-<div id="money" class="art">
-<iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%20%D0%B8%20%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D1%8C&targets-hint=&default-sum=50&button-text=11&payment-type-choice=on&mobile-payment-type-choice=on&comment=on&hint=%D0%9F%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%D1%81%D1%8C%2C%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%BD%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%B8%20%D0%BD%D0%B5%20%D1%82%D0%B0%D0%B9%D0%BD%D0%B0&successURL=&quickpay=shop&account=410014716327015" width="450px" height="350px" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-</div>
+<div id="contents" style="width:25%; height: 100%; left:0px;"></div>
+<div id="texts" class="textstory" style="width:75%; height: 100%; left:25%;"></div>
 </body>
 </html>
