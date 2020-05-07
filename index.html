@@ -21,6 +21,9 @@ html {
 	height: 100%;
 	width: 100%;
 	min-height:100%;	
+	color: 'navy';
+	font-size: 200%;
+	user-select: none;
 }
 body {
 	height: 100%;
@@ -29,13 +32,17 @@ body {
 	margin: 0;
 	top: 0px;
 	left: 0px;
+	color: 'navy';
+	font-size: 200%;
+	user-select: none;
+/*
 	background-size: contain;
 	background-position-x: center;
 	background-position-y: top;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-image: url('img/author.jpg');
-	user-select: none;
+*/
 }
 h1 {
 	align-content: center;
@@ -45,23 +52,23 @@ li {
 	cursor: pointer;
 }
 .textstory {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    background-image: url('img/author.jpg');
+	height: 100%;
+	width: 75%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 25%;
+	background-color: #fff;
+	background-image: url('img/author.jpg');
 	background-size: contain;
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	user-select: none;
-    overflow: auto;
-    transition: 0.5s;
-    padding-top: 2%;
+	overflow: auto;
+	transition: 0.5s;
+	padding-top: 2%;
 }
 .reader_age {
 	position: absolute;
@@ -77,23 +84,6 @@ li {
 	border: 3px solid black;
 	border-radius: 50% 50% 50% 50%;
 	cursor: pointer;
-}
-.telegram_share {
-	position: absolute;
-	bottom: 0.5%;
-	left: 205px;
-	height: auto;
-	width: auto;
-    	background-color: #2178ef;
-	background-image: url('img/telegram.png');
-	background-size: 24px, 24px;
-	background-repeat: no-repeat;
-	background-position: left top;
-	border-radius: 3px;
-	float: left;
-	color: #ffffff;
-	text-decoration: none;
-	padding: 2px;
 }
 @media screen and (max-height: 100%) {
 	.sidenav {padding-top: 15px;}
