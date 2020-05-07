@@ -100,7 +100,6 @@ h1 {
 <script>
 var max_idx=26;
 var idx=1;
-var show_idx=0;
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -114,7 +113,7 @@ function showContents(){
 //	document.getElementById('contents').appendChild(listStory);
 	let nx=1;
 	let name_story = '';
-	while (nx<=show_idx){
+	while (nx<=max_idx){
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -131,12 +130,13 @@ function showContents(){
 }
 function showStory(idx){
 	let story='';
+	document.getElementById('texts').innerHTML='';
 	let request = new XMLHttpRequest;
-		request.open('GET', 'text/'+idx+'.txt', true);
-		request.send();
-		request.onload = function () {
+	request.open('GET', 'text/'+idx+'.txt', true);
+	request.send();
+	request.onload = function () {
 			story = request.response;
-		};
+	};
 	document.getElementById('texts').innerHTML=story;
 }
 </script>
