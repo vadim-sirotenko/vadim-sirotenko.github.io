@@ -121,11 +121,21 @@ function showContents(){
 		request.onload = function () {
 			name_story = request.response;
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			listStory = document.createElement('<li onclick="showStory()" >'+name_story+'</li>');
+			listStory = document.createElement('<li onclick="showStory(nx)" >'+name_story+'</li>');
 			document.getElementById('stories').appendChild(listStory);
 		};
 		nx++;
 	};
+}
+function showStory(idx){
+	let story='';
+	let request = new XMLHttpRequest;
+		request.open('GET', 'text/'+idx+'.txt', true);
+		request.send();
+		request.onload = function () {
+			story = request.response;
+		};
+	document.getElementById('texts').innerHTML=story;
 }
 </script>
 </head>
