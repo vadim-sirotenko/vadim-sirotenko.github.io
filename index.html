@@ -134,7 +134,8 @@ function showStory(indx){
 	request.send();
 	request.onload = function () {
 		story = request.response;
-		document.getElementById('texts').textContent=story;
+		story = story.replace( /\n/g, "<br>" );
+		document.getElementById('texts').innerHTML=story;
 	};
 }
 </script>
