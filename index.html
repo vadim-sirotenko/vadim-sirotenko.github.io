@@ -126,7 +126,8 @@ function showContents(){
 			name_story = request.response;
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 //			li = document.createElement('li');
-			li.innerHTML = nx+')&nbsp;'+name_story;
+//			li.innerHTML = nx+')&nbsp;'+name_story;
+			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
