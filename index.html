@@ -41,6 +41,11 @@ html, body {
 li {
 	cursor: pointer;
 }
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .contents {
 	width: 23%; 
 	height: 60%;
@@ -60,9 +65,6 @@ li {
 	user-select: none;
 	transition: 0.5s;
 	padding-top: 2%;
-}
-img {
-	
 }
 .reader_age {
 	position: absolute;
@@ -129,7 +131,7 @@ function showStory(indx){
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div id="texts" class="textstory"></div>
+<div id="texts" class="textstory"><img src="img/author3.jpg"></div>
 </body>
 <script>
 showContents();
