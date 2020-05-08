@@ -17,24 +17,21 @@
 <meta property="fb:app_id" content="1559991960821213" />
 <meta property="fb:pages" content="108221997181803">
 <style>
-html {
+html, body {
 	height: 100%;
 	width: 100%;
 	min-height:100%;	
 	color: 'navy';
 	user-select: none;
-}
-body {
-	height: 100%;
-	width: 100%;
+	margin: 0px;
+	overflow: hidden;
+	position: fixed;
+	background-color: #ffffff;
 	min-height:100%;
 	margin: 0;
 	top: 0px;
 	left: 0px;
-	color: 'navy';
-	user-select: none;
 /*
-	font-size: 200%;
 	background-size: contain;
 	background-position-x: center;
 	background-position-y: top;
@@ -50,10 +47,17 @@ h1 {
 li {
 	cursor: pointer;
 }
+.contents {
+	width: 23%; 
+	height: 90%; 
+	left: 0px;
+	overflow: auto;
+}
 .textstory {
 	height: 100%;
-	width: 75%;
+	width: 70%;
 	position: fixed;
+	overflow: auto;
 	z-index: 1;
 	top: 0;
 	left: 25%;
@@ -66,7 +70,6 @@ li {
 	background-attachment: fixed;
 	background-blend-mode: soft-light;
 	user-select: none;
-	overflow: auto;
 	transition: 0.5s;
 	padding-top: 2%;
 }
@@ -84,10 +87,6 @@ li {
 	border: 3px solid black;
 	border-radius: 50% 50% 50% 50%;
 	cursor: pointer;
-}
-@media screen and (max-height: 100%) {
-	.sidenav {padding-top: 15px;}
-	.sidenav a {font-size: 18px;}
 }
 </style>
 <script>
@@ -140,8 +139,8 @@ function showStory(indx){
 </script>
 </head>
 <body>
-<div id="contents" style="width:25%; height: 100%; left:0px;"></div>
-<div id="texts" class="textstory" style="width:75%; height: 100%; left:25%;"></div>
+<div id="contents" class="contents"></div>
+<div id="texts" class="textstory"></div>
 </body>
 <script>
 showContents();
