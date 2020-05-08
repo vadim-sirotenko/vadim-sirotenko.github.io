@@ -122,7 +122,7 @@ function showStory(indx){
 	let story='';
 	document.getElementById('texts').innerHTML='';
 	let request = new XMLHttpRequest;
-	request.timeout = 10000;
+	request.timeout = 3000;
 	request.open('GET', 'text/'+indx+'.txt', true);
 //	request.open('GET', 'text/'+indx+'.txt', false);
 	request.send();
