@@ -1,0 +1,10 @@
+﻿User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /robots.txt
+Disallow: /img/
+Disallow: /text/
+
+Host: https://vadim-sirotenko.github.io/
+
+Sitemap: https://vadim-sirotenko.github.io/sitemap.xml
