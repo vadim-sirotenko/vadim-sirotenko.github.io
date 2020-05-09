@@ -127,10 +127,11 @@ function showStory(indx){
 	let story='';
 	document.getElementById('texts').innerHTML='';
 	let request = new XMLHttpRequest;
-	request.timeout = 3000;
+//	request.timeout = 3000;
 	request.open('GET', 'text/'+indx+'.txt', true);
 //	request.open('GET', 'text/'+indx+'.txt', false);
 	request.send();
+/*
 	request.onreadystatechange = function() {
 		if (request.readyState == 3) {
     		document.getElementById('texts').innerHTML+='&bull;'
@@ -144,13 +145,12 @@ function showStory(indx){
 			};
 		};
 	};
-/*
+*/
 	request.onload = function () {
 		story = request.response;
 		story = story.replace( /\n/g, "<br>" );
 		document.getElementById('texts').innerHTML=story;
 	};
-*/
 }
 </script>
 </head>
