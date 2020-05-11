@@ -120,7 +120,6 @@ function showContents(){
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
-//		li.setAttribute('onclick', 'getCounts(this)');
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -135,8 +134,6 @@ function showContents(){
 	};
 }
 function showStory(indx){
-	let elemnt = document.getElementById('li_'+indx);
-	elemnt.setAttribute('onclick', 'getCounts(this)');
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
@@ -149,6 +146,8 @@ function showStory(indx){
 		difr.body.appendChild(script);
 	})
 	ifr.src = 'text/'+indx+'.txt';
+	let useStory = document.getElementById('li_'+indx);
+	getCounts(useStory);
 }
 </script>
 </head>
