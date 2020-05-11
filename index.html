@@ -130,7 +130,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		if(readMe.indexOf(','+nx+',')>-1){li.style.backgroundColor='#b9b9b9'};
+		if(readMe.indexOf(nx+',')>-1){li.style.backgroundColor='#b9b9b9'};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
