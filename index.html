@@ -152,7 +152,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	getCounts(useStory);
 	let readMe = getCookie('read');
-	readMe = readMe+indx+',';
+	readMe = readMe+String(indx)+',';
 	setCookie('read',readMe);
 }
 </script>
