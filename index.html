@@ -135,7 +135,7 @@ function showContents(){
 	};
 }
 function showStory(indx){
-	let elemnt = documnet.getElementById('li_'+indx);
+	let elemnt = document.getElementById('li_'+indx);
 	elemnt.setAttribute('onclick', 'getCounts(this)');
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
