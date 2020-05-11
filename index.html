@@ -114,7 +114,7 @@ function getCounts(e) {
 	e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-	readMe = getCookie('read');
+	let readStories = getCookie('read');
 	let ol = document.createElement("ul");
 	document.getElementById('contents').prepend(ol);
 	let nx=1;
@@ -130,7 +130,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		if(readMe.indexOf(nx+',')>-1){li.style.backgroundColor='#b9b9b9'};
+		if(readStories.indexOf(nx+',')>-1){li.style.backgroundColor='#b9b9b9'};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
@@ -152,8 +152,8 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	getCounts(useStory);
 	let readMe = getCookie('read');
-	readMe = readMe+String(indx)+',';
-	alert('readMe='+readMe);
+	readMe = readMe+indx+',';
+	alert('cookie(readMe)='+getCookie('read')+'\nreadMe='+readMe);
 	setCookie('read',readMe);
 }
 </script>
