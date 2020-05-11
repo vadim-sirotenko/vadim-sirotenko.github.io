@@ -100,6 +100,7 @@ li {
 <script>
 var max_idx=92;
 var idx=1;
+//var readMe=[];
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -113,6 +114,7 @@ function getCounts(e) {
 	e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
+	readMe = getCookie('read').slice();
 	let ol = document.createElement("ul");
 	document.getElementById('contents').prepend(ol);
 	let nx=1;
@@ -128,6 +130,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
+		if(readMe.indexOf(','+nx+',')!==-1){li.style.backgroundColor='#b9b9b9'};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
@@ -148,6 +151,7 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	getCounts(useStory);
+	setCookie('read',indx+',');
 }
 </script>
 </head>
