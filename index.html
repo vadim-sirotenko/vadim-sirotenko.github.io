@@ -42,6 +42,7 @@ html, body {
 li {
 	cursor: pointer;
 	margin-bottom: 1em;
+	background-color: #ffffff;
 }
 .contents {
 	width: 20%; 
@@ -97,7 +98,7 @@ li {
 }
 </style>
 <script>
-var max_idx=102;
+var max_idx=92;
 var idx=1;
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
@@ -105,6 +106,11 @@ function getCookie(name) {
 }
 function setCookie(name, value) {
 	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
+}
+function getCounts(e) {
+	let elems = document.getElementsByTagName('li');
+	for(var i=0; i<elems.length; i++) elems[i].style.backgroundColor='#ffffff';
+	e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
 	let ol = document.createElement("ul");
@@ -114,6 +120,7 @@ function showContents(){
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
+		li.setAttribute('onclick', 'getCounts(this)');
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
