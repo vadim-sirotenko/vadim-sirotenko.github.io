@@ -153,6 +153,7 @@ function showStory(indx){
 	getCounts(useStory);
 	let readMe = getCookie('read');
 	readMe = readMe+String(indx)+',';
+	alert('readMe='+readMe);
 	setCookie('read',readMe);
 }
 </script>
