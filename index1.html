@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/swa.ico" type="image/x-icon">
+<title>Разные истории и сказки.&nbsp;¯\_(ツ)_/¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Вадим Сиротенко">
+<meta name="title" content="Иные миры">
+<meta name="description" content="Рассказы">
+<meta name="keywords" content="жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
+<meta property="og:url" content="https://inyemiry.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Рассказики" />
+<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
+<meta property="og:image" content="https://inyemiry.github.io/img/author.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="fb:app_id" content="1559991960821213" />
+<meta property="fb:pages" content="108221997181803">
+<style>
+html, body {
+	height: 100%;
+	width: 100%;
+	min-height:100%;	
+	color: 'navy';
+	user-select: none;
+	margin: 0px;
+	overflow: hidden;
+	position: fixed;
+	background-color: #ffffff;
+	min-height:100%;
+	margin: 0;
+	top: 0px;
+	left: 0px;
+	background-image: url('img/author.jpg');
+	background-size: 20% auto;
+	background-position-x: left;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+li {
+	cursor: pointer;
+	margin-bottom: 1em;
+	background-color: #ffffff;
+}
+.contents {
+	width: 20%; 
+	height: 60%;
+	top: 3%;
+	left: 0px;
+	border-right: 1px solid navy;
+	overflow: auto;
+	word-break: break-all;
+}
+.textstory {
+	position: fixed;
+	height: 90%;
+	top: 3%;
+	width: 72%;
+	left: 24%;
+	overflow: hidden;
+	z-index: 1;
+}
+.textstory img {
+	width: 50%; 
+	height: auto;
+	object-fit: contain;
+	float: right;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.picture {
+	width: 95%;
+	height: auto;
+	float: left;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+.cat {
+	width: 100%;
+	height: auto;
+}
+.reader_age {
+	position: absolute;
+	bottom: 3px;
+	right: 0%;
+	display: inline-block;
+	margin: 10px;
+	padding: 4px;
+	outline: 1px solid #fff;
+	font-size: 32px;
+	font-weight: bold;
+	color: #ff0000;
+	border: 3px solid black;
+	border-radius: 50% 50% 50% 50%;
+	cursor: pointer;
+}
+</style>
+<script>
+var max_idx=92;
+var idx=1;
+//var readMe=[];
+document.oncontextmenu = function (){return false};
+function getCookie(name) {
+	return document.cookie.replace(/(?:(?:^|.*;\s*)read\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+function setCookie(name, value) {
+	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
+}
+function getCounts(e) {
+	let readStories = getCookie('read');
+	let elems = document.getElementsByTagName('li');
+	for(var i=0; i<elems.length; i++) {
+		if(readStories.indexOf(i+',')>-1){elems[i].style.backgroundColor='#ffffff'};
+	};
+	e.style.backgroundColor='#ddf3cb';
+}
+function showContents(){
+	let readStories = getCookie('read');
+	let ol = document.createElement("ul");
+	document.getElementById('contents').prepend(ol);
+	let nx=1;
+	let name_story = '';
+	while (nx<=max_idx){
+		let li = document.createElement("li");
+		li.setAttribute('id', 'li_'+nx);
+		let request = new XMLHttpRequest;
+		request.open('GET', 'text/'+nx+'.txt', true);
+		request.send();
+		request.onload = function () {
+			name_story = request.response;
+			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story;
+		};
+		if(readStories.indexOf(nx+',')>-1){
+			li.style.backgroundColor='#b9b9b9';
+		};
+		li.setAttribute('onclick', 'showStory('+nx+')');
+		ol.append(li);
+		nx++;
+	};
+}
+function showStory(indx){
+	let ifr = document.getElementById('showText');
+	ifr.addEventListener('load', () => {
+		let difr = ifr.contentDocument;
+		difr.body.style.color = 'navy';
+		difr.body.style.fontSize = '120%';
+		difr.body.style.userSelect = 'none';
+
+		let script = document.createElement("script");
+		script.innerText = 'document.oncontextmenu = function (){return false};var swa=0';
+		difr.body.appendChild(script);
+	})
+	ifr.src = 'text/'+indx+'.txt';
+	let useStory = document.getElementById('li_'+indx);
+//	getCounts(useStory);
+	let readMe = getCookie('read');
+	readMe = readMe+indx+',';
+//	alert('cookie(readMe)='+getCookie('read')+'\nreadMe='+readMe);
+	getCounts(useStory);
+	if(readMe.indexOf(indx+',')==-1) setCookie('read',readMe);
+}
+</script>
+</head>
+<body>
+<div id="contents" class="contents"></div>
+<div id="texts" class="textstory">
+	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
+</div>
+<span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
+</body>
+<script>
+showContents();
+document.getElementById('showText').src='about.html'
+</script>
+</html>
