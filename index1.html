@@ -183,7 +183,7 @@ function showStory(indx){
 	alert('открыл текст. cookie='+useCookie);
 	useCookie = useCookie+','+indx;
 //	setCookie('read',useCookie);
-	setCookie('read', indx, {secure: true, 'max-age': 360000});
+	setCookie('read', useCookie, {secure: true, 'max-age': 360000});
 	alert('дописал в куки='+indx+' cookie='+useCookie);
 	getUseStory(useStory);
 }
