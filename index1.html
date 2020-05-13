@@ -111,7 +111,7 @@ function setCookie(name, value) {
 //function getCounts(e) {
 function showUseStories(e){
 //	readMe = getCookie.split(',');
-	let readStories[];
+	let readStories=[];
 	readStories = getCookie('read').split(,);
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
@@ -162,7 +162,6 @@ function showStory(indx){
 	let readMe = getCookie('read');
 	alert('cookie(readMe)='+readMe+'\nsetCookie='+readMe+indx+',');
 	if(readMe.indexOf(indx+',')<0) setCookie('read',readMe+indx+',');
-//	getCounts(useStory);
 	showUseStories(useStory);
 	document.getElementById('li_'+indx).style.backgroundColor='#ddf3cb';
 }
