@@ -109,7 +109,8 @@ function markRead(e) {
 	let elems = document.getElementsByTagName('li');
 	let bookRead = getCookie('read');
 	let bookReadArray = bookRead.split(',');
-	for(var i=0; i<elems.length; i++){
+	alert(bookReadArray);
+	for(var i=0; i<elems.length; i++) {
 		elems[i].style.backgroundColor=(bookReadArray.indexOf(i)>=0)?'#d4d4d4':'#ffffff';
 	};
 	e.style.backgroundColor='#ddf3cb';
