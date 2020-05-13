@@ -9,14 +9,12 @@
 <meta name="title" content="Иные миры">
 <meta name="description" content="Рассказы">
 <meta name="keywords" content="жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
-<meta property="og:url" content="https://inyemiry.github.io/" />
+<meta property="og:url" content="https://sirotenko-vadin.github.io/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Рассказики" />
 <meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
-<meta property="og:image" content="https://inyemiry.github.io/img/author.jpg" />
+<meta property="og:image" content="https://inyemiry.github.io/img/swa2.jpg" />
 <meta property="og:locale" content="ru_RU" />
-<meta property="fb:app_id" content="1559991960821213" />
-<meta property="fb:pages" content="108221997181803">
 <style>
 html, body {
 	height: 100%;
@@ -43,10 +41,7 @@ li {
 	cursor: pointer;
 	margin-bottom: 1em;
 	background-color: #ffffff;
-/*
-	background-color: #ddf3cb;	зелененькое 
-	background-color: #CECECE;	серенькое
-*/
+/*	background-color: #d4d4d4; серенький для прочитанных рассказиклов */
 }
 .contents {
 	width: 20%; 
@@ -104,28 +99,26 @@ li {
 <script>
 var max_idx=92;
 var idx=1;
-var readMe=[];
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
-	return document.cookie.replace(/(?:(?:^|.*;\s*)read\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 function setCookie(name, value) {
 	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
 }
-//function getCounts(e) {
-function showUseStories(e){
-//	readMe = getCookie.split(',');
-	let readStories=[];
-	readStories = getCookie('read').split(',');
+function getCounts(e) {
+	let readStories = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		if(readStories.indexOf(i)>-1){elems[i].style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
-//		if(readStories.indexOf(i)>-1){document.getElementById('li_'+i).style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
+		if(readStories.indexOf(i)>=0) 
+			elems[i].style.backgroundColor='##d4d4d4';
+		}else{
+			elems[i].style.backgroundColor='#ffffff';
+		};
 	};
-	if(e!==undefined) e.style.backgroundColor='#ddf3cb';	// зеленький фон, открытый рассказ
+	e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-//	let readStories = getCookie('read');
 	let ol = document.createElement("ul");
 	document.getElementById('contents').prepend(ol);
 	let nx=1;
@@ -141,16 +134,10 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-//		let readStories=[];
-//		readStories = getCookie('read').split(',');
-//		if(readStories.indexOf(nx)>=0){
-//			li.style.backgroundColor='#b9b9b9';
-//		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
 	};
-	showUseStories();
 }
 function showStory(indx){
 	let ifr = document.getElementById('showText');
@@ -166,11 +153,9 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let readMe = getCookie('read');
-	alert('cookie(readMe)='+readMe+'\nsetCookie='+readMe+indx+',');
-	if(readMe.indexOf(indx+',')<0) setCookie('read',readMe+indx+',');
-	showUseStories(useStory);
-	document.getElementById('li_'+indx).style.backgroundColor='#ddf3cb';
+	let cookie = getCookie('read')+','+indx;
+	setCookie('read',cookie);
+	getCounts(useStory);
 }
 </script>
 </head>
