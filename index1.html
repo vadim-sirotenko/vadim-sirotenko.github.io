@@ -133,7 +133,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		if(readStories.indexOf(nx+',')>-1){
+		if(readStories.indexOf(nx+',')>=0){
 			li.style.backgroundColor='#b9b9b9';
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
@@ -155,12 +155,10 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-//	getCounts(useStory);
 	let readMe = getCookie('read');
-	readMe = readMe+indx+',';
 //	alert('cookie(readMe)='+getCookie('read')+'\nreadMe='+readMe);
-	getCounts(useStory);
-	if(readMe.indexOf(indx+',')==-1) setCookie('read',readMe);
+	if(readMe.indexOf(indx+',')<0) setCookie('read',readMe+indx+',');
+//	getCounts(useStory);
 }
 </script>
 </head>
