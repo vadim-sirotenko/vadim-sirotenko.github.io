@@ -105,9 +105,6 @@ function getCookie(name) {
 	));
  	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-//function setCookie(name, value) {
-//	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
-//}
 function setCookie(name, value, options = {}) {
   options = {
     path: '/',
@@ -174,6 +171,9 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
+	let useCookie = getCookie('read');
+	useCookie = useCookie+','+indx;
+	setCookie('read', useCookie, {secure: true, 'max-age': 360000});
 //	getCounts(useStory);
 	markRead(useStory);
 }
