@@ -119,7 +119,8 @@ function showUseStories(e){
 	readStories = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		if(readStories.indexOf(i)>-1){elems[i].style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
+//		if(readStories.indexOf(i)>-1){elems[i].style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
+		if(readStories.indexOf(i)>-1){document.getElementById('li_'+i).style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
 	};
 	if(!e===undefined) e.style.backgroundColor='#ddf3cb';	// зеленький фон, открытый рассказ
 }
