@@ -156,7 +156,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	let useCookie = getCookie('read');
 	alert('открыл текст. cookie='+useCookie);
-	let useCookie = useCookie+','+indx;
+	useCookie = useCookie+','+indx;
 	setCookie('read',useCookie);
 	alert('дописал в куки='+indx+' cookie='+useCookie);
 	getUseStory(useStory);
