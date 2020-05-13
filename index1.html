@@ -41,7 +41,6 @@ li {
 	cursor: pointer;
 	margin-bottom: 1em;
 	background-color: #ffffff;
-/*	background-color: #d4d4d4; серенький для прочитанных рассказиклов */
 }
 .contents {
 	width: 20%; 
@@ -101,47 +100,17 @@ var max_idx=92;
 var idx=1;
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
-//	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-	let matches = document.cookie.match(new RegExp(
-    	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-	));
- 	return matches ? decodeURIComponent(matches[1]) : undefined;
+	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
-//function setCookie(name, value) {
-//	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
-//}
-function setCookie(name, value, options = {}) {
-  options = {
-    path: '/',
-    // при необходимости добавьте другие значения по умолчанию
-	// ...options
-  };
-
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-  document.cookie = updatedCookie;
+function setCookie(name, value) {
+	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
 }
-function getUseStory(e) {
-	let readStories = getCookie('read').split(',');
-	alert('каталог readStories='+readStories);
+function markRead(e) {
 	let elems = document.getElementsByTagName('li');
-	for(var i=0; i<elems.length; i++) {
-		if(readStories.indexOf(i)>=0) {
-			elems[i].style.backgroundColor='##d4d4d4';
-		}else{
-			elems[i].style.backgroundColor='#ffffff';
-		};
+	let bookRead = getCookie('read');
+	let bookReadArray = bookRead.split(',');
+	for(var i=0; i<elems.length; i++){
+		elems[i].style.backgroundColor=(bookReadArray.indexOf(i)>=0)?'#d4d4d4':'#ffffff';
 	};
 	e.style.backgroundColor='#ddf3cb';
 }
@@ -165,7 +134,6 @@ function showContents(){
 		ol.append(li);
 		nx++;
 	};
-	getUseStory();
 }
 function showStory(indx){
 	let ifr = document.getElementById('showText');
@@ -181,12 +149,8 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let useCookie = getCookie('read');
-	alert('открыл текст. cookie='+useCookie);
-	useCookie = useCookie+','+indx;
-	setCookie('read', useCookie, {secure: true, 'max-age': 360000});
-	alert('дописал в куки='+indx+' cookie='+useCookie);
-	getUseStory(useStory);
+//	getCounts(useStory);
+	markRead(useStory);
 }
 </script>
 </head>
