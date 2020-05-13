@@ -158,7 +158,7 @@ function showStory(indx){
 	let readMe = getCookie('read');
 	alert('cookie(readMe)='+readMe+'\nsetCookie='+readMe+indx+',');
 	if(readMe.indexOf(indx+',')<0) setCookie('read',readMe+indx+',');
-//	getCounts(useStory);
+	getCounts(useStory);
 }
 </script>
 </head>
