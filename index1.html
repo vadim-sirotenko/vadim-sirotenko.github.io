@@ -43,6 +43,10 @@ li {
 	cursor: pointer;
 	margin-bottom: 1em;
 	background-color: #ffffff;
+/*
+	background-color: #ddf3cb;	зелененькое 
+	background-color: #CECECE;	серенькое
+*/
 }
 .contents {
 	width: 20%; 
@@ -115,9 +119,9 @@ function showUseStories(e){
 	readStories = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		if(readStories.indexOf(i)>-1){elems[i].style.backgroundColor='#ffffff'};
+		if(readStories.indexOf(i)>-1){elems[i].style.backgroundColor='#CECECE'};	// серенький фон, уже прочитанный рассказ
 	};
-	if(!e===undefined) e.style.backgroundColor='#ddf3cb';
+	if(!e===undefined) e.style.backgroundColor='#ddf3cb';	// зеленький фон, открытый рассказ
 }
 function showContents(){
 //	let readStories = getCookie('read');
@@ -136,9 +140,11 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		if(readME.indexOf(nx)>=0){
-			li.style.backgroundColor='#b9b9b9';
-		};
+//		let readStories=[];
+//		readStories = getCookie('read').split(',');
+//		if(readStories.indexOf(nx)>=0){
+//			li.style.backgroundColor='#b9b9b9';
+//		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
