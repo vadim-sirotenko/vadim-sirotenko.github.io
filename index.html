@@ -110,6 +110,7 @@ function getCookie(name) {
 function setCookie(name, value, options = {}) {
   options = {
 	path: '/',
+	'max-age': 3600*24*35
   };
   if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
@@ -176,7 +177,8 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read')+','+indx;
-	setCookie('read',mycooki,{ secure: true, 'max-age': 3600*24*35} )
+//	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	setCookie('read',mycooki);
 	getCounts(useStory);
 }
 </script>
