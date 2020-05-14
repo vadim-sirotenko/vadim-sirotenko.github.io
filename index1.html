@@ -9,12 +9,14 @@
 <meta name="title" content="Иные миры">
 <meta name="description" content="Рассказы">
 <meta name="keywords" content="жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
-<meta property="og:url" content="https://sirotenko-vadin.github.io/" />
+<meta property="og:url" content="https://inyemiry.github.io/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Рассказики" />
 <meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
-<meta property="og:image" content="https://inyemiry.github.io/img/swa2.jpg" />
+<meta property="og:image" content="https://inyemiry.github.io/img/author.jpg" />
 <meta property="og:locale" content="ru_RU" />
+<meta property="fb:app_id" content="1559991960821213" />
+<meta property="fb:pages" content="108221997181803">
 <style>
 html, body {
 	height: 100%;
@@ -108,6 +110,7 @@ function getCookie(name) {
 function setCookie(name, value, options = {}) {
   options = {
     path: '/',
+	// ...options
   };
   if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
@@ -122,17 +125,18 @@ function setCookie(name, value, options = {}) {
   }
   document.cookie = updatedCookie;
 }
-function markRead(e) {
+//function getCounts(e) {
+function getCounts(e) {
+	let quqi = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
-	let bookRead = getCookie('read');
-	let bookReadArray = bookRead.split(',');
-	alert('cookie='+bookRead+'\narray='+bookReadArray);
-	for (let elem of elements) {
-//		if(){
-//			parseInt(elem.id)
-//		}
-		elems[i].style.backgroundColor=(bookReadArray.indexOf( parseInt(elem.id) )>=0)?'#d4d4d4':'#ffffff';
-		alert('li.backgoundColor='+elem.style.backgound);
+	for(var i=0; i<elems.length; i++) {
+		elem_id = Number(elems[i].id);
+		alert(' quqi='+quqi+ '\n elem_id='+elem_id);
+		if(quqi.indexOf(elem_id)>=0) {
+			elems[i].style.backgroundColor='#d4d4d4';
+		}else{
+			elems[i].style.backgroundColor='#ffffff';
+		};
 	};
 	e.style.backgroundColor='#ddf3cb';
 }
@@ -156,7 +160,6 @@ function showContents(){
 		ol.append(li);
 		nx++;
 	};
-	markRead();
 }
 function showStory(indx){
 	let ifr = document.getElementById('showText');
@@ -172,11 +175,8 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let useCookie = getCookie('read');
-	useCookie = useCookie+','+indx;
-	setCookie('read', useCookie, {secure: true, 'max-age': 360000});
-//	getCounts(useStory);
-	markRead(useStory);
+	setCookie('read',indx,{ expires: 65})
+	getCounts(useStory);
 }
 </script>
 </head>
