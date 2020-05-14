@@ -137,7 +137,8 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 	};
-	e.style.backgroundColor='#ddf3cb';
+//	e.style.backgroundColor='#ddf3cb';
+	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
 	let ol = document.createElement("ul");
