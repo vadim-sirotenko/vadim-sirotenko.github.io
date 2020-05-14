@@ -102,15 +102,43 @@ var max_idx=92;
 var idx=1;
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
-	return document.cookie.replace(/(?:(?:^|.*;\s*)page\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	let matches = document.cookie.match(new RegExp(
+    	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	));
+ 	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-function setCookie(name, value) {
-	document.cookie = name + '=' + value + '; max-age='+3600*24*31;
+function setCookie(name, value, options = {}) {
+  options = {
+    path: '/',
+	// ...options
+  };
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+  document.cookie = updatedCookie;
 }
 function getCounts(e) {
+	let quqi = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
-	for(var i=0; i<elems.length; i++) elems[i].style.backgroundColor='#ffffff';
-	e.style.backgroundColor='#ddf3cb';
+	for(var i=0; i<elems.length; i++) {
+		let elem_id = elems[i].getAttribute('id');
+		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
+		if(quqi.indexOf(elem_no+',')>=0) {
+			elems[i].style.backgroundColor='#d4d4d4';
+		}else{
+			elems[i].style.backgroundColor='#ffffff';
+		};
+	};
+//	e.style.backgroundColor='#ddf3cb';
+	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
 	let ol = document.createElement("ul");
@@ -132,6 +160,7 @@ function showContents(){
 		ol.append(li);
 		nx++;
 	};
+	getCounts();
 }
 function showStory(indx){
 	let ifr = document.getElementById('showText');
@@ -147,6 +176,8 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
+	let mycooki = getCookie('read')+','+indx;
+	setCookie('read',mycooki,{ expires: 65})
 	getCounts(useStory);
 }
 </script>
