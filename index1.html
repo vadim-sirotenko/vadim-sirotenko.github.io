@@ -109,13 +109,10 @@ function setCookie(name, value, options = {}) {
   options = {
     path: '/',
   };
-
   if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
-
   let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
   for (let optionKey in options) {
     updatedCookie += "; " + optionKey;
     let optionValue = options[optionKey];
@@ -130,8 +127,12 @@ function markRead(e) {
 	let bookRead = getCookie('read');
 	let bookReadArray = bookRead.split(',');
 	alert('cookie='+bookRead+'\narray='+bookReadArray);
-	for(var i=0; i<elems.length; i++) {
-		elems[i].style.backgroundColor=(bookReadArray.indexOf(i)>=0)?'#d4d4d4':'#ffffff';
+	for (let elem of elements) {
+//		if(){
+//			parseInt(elem.id)
+//		}
+		elems[i].style.backgroundColor=(bookReadArray.indexOf( parseInt(elem.id) )>=0)?'#d4d4d4':'#ffffff';
+		alert('li.backgoundColor='+elem.style.backgound);
 	};
 	e.style.backgroundColor='#ddf3cb';
 }
