@@ -127,7 +127,7 @@ function setCookie(name, value, options = {}) {
 }
 //function getCounts(e) {
 function getCounts(e) {
-	let quqi = getCookie('read').split(',');
+	let quqi = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -135,8 +135,8 @@ function getCounts(e) {
 //		let elem_no = parseInt(elem_id);
 //		let elem_no = parseInt(elem_id.slice(3));
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		alert(' quqi='+quqi+ '\n elem_id='+elem_id+'\nelement_no='+elem_no+'\nпоиск в куки='+quqi.indexOf('\''+elem_no+'\''));
-		if(quqi.indexOf(elem_no-1)>=0) {
+//		alert(' quqi='+quqi+ '\n elem_id='+elem_id+'\nelement_no='+elem_no+'\nпоиск в куки='+quqi.indexOf(elem_no));
+		if(quqi.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
