@@ -130,8 +130,9 @@ function getCounts(e) {
 	let quqi = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		elem_id = Number(elems[i].id);
-		alert(' quqi='+quqi+ '\n elem_id='+elem_id);
+		let elem_id = elems[i].getAttribute('id');
+		let elem_no = Number(elem_id);
+		alert(' quqi='+quqi+ '\n elem_id='+elem_id+'\nelement_no='+elem_no);
 		if(quqi.indexOf(elem_id)>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
