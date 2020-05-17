@@ -40,7 +40,10 @@ html, body {
 	padding-bottom: 5px;
 }
 </style>
-<script>var swa=0;</script>
+<script>
+document.oncontextmenu = function (){return false};
+var swa=0;
+</script>
 </head>
 <body>
 <img id="portret" class="picture" src="img/swa1.jpg" onclick="swa=(swa>=3)?1:swa+1;this.src='img/swa'+swa+'.jpg';">
