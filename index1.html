@@ -184,8 +184,9 @@ function showStory(indx){
 		fbLikeScript.setAttribute('defer');
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-		fbLike.before(fbLikeScript);
-
+//		fbLike.before(fbLikeScript);
+		difr.body.before(fbLikeScript);
+		
 		let fbLikeButtom = document.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
 		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/");
@@ -194,7 +195,8 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-action',"like");
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
-		difr.body.append(fbButtom);
+//		difr.body.append(fbButtom);
+		difr.body.appendChild(fbButtom);
 /*		
 		div.setAttribute('id', "fblike");
 		div.setAttribute('data-href', "https://vadim-sirotenko.github.io/");
