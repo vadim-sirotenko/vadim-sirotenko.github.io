@@ -181,22 +181,26 @@ function showStory(indx){
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
 
-		let script = document.createElement("script");
-		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
-		difr.body.appendChild(script);
+//		let script = document.createElement("script");
+//		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
+//		difr.body.appendChild(script);
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
 		difr.body.prepend(fbLike);
 		
 		let fbLikeScript = document.createElement("script");
-//		fbLikeScript.setAttribute('asynk');
-//		fbLikeScript.setAttribute('defer');
+		fbLikeScript.setAttribute("asynk");
+		fbLikeScript.setAttribute("defer");
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-//		fbLike.before(fbLikeScript);
+//		difr.body.prepend(fbLikeScript);
 		difr.body.prepend(fbLikeScript);
 		
+		let script = document.createElement("script");
+		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
+		difr.body.appendChild(script);
+
 		let fbLikeButtom = document.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
 		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/");
@@ -206,7 +210,6 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbButtom);
-//		difr.body.appendChild(fbButtom);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
