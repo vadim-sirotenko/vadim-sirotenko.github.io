@@ -177,24 +177,23 @@ function showStory(indx){
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
-		difr.body.node.after(fbLike);
+		difr.body.after(fbLike);
 		
 		let fbLikeScript = document.createElement("script");
 		fbLikeScript.setAttribute('asynk');
 		fbLikeScript.setAttribute('defer');
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-//		difr.document.getElememntByID('fb-root').after(fbLikeScript);
-		fbLike.after(fbLikeScript);
+		difr.after(fbLikeScript);
 
-		let fbButtom = document.createElement('div');
-		fbButtom.setAttribute('class',"fb-like");
-		fbButtom.setAttribute('data-href',"https://developers.facebook.com/docs/plugins/");
-		fbButtom.setAttribute('data-width', "");
-		fbButtom.setAttribute('data-layout',"standard");
-		fbButtom.setAttribute('data-action',"like");
-		fbButtom.setAttribute('data-size',"small");
-		fbButtom.setAttribute('data-share',"true");
+		let fbLikeButtom = document.createElement('div');
+		fbLikeButtom.setAttribute('class',"fb-like");
+		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/");
+		fbLikeButtom.setAttribute('data-width', "");
+		fbLikeButtom.setAttribute('data-layout',"standard");
+		fbLikeButtom.setAttribute('data-action',"like");
+		fbLikeButtom.setAttribute('data-size',"small");
+		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbButtom);
 /*		
 		div.setAttribute('id', "fblike");
