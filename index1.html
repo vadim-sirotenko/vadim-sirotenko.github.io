@@ -169,8 +169,12 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
+	
+	let ifr_old = document.getElementById('showText');
+//	clear(ifr);
+	ifr_old.remove();
+	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
 	let ifr = document.getElementById('showText');
-	clear(ifr);
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
