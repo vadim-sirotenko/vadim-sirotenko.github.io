@@ -169,11 +169,18 @@ function showStory(indx){
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
 		difr.body.style.fontSize = '120%';
-//		difr.body.style.userSelect = 'none';
+		difr.body.style.userSelect = 'none';
 
 		let script = document.createElement("script");
 		script.innerText = 'document.oncontextmenu = function (){return false};var swa=0';
 		difr.body.appendChild(script);
+
+		let script_fb = document.createElement("script");
+		script_fb.setAttribute('async');
+		script_fb.setAttribute('defer');
+		script_fb.setAttribute('crossorigin', "anonymous");
+		script_fb.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0");
+		difr.body.appendChild(script_fb);
 
 		let div = document.createElement("div");
 		div.setAttribute('id', "fb-root");
