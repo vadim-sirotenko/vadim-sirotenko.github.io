@@ -164,6 +164,7 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
+	let ifr = null;
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
@@ -185,7 +186,7 @@ function showStory(indx){
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
 //		fbLike.before(fbLikeScript);
-		difr.body.before(fbLikeScript);
+		difr.body.prepend(fbLikeScript);
 		
 		let fbLikeButtom = document.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
