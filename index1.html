@@ -190,8 +190,8 @@ function showStory(indx){
 		difr.body.prepend(fbLike);
 		
 		let fbLikeScript = document.createElement("script");
-		fbLikeScript.setAttribute("asynk");
-		fbLikeScript.setAttribute("defer");
+		fbLikeScript.setAttribute("asynk",true);
+		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
 //		difr.body.prepend(fbLikeScript);
