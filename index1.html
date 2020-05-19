@@ -175,12 +175,12 @@ function showStory(indx){
 		script.innerText = 'document.oncontextmenu = function (){return false};var swa=0';
 		difr.body.appendChild(script);
 
-		let script_fb = document.createElement("script");
-		script_fb.setAttribute('async');
-		script_fb.setAttribute('defer');
-		script_fb.setAttribute('crossorigin', "anonymous");
-		script_fb.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0");
-		difr.body.append(script_fb);
+		let scr_fb = document.createElement("script");
+		scr_fb.setAttribute('async');
+		scr_fb.setAttribute('defer');
+		scr_fb.setAttribute('crossorigin', "anonymous");
+		scr_fb.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0");
+		difr.body.append(scr_fb);
 
 		let div = document.createElement("div");
 		div.setAttribute('id', "fb-root");
