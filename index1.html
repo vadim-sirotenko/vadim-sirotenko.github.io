@@ -171,19 +171,23 @@ function showContents(){
 function showStory(indx){
 	
 	let ifr_old = document.getElementById('showText');
-//	clear(ifr);
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
+
+		let story_name = difr.slice(0, name_story.indexOf('\n')-1);
+
+		difr.head.insertAdjacentElement('beforeend', "<meta property="og:url" 			content=\"https://vadim-sirotenko.github.io/index.html\"/>");
+		difr.head.insertAdjacentElement('beforeend', "<meta property="og:type"          content=\"website\" />");
+		difr.head.insertAdjacentElement('beforeend', "<meta property="og:title"         content=\" +story_name+ "\" />");
+		difr.head.insertAdjacentElement('beforeend', "<meta property="og:description"   content=\"Смешные истории и сказки\" />");
+		difr.head.insertAdjacentElement('beforeend', "<meta property="og:image"         content=\"https://vadim-sirotenko.github.io/img/author2.jpg\" />");
+
 		difr.body.style.color = 'navy';
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
-
-//		let script = document.createElement("script");
-//		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
-//		difr.body.appendChild(script);
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
@@ -194,7 +198,6 @@ function showStory(indx){
 		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-//		difr.body.prepend(fbLikeScript);
 		difr.body.prepend(fbLikeScript);
 		
 		let script = document.createElement("script");
