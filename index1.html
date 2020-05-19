@@ -180,7 +180,7 @@ function showStory(indx){
 		script_fb.setAttribute('defer');
 		script_fb.setAttribute('crossorigin', "anonymous");
 		script_fb.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0");
-		difr.body.appendChild(script_fb);
+		difr.body.append(script_fb);
 
 		let div = document.createElement("div");
 		div.setAttribute('id', "fb-root");
