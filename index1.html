@@ -177,14 +177,14 @@ function showStory(indx){
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
-		difr.body.after(fbLike);
+		difr.body.prepend(fbLike);
 		
 		let fbLikeScript = document.createElement("script");
 		fbLikeScript.setAttribute('asynk');
 		fbLikeScript.setAttribute('defer');
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-		difr.after(fbLikeScript);
+		fbLike.before(fbLikeScript);
 
 		let fbLikeButtom = document.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
