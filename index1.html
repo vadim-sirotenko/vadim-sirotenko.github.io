@@ -179,14 +179,14 @@ function showStory(indx){
 		div.setAttribute('id', "fb-root");
 		difr.body.prepend(div);
 		
-		let div = document.createElement("div");
-		div.setAttribute('id', "fblike");
-		div.setAttribute('data-href', "https://odesskiebaranki.github.io/");
-		div.setAttribute('data-layout', "button_count");
-		div.setAttribute('data-action', "like");
-		div.setAttribute('data-share', "true");
-		div.setAttribute('data-show-faces', "true");
-		difr.body.append(div);
+		let div_fb = document.createElement("div");
+		div_fb.setAttribute('id', "fblike");
+		div_fb.setAttribute('data-href', "https://odesskiebaranki.github.io/");
+		div_fb.setAttribute('data-layout', "button_count");
+		div_fb.setAttribute('data-action', "like");
+		div_fb.setAttribute('data-share', "true");
+		div_fb.setAttribute('data-show-faces', "true");
+		difr.body.append(div_fb);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
