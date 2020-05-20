@@ -154,7 +154,7 @@ function getCounts(e) {
 	let story_id = getUrlVars()["story"];
 	alert('URL:story_id='+story_id);
 	if(story_id>0) {
-		let elmView = document.getElementById('li_'+getUrlVars()["id"]);
+		let elmView = document.getElementById('li_'+getUrlVars()["story_id"]);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#ddf3cb';
 	};
