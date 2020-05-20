@@ -143,7 +143,6 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 	};
-//	e.style.backgroundColor='#ddf3cb';
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
@@ -164,14 +163,13 @@ function showContents(){
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
+//		alert(li.offSet);
 		nx++;
 	};
 	getCounts();
 }
 function showStory(indx){
-	
 	let ifr_old = document.getElementById('showText');
-//	clear(ifr);
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
 	let ifr = document.getElementById('showText');
@@ -180,10 +178,15 @@ function showStory(indx){
 		difr.body.style.color = 'navy';
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
-
-//		let script = document.createElement("script");
-//		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
-//		difr.body.appendChild(script);
+		
+		name_story = difr.body.slice(0, name_story.indexOf('\n')-1);
+		difr.head.insertAdjacentHTML('afterbegin','<meta property="og:url" content="https://vadim-sirotenko.github.io/" />'+
+			'<meta property="og:type" content="website" />'+
+			'<meta property="og:title" content="'+name_story+'" />'+
+//			'<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />'+
+			'<meta property="og:image" content="https://vadim-sirotenko.github.io/img/swa2.jpg" />'+
+			'<meta property="og:locale" content="ru_RU" />'+
+			'<meta property="fb:app_id" content="340464793585119" />');
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
@@ -194,7 +197,6 @@ function showStory(indx){
 		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
-//		difr.body.prepend(fbLikeScript);
 		difr.body.prepend(fbLikeScript);
 		
 		let script = document.createElement("script");
