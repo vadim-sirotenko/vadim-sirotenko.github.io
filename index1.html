@@ -152,9 +152,10 @@ function getCounts(e) {
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 	let story_id = getUrlVars()["story"];
-	alert('URL:story_id='+story_id);
+//	alert('URL:story_id='+story_id);
 	if(story_id>0) {
-		let elmView = document.getElementById('li_'+getUrlVars()["story_id"]);
+		let elmView = document.getElementById('li_'+story_id);
+		alert('elmView='+elmView.id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#ddf3cb';
 	};
