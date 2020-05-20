@@ -156,6 +156,8 @@ function getCounts(e) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#ddf3cb';
+		let url = window.location.href;
+		url.searchParams.delete('story');
 		story_id ='';
 	};
 }
