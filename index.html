@@ -126,6 +126,11 @@ function setCookie(name, value, options = {}) {
   }
   document.cookie = updatedCookie;
 }
+function clear(elem) {
+  while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+}
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
@@ -138,7 +143,6 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 	};
-//	e.style.backgroundColor='#ddf3cb';
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
@@ -164,6 +168,10 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
+	
+	let ifr_old = document.getElementById('showText');
+	ifr_old.remove();
+	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
@@ -171,9 +179,30 @@ function showStory(indx){
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
 
+		let fbLike = document.createElement("div");
+		fbLike.setAttribute('id', "fb-root");
+		difr.body.prepend(fbLike);
+		
+		let fbLikeScript = document.createElement("script");
+		fbLikeScript.setAttribute("asynk",true);
+		fbLikeScript.setAttribute("defer",true);
+		fbLikeScript.setAttribute('crossorigin', "anonymous");
+		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
+		difr.body.prepend(fbLikeScript);
+		
 		let script = document.createElement("script");
-		script.innerText = 'document.oncontextmenu = function (){return false};var swa=0';
+		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
 		difr.body.appendChild(script);
+
+		let fbLikeButtom = document.createElement('div');
+		fbLikeButtom.setAttribute('class',"fb-like");
+		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/");
+		fbLikeButtom.setAttribute('data-width', "");
+		fbLikeButtom.setAttribute('data-layout',"standard");
+		fbLikeButtom.setAttribute('data-action',"like");
+		fbLikeButtom.setAttribute('data-size',"small");
+		fbLikeButtom.setAttribute('data-share',"true");
+		difr.body.append(fbLikeButtom);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
