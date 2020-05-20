@@ -139,12 +139,13 @@ function getCounts(e) {
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 		if(quqi.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
-			elems[i].scrollIntoView(top);
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
+	document.getElementById('li_90').scrollIntoView(top);
+//	elems[i].scrollIntoView(top);
 }
 function showContents(){
 	let ol = document.createElement("ul");
