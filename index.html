@@ -156,10 +156,8 @@ function getCounts(e) {
 	if(story_id>0 && arguments.length==0) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
-//		alert('elmView='+elmView+'\nelmView.id='+elmView.id);
-//		showStory(story_id);
+		elmView.style.backgroundColor='#B7D0B3';
 	};
-	showStory(story_id);
 }
 function showContents(){
 	let ol = document.createElement("ul");
