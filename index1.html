@@ -178,9 +178,10 @@ function showContents(){
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#8BE3ED';
-		getCounts(elmView);
+//		getCounts(elmView);
 		showStory(story_id);
 	}else{
+		document.getElementById('showText').src='about.html';
 		getCounts();
 	};
 //	getCounts();
@@ -239,6 +240,5 @@ function showStory(indx){
 </body>
 <script>
 showContents();
-document.getElementById('showText').src='about.html'
 </script>
 </html>
