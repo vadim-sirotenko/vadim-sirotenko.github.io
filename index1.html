@@ -140,6 +140,7 @@ function clear(elem) {
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
+	let story_id=0; 
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -151,15 +152,6 @@ function getCounts(e) {
 		};
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
-	let story_id = getUrlVars()["story"];
-	if(story_id>0) {
-		let elmView = document.getElementById('li_'+story_id);
-		elmView.scrollIntoView(top);
-		elmView.style.backgroundColor='#8BE3ED';
-		let url = window.location.href;
-		url.searchParams.delete('story');
-		story_id ='';
-	};
 }
 function showContents(){
 	let ol = document.createElement("ul");
@@ -181,12 +173,21 @@ function showContents(){
 		ol.append(li);
 		nx++;
 	};
-	getCounts();
+	let story_id = getUrlVars()["story"];
+	if (story_id>=1 && story_id<=max_idx) {
+		document.getElementById('li_'+story_id).scrollIntoView(top);
+//		let elmView = document.getElementById('li_'+story_id);
+//		elmView.scrollIntoView(top);
+		showStory(story_id);
+	}else{
+		getCounts();
+	};
 }
 function showStory(indx){
-	
-	let ifr_old = document.getElementById('showText');
-	ifr_old.remove();
+if(arguments.length==1){
+	document.getElementById('showText').remove();
+//	let ifr_old = document.getElementById('showText');
+//	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
@@ -225,6 +226,9 @@ function showStory(indx){
 	let mycooki = getCookie('read')+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
+}else{
+	document.getElementById('showText').src='about.html';	
+};
 }
 </script>
 </head>
@@ -237,6 +241,6 @@ function showStory(indx){
 </body>
 <script>
 showContents();
-document.getElementById('showText').src='about.html'
+//document.getElementById('showText').src='about.html'
 </script>
 </html>
