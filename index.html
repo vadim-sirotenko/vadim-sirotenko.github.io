@@ -180,7 +180,7 @@ function showContents(){
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
-	if (story_id>=1) {
+	if (story_id>=1 && story_id<=max_idx) {
 		showStory(story_id);
 	};
 	getCounts();
