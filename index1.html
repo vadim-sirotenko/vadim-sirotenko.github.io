@@ -173,6 +173,7 @@ function showContents(){
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
+	alert('story_id='+story_id);
 	if(story_id>0) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
@@ -183,8 +184,10 @@ function showContents(){
 //		let useStory = document.getElementById('li_'+indx);
 		showStory(story_id);
 		getCounts(elmView);
+	}else{
+		getCounts();
 	};
-	getCounts();
+//	getCounts();
 }
 function showStory(indx){
 	let ifr_old = document.getElementById('showText');
