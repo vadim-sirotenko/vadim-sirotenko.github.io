@@ -174,16 +174,12 @@ function showContents(){
 	};
 	let story_id = getUrlVars()["story"];
 	alert('story_id='+story_id);
-	if(story_id>0) {
+	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#8BE3ED';
-//		let url = window.location.href;
-//		url.searchParams.delete('story');
-//		story_id ='';
-//		let useStory = document.getElementById('li_'+indx);
-		showStory(story_id);
 		getCounts(elmView);
+		showStory(story_id);
 	}else{
 		getCounts();
 	};
