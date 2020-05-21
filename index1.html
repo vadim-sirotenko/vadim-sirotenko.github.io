@@ -227,7 +227,8 @@ if(arguments.length==1){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }else{
-	document.getElementById('showText').src='about.html';	
+	document.getElementById('showText').src='about.html';
+	showContents();
 };
 }
 </script>
@@ -241,6 +242,6 @@ if(arguments.length==1){
 </body>
 <script>
 showContents();
-//document.getElementById('showText').src='about.html'
+document.getElementById('showText').src='about.html'
 </script>
 </html>
