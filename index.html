@@ -181,6 +181,8 @@ function showContents(){
 	};
 	let story_id = getUrlVars()["story"];
 	if (story_id>=1 && story_id<=max_idx) {
+		let elmView = document.getElementById('li_'+story_id);
+		elmView.scrollIntoView(top);
 		showStory(story_id);
 	}else{
 		getCounts();
