@@ -152,12 +152,12 @@ function getCounts(e) {
 		};
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
-	story_id = getUrlVars()["story"];
+/*	story_id = getUrlVars()["story"];
 	if(story_id>0 && arguments.length==0) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#B7D0B3';
-	};
+	}; */
 }
 function showContents(){
 	let ol = document.createElement("ul");
@@ -183,7 +183,7 @@ function showContents(){
 	if (story_id>=1 && story_id<=max_idx) {
 		showStory(story_id);
 	};
-	getCounts();
+//	getCounts();
 }
 function showStory(indx){
 	let ifr_old = document.getElementById('showText');
