@@ -179,6 +179,8 @@ function showContents(){
 		ol.append(li);
 		nx++;
 	};
+	let story_id = getUrlVars()["story"];
+	if (story_id>=1) showStory(story_id);
 	getCounts();
 }
 function showStory(indx){
