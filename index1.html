@@ -140,7 +140,6 @@ function clear(elem) {
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
-	let story_id=0; 
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -174,21 +173,23 @@ function showContents(){
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
-	if (story_id>=1 && story_id<=max_idx) {
-		document.getElementById('li_'+story_id).scrollIntoView(top);
-//		let elmView = document.getElementById('li_'+story_id);
-//		elmView.scrollIntoView(top);
-		showStory(story_id);
-	}else{
-		getCounts();
+	if(story_id>0) {
+		let elmView = document.getElementById('li_'+story_id);
+		elmView.scrollIntoView(top);
+		elmView.style.backgroundColor='#8BE3ED';
+//		let url = window.location.href;
+//		url.searchParams.delete('story');
+//		story_id ='';
+//		let useStory = document.getElementById('li_'+indx);
+		getCounts(elmView);
 	};
+	getCounts();
 }
 function showStory(indx){
-	document.getElementById('showText').remove();
-//	let ifr_old = document.getElementById('showText');
-//	ifr_old.remove();
+	
+	let ifr_old = document.getElementById('showText');
+	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
-if(arguments.length==1){
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
@@ -226,11 +227,6 @@ if(arguments.length==1){
 	let mycooki = getCookie('read')+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
-}else{
-	document.getElementById('showText').src='about.html';
-//	showContents();
-	getCounts();
-};
 }
 </script>
 </head>
