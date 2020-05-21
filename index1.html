@@ -186,6 +186,7 @@ function showContents(){
 //	getCounts();
 }
 function showStory(indx){
+	alert('вызов текста showStory('+indx+')');
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
