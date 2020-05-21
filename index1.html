@@ -184,11 +184,11 @@ function showContents(){
 	};
 }
 function showStory(indx){
-if(arguments.length==1){
 	document.getElementById('showText').remove();
 //	let ifr_old = document.getElementById('showText');
 //	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
+if(arguments.length==1){
 	let ifr = document.getElementById('showText');
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
