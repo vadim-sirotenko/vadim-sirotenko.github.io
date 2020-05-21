@@ -155,6 +155,7 @@ function getCounts(e) {
 	if(story_id>0 && arguments.length==0) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
+		alert('elmView='+elmView+'\nelmView.id='+elmView.id);
 		showStory(elmView);
 	};
 }
