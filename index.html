@@ -221,13 +221,8 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-//	let mycooki = getCookie('read')+','+indx;
-//	if(mycooki !== undefined) setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-	let mycooki = getCookie('read');
-	if(mycooki!='undefined' && mycooki!==undefined){
-		mycooki+=','+indx;
-		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-	};
+	let mycooki = getCookie('read')+','+indx;
+	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
 </script>
