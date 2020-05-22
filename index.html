@@ -222,7 +222,7 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read')+','+indx;
-	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	if(mycooki!==undefined) setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
 </script>
