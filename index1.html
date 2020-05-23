@@ -149,7 +149,8 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
+//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
+		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
