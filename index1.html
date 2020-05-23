@@ -150,7 +150,7 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
-		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
+//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
@@ -162,14 +162,12 @@ function showContents(){
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
-//		li.setAttribute('mat',false);
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
-//			alert('поиск мата: '+["сука", "лять", "издец", "ахуй"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('mat',["сука", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
