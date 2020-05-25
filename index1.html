@@ -142,7 +142,7 @@ function clear(elem) {
 }
 function getBook(e) {
 	if(e.checked){
-		setCookie('book', parseInt(e.id));
+		setCookie('book', parseInt( parseInt(e.id.match(/\d+/))));
 	}else{
 		setCookie('book',true,null);
 	}
