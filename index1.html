@@ -235,6 +235,10 @@ function showStory(indx){
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','getBook(this)');
 		difr.body.append(book);
+		let book_label = document.createElement("label");
+		book_label.setAttribute('for','book_'+indx);
+		book_label.innerText('включить в книжку');
+		difr.body.append(book_labeel);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
