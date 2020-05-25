@@ -233,12 +233,12 @@ function showStory(indx){
 		let book = document.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','getBook(this)');
+		book.setAttribute('onChange','window.parent.document.getBook(this)');
 		difr.body.append(book);
 		let book_label = document.createElement("label");
 		book_label.setAttribute('for','book_'+indx);
 		book_label.innerText('включить в книжку');
-		difr.body.append(book_labeel);
+		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
