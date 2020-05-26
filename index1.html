@@ -212,14 +212,14 @@ function showStory(indx){
 		fbLike.setAttribute('id', "fb-root");
 		difr.body.prepend(fbLike);
 		
-		let fbLikeScript = document.createElement("script");
+		let fbLikeScript = difr.createElement("script");
 		fbLikeScript.setAttribute("asynk",true);
 		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
 		difr.body.prepend(fbLikeScript);
 		
-		let script = document.createElement("script");
+		let script = difr.createElement("script");
 		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
 		difr.body.appendChild(script);
 
@@ -233,13 +233,13 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
 		
-		let book = document.createElement("input");
+		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','top.getBook(this);');
 		difr.body.append(book);
 	
-		let book_label = document.createElement("label");
+		let book_label = difr.createElement("label");
 		book_label.setAttribute('for','book_'+indx);
 		book_label.setAttribute('id','labelbook_'+indx);
 		book_label.innerHTML = 'включить в книжку';
