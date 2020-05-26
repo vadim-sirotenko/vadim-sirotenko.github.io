@@ -182,7 +182,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		li.setAttribute('onclick', 'showStory('+nx+');');
+		li.setAttribute('onclick', 'showStory('+nx+')');
 		ol.append(li);
 		nx++;
 	};
@@ -232,7 +232,7 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-/*		
+		
 		let book = document.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
@@ -244,7 +244,7 @@ function showStory(indx){
 		book_label.setAttribute('id','labelbook_'+indx);
 		book_label.innerHTML = 'включить в книжку';
 		difr.body.append(book_label);
-*/
+
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
