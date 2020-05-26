@@ -235,11 +235,12 @@ function showStory(indx){
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','top.getBook(this)');
 		difr.body.append(book);
-/*		let book_label = document.createElement("label");
+		
+		let book_label = document.createElement("label");
 		book_label.setAttribute('for','book_'+indx);
 		book_label.innerHTML = 'включить в книжку';
-		difr.body.append(book_label); /*
-	})
+		difr.body.append(book_label); 
+	});
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read')+','+indx;
