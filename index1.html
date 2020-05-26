@@ -179,7 +179,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		li.setAttribute('onclick', 'showStory('+nx+')');
+		li.setAttribute('onclick', 'showStory('+nx+');');
 		ol.append(li);
 		nx++;
 	};
