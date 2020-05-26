@@ -237,7 +237,7 @@ function showStory(indx){
 		let book = document.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','document.getElementById(\'labelbook_\'+indx).innerHTML=(this.checked)?\'Убрать из книжки\':\'Включить в книжку\';top.getBook(this);');
+		book.setAttribute('onChange','document.getElementById(\'labelbook_\''+indx+').innerHTML=(this.checked)?\'Убрать из книжки\':\'Включить в книжку\';top.getBook(this);');
 		difr.body.append(book);
 		
 		let book_label = document.createElement("label");
