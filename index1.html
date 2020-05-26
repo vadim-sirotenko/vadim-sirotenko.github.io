@@ -146,9 +146,7 @@ function getBook(e) {
 	alert('в книжку id='+e.id+'\n да='+e.checked+'\nномер рассказа='+id_elm+'book cookie='+book_cookie);
 	if(e.checked){ 
 		setCookie('book', book_cookie+','+id_elm);
-//	}else{
-//		setCookie('book',true,null);
-	}
+	};
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
@@ -161,7 +159,6 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
@@ -232,7 +229,7 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-/*		
+		
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
@@ -243,8 +240,8 @@ function showStory(indx){
 		book_label.setAttribute('for','book_'+indx);
 		book_label.innerHTML = 'включить в книжку';
 		difr.body.append(book_label);
-*/
-	})
+
+	});
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read')+','+indx;
