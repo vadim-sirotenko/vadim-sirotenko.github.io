@@ -212,8 +212,8 @@ function showStory(indx){
 		fbLike.setAttribute('id', "fb-root");
 		difr.body.prepend(fbLike);
 		
-//		let fbLikeScript = difr.createElement("script");
-		let fbLikeScript = document.createElement("script");
+		let fbLikeScript = difr.createElement("script");
+//		let fbLikeScript = document.createElement("script");
 		fbLikeScript.setAttribute("asynk",true);
 		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
@@ -221,10 +221,12 @@ function showStory(indx){
 		difr.body.prepend(fbLikeScript);
 		
 		let script = difr.createElement("script");
+//		let script = document.createElement("script");
 		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
 		difr.body.appendChild(script);
 
-		let fbLikeButtom = document.createElement('div');
+//		let fbLikeButtom = document.createElement('div');
+		let fbLikeButtom = difr.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
 		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/?story='+indx+'");
 		fbLikeButtom.setAttribute('data-width', "");
@@ -234,16 +236,16 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
 		
-//		let book = difr.createElement("input");
-		let book = document.createElement("input");
+		let book = difr.createElement("input");
+//		let book = document.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','top.getBook(this);');
 		difr.body.append(book);
 //		document.body.append(book);
 	
-//		let book_label = difr.createElement("label");
-		let book_label = document.createElement("label");
+		let book_label = difr.createElement("label");
+//		let book_label = document.createElement("label");
 		book_label.setAttribute('for','book_'+indx);
 //		book_label.setAttribute('id','labelbook_'+indx);
 		book_label.innerHTML = 'включить в книжку';
