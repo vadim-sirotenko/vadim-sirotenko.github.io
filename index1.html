@@ -141,8 +141,9 @@ function clear(elem) {
   }
 }
 function getBook(e) {
-	let id_elm = parseInt(e.id.match(/\d+/));
 	let book_cookie = getCookie('book');
+	let id_elm = parseInt(e.id.match(/\d+/));
+	alert('в книжку id='+e.id+'\n да='+e.checked+'\nномер рассказа='+id_elm+'book cookie='+book_cookie);
 	if(e.checked){ 
 //		setCookie('book', parseInt( parseInt(e.id.match(/\d+/))));
 //		setCookie('book', parseInt(e.id.match(/\d+/)));
@@ -237,7 +238,8 @@ function showStory(indx){
 		let book = document.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','document.getElementById(\'labelbook_\''+indx+').innerHTML=(this.checked)?\'Убрать из книжки\':\'Включить в книжку\';top.getBook(this);');
+//		book.setAttribute('onChange','document.getElementById(\'labelbook_\''+indx+').innerHTML=(this.checked)?\'Убрать из книжки\':\'Включить в книжку\';top.getBook(this);');
+		book.setAttribute('onChange','top.getBook(this);');
 		difr.body.append(book);
 		
 		let book_label = document.createElement("label");
