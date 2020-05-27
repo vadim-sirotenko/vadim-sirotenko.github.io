@@ -140,14 +140,6 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function getBook(e) {
-	let book_cookie = getCookie('book');
-	let id_elm = parseInt(e.id.match(/\d+/));
-	alert('в книжку id='+e.id+'\n да='+e.checked+'\nномер рассказа='+id_elm+'\nbook cookie='+book_cookie);
-	if(e.checked){ 
-		setCookie('book', book_cookie+','+id_elm);
-	};
-}
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
@@ -159,6 +151,7 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
+//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
@@ -209,18 +202,18 @@ function showStory(indx){
 		fbLike.setAttribute('id', "fb-root");
 		difr.body.prepend(fbLike);
 		
-		let fbLikeScript = difr.createElement("script");
+		let fbLikeScript = document.createElement("script");
 		fbLikeScript.setAttribute("asynk",true);
 		fbLikeScript.setAttribute("defer",true);
 		fbLikeScript.setAttribute('crossorigin', "anonymous");
 		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
 		difr.body.prepend(fbLikeScript);
 		
-		let script = difr.createElement("script");
+		let script = document.createElement("script");
 		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
 		difr.body.appendChild(script);
 
-		let fbLikeButtom = difr.createElement('div');
+		let fbLikeButtom = document.createElement('div');
 		fbLikeButtom.setAttribute('class',"fb-like");
 		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/?story='+indx+'");
 		fbLikeButtom.setAttribute('data-width', "");
@@ -229,7 +222,7 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-/*		
+
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
@@ -240,8 +233,7 @@ function showStory(indx){
 		book_label.setAttribute('for','book_'+indx);
 		book_label.innerHTML = 'включить в книжку';
 		difr.body.append(book_label);
-*/
-	});
+	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read')+','+indx;
