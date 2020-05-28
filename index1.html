@@ -146,14 +146,14 @@ function getBook(e){
 	let books = getCookie('book');
 	let elem_no = parseInt(e.getAttribute('id').slice(5)); //book_
 //	let elem_no = parseInt(e.id.slice(3));
-	alert('e='+e+'\nbooks='+books+'\nid='+elem_no);
+	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 	let bookCookie = books+','+elem_no;
 //	if(!e.checked && books.indexOf(elem_no+',')==0) {
-	if(!e.checked) {
+//	if(!e.checked) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
 		alert('books='+books);
-	};
+//	};
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
