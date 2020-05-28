@@ -144,8 +144,9 @@ function clear(elem) {
 }
 function getBook(e){
 	let books = getCookie('book');
-	alert('books='+books);
-	let elem_no = parseInt(e.getAttribute('id').slice(3));
+//	let elem_no = parseInt(e.getAttribute('id').slice(3));
+	let elem_no = parseInt(e.id.slice(3));
+	alert('books='+books+'\nid='+elem_no);
 	let bookCookie = books+','+elem_no;
 //	if(!e.checked && books.indexOf(elem_no+',')==0) {
 	if(!e.checked) {
