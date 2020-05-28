@@ -147,13 +147,13 @@ function getBook(e){
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 	let bookCookie = books+','+elem_no;
-	if(books===undefined || (e.checked && books.indexOf(elem_no+',')<=0)) {
+	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
 		alert('books='+books);
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-		document.getElementById('li_'+elem_no).style.backgroundRepeat='none';
+		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
 		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 		document.getElementById('getBookStories').setAttribute('readonly', false);
@@ -267,7 +267,7 @@ function showStory(indx){
 <body>
 <div id="contents" class="contents"></div>
 <div id="formBook">
-	<input id="getBookStories" type="checkbox" readonly="true" checked="false" onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать книжку с выбранными рассказами</label>
+<input id="getBookStories" type="checkbox" readonly="true" checked="false" onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать книжку с выбранными рассказами</label>
 </div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
