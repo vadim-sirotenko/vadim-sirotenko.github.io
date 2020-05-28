@@ -142,16 +142,27 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
+function setBookFB2(){
+	var book2 = document.implementation.createDocument(null, 'book');
+//	<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
+	let bookXML = book.createElement('FictionBook');
+	let bookXML.setAttribute('xmlns=', "http://www.gribuser.ru/xml/fictionbook/2.0");
+	let bookXML.setAttribute('xmlns:l', "http://www.w3.org/1999/xlink");
+}
 function getCounts(e) {
-	let quqi = getCookie('read'); //.split(',');
+	let readStory = getCookie('read'); //.split(',');
+	let story2book = getCookie('book');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		if(quqi.indexOf(elem_no+',')>=0) {
+		if(readStory.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
+		};
+		if(readStory.indexOf(elem_no+',')>=0) {
+			elems[i].innerHTML +=<span style"position: fixed; float: right; color: red;">'&#9872;</span>';
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
