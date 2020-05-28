@@ -147,7 +147,8 @@ function getBook(e){
 	alert('books='+books);
 	let elem_no = parseInt(e.getAttribute('id').slice(3));
 	let bookCookie = books+','+elem_no;
-	if(!e.checked && books.indexOf(elem_no+',')==0) {
+//	if(!e.checked && books.indexOf(elem_no+',')==0) {
+	if(!e.checked) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
 		alert('books='+books);
