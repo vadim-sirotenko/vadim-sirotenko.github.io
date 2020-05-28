@@ -101,6 +101,17 @@ li {
 }
 input {vertical-align: middle;}
 label {vertical-align: middle;}
+.formBook {
+	width: 27%; 
+	height: 60%;
+	top: 3%;
+	left: 0px;
+	color: #5678de;
+	border-right: 1px solid navy;
+	overflow: hidden;
+	word-break: normal;
+	font-size: 1.1em;
+}
 </style>
 <script>
 var max_idx=112;
@@ -266,7 +277,7 @@ function showStory(indx){
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div id="formBook" class="contents">
+<div id="formBook" class="formBook">
 <input id="getBookStories" type="checkbox" readonly="true" checked="false" onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
 </div>
 <div id="texts" class="textstory">
