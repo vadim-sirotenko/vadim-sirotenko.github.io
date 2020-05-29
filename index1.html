@@ -153,22 +153,36 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
+function createBook(){
+	var book = document.implementation.createDocument ('http://www.w3.org/1999/xhtml', 'html', null);
+	let fictionBook = book.createElement('FictionBook');
+	fictionBook.setAttribute('xmlns', "http://www.gribuser.ru/xml/fictionbook/2.0");
+	fictionBook.setAttribute('xmlns:1', "http://www.gribuser.ru/xml/fictionbook/2.0");
+	book.appendChild(fictionBook);
+	let description = book.createElement('description');
+	fictionBook.append(description);
+	titleInfo = book.createElement('title-info');
+	fictionBook.append(titleInfo);
+	let author = book.createElement('autor');
+	let firstName = book.createElement('first-name');
+	firstName.innerHTML = 'Вадим';
+	let lastName = book.createElement('last-name');
+	lastName.innerHTML = 'Сиротенко';
+	titleInfo.append(author);
+	alert(book);
+}
 function getBook(e){
 	let books = getCookie('book');
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
-//	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 	let bookCookie = books+','+elem_no;
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
-//		alert('books='+books);
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
 		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
 		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		document.getElementById('getBookStories').setAttribute('readonly', false);
-//		document.getElementById('getBookStories').setAttribute('disabled', false);
 		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
 }
@@ -289,7 +303,7 @@ function showStory(indx){
 <body>
 <div id="contents" class="contents"></div>
 <div id="formBook" class="formBook">
-<input id="getBookStories" type="checkbox" disabled onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
+<input id="getBookStories" type="checkbox" disabled onchange="if(this.checked)createBook();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
 </div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
