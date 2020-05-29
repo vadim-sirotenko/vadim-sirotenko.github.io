@@ -175,7 +175,7 @@ function getCounts(e) {
 	let readStory = getCookie('read'); //.split(',');
 	let story2book = getCookie('book');
 	let elems = document.getElementsByTagName('li');
-	let book_no = parseInt(e.getAttribute('id').slice(5));
+//	let book_no = parseInt(e.getAttribute('id').slice(5));
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
@@ -185,11 +185,6 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 		if(story2book.indexOf(elem_no+',')>=0) {
-//			document.getElementById('li_'+elem_no).setAttribute('book',true);
-//			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-//			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-//			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-//			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 			elems[i].setAttribute('book',true);
 			elems[i].style.backgroundImage = 'url(img/book.svg)';
 			elems[i].style.backgroundRepeat='no-repeat';
