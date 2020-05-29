@@ -141,6 +141,20 @@ function setCookie(name, value, options = {}) {
   }
   document.cookie = updatedCookie;
 }
+function cookieValue(nameCookie,findValue,actValue){	// 'book',1,'del' | 'add'
+	let str = getCookie(nameCookie);
+	let valArray = str.split(',');
+	let positionValue = valArray.indexOf(findValue);
+	alert('cookie to array='+valArray+'\nfind('+findValue+')='+findValue+'\nposition='+positionValue);
+//	if(actValue=='del' && positionValue>-1) valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
+//	if(actValue=='add' && positionValue==-1) valArray.push(findValue); // вставить в конец искомое значение, если такого нет 
+	if(positionValue<0) {
+		valArray.push(findValue);
+	};
+	let saveStr = valArray.join(',');
+	alert('cookie('+nameCookie+')='+saveStr);
+	setCookie(nameCookie, saveStr, {secure: true, 'max-age': 3600*24*35});
+}
 function getUrlVars() {
 	var vars = {};
 	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -157,7 +171,7 @@ function getBook(e){
 	let books = getCookie('book');
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 //	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
-	let bookCookie = books+','+elem_no;
+//	let bookCookie = books+','+elem_no;
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
@@ -170,6 +184,13 @@ function getBook(e){
 //		document.getElementById('getBookStories').setAttribute('readonly', false);
 //		document.getElementById('getBookStories').setAttribute('disabled', false);
 		document.getElementById('getBookStories').removeAttribute('disabled');
+	};
+	if(!e.checked){
+		let valArray = bookCookie.split(',');
+		let positionValue = valArray.indexOf(elem_no);
+		valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
+		setCookie('book', valArray.join(','), {secure: true});
 	};
 }
 function getCounts(e) {
