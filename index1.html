@@ -190,6 +190,7 @@ function getBook(e){
 		let positionValue = valArray.indexOf(elem_no);
 		valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
+		alert('elem_no='+elem_no+'\nvalArray='+valArray);
 		setCookie('book', valArray.join(','), {secure: true});
 	};
 }
