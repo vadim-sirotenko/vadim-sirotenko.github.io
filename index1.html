@@ -188,7 +188,7 @@ function getBook(e){
 	alert('!e.checked='+!e.checked);
 	if(!e.checked){
 		alert('блять пиздец какой-то');
-		let valArray = bookCookie.split(',');
+		let valArray = books.split(',');
 		let positionValue = valArray.indexOf(elem_no);
 		valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
