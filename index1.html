@@ -170,7 +170,7 @@ function clear(elem) {
 function getBook(e){
 	let books = getCookie('book');
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
-//	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
+	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 //	let bookCookie = books+','+elem_no;
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		setCookie('book', bookCookie, {secure: true});
