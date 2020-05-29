@@ -43,8 +43,6 @@ li {
 	cursor: pointer;
 	margin-bottom: 1em;
 	background-color: #ffffff;
-/*	display: inline-block; */
-	vertical-align: top;
 }
 .contents {
 	width: 27%; 
@@ -99,19 +97,6 @@ li {
 	border-radius: 50% 50% 50% 50%;
 	cursor: pointer;
 }
-input {vertical-align: middle;}
-label {vertical-align: middle;}
-.formBook {
-	width: 27%; 
-	height: auto;
-	top: 3%;
-	left: 0px;
-	color: #5678de;
-	border-right: 1px solid navy;
-	overflow: hidden;
-	word-break: normal;
-	font-size: 1.1em;
-}
 </style>
 <script>
 var max_idx=112;
@@ -153,46 +138,18 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function getBook(e){
-	let books = getCookie('book');
-	let elem_no = parseInt(e.getAttribute('id').slice(5));
-//	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
-	let bookCookie = books+','+elem_no;
-	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		setCookie('book', bookCookie, {secure: true});
-		books = getCookie('book');
-//		alert('books='+books);
-		document.getElementById('li_'+elem_no).setAttribute('book',true);
-		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		document.getElementById('getBookStories').setAttribute('readonly', false);
-//		document.getElementById('getBookStories').setAttribute('disabled', false);
-		document.getElementById('getBookStories').removeAttribute('disabled');
-	};
-}
 function getCounts(e) {
-	let readStory = getCookie('read'); //.split(',');
-	let story2book = getCookie('book');
+	let quqi = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
-//	let book_no = parseInt(e.getAttribute('id').slice(5));
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		if(readStory.indexOf(elem_no+',')>=0) {
+		if(quqi.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(story2book.indexOf(elem_no+',')>=0) {
-			elems[i].setAttribute('book',true);
-			elems[i].style.backgroundImage = 'url(img/book.svg)';
-			elems[i].style.backgroundRepeat='no-repeat';
-			elems[i].style.backgroundSize='contain';
-			elems[i].style.backgroundPositionX='right';
-			document.getElementById('getBookStories').removeAttribute('disabled');
-		};
+//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
@@ -264,19 +221,6 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-
-		let book = difr.createElement("input");
-		book.setAttribute('id', 'book_'+indx);
-		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','top.getBook(this);');
-		book.checked = (getCookie('book').indexOf(','+indx)>=0)?true:false;
-		difr.body.append(book);
-	
-		let book_label = difr.createElement("label");
-		book_label.setAttribute('for','book_'+indx);
-		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
-		book_label.innerHTML = 'включить в книжку';
-		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
@@ -288,9 +232,6 @@ function showStory(indx){
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div id="formBook" class="formBook">
-<input id="getBookStories" type="checkbox" disabled onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
-</div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
