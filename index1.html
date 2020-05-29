@@ -172,7 +172,7 @@ function getBook(e){
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 //	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		setCookie('book', bookCookie, {secure: true});
+		setCookie('book', books+','+elem_no, {secure: true});
 		books = getCookie('book');
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
