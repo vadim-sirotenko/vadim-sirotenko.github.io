@@ -173,11 +173,13 @@ function createBook(){
 }
 function getBook(e){
 	let books = getCookie('book');
+	let ob = books;
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 	if(!e.checked) {
 		// удалим из строки books кукисов значение ','+elem_no
 		let re = /','+elem_no/gi;
 		books = books.replace(re,'');
+		alert('old='+ob+'\nnew='+books);
 		return;
 	};
 	let bookCookie = books+','+elem_no;
@@ -285,17 +287,17 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
 
-		let divBook = document.createElement('div');
+//		let divBook = document.createElement('div');
 //		divBook.style.
-		difr.body.append(divBook);
+//		difr.body.append(divBook);
 
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','top.getBook(this);');
 		book.checked = (getCookie('book').indexOf(','+indx)>=0)?true:false;
-//		difr.body.append(book);
-		divBook.append(book);
+		difr.body.append(book);
+//		divBook.append(book);
 	
 		let book_label = difr.createElement("label");
 		book_label.setAttribute('for','book_'+indx);
