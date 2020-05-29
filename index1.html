@@ -170,29 +170,24 @@ function clear(elem) {
 function getBook(e){
 	let books = getCookie('book');
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
-	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
-//	let bookCookie = books+','+elem_no;
+//	alert('e='+e+'\nbooks='+books+'\nid='+elem_no+'\ncheck='+e.checked);
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		setCookie('book', bookCookie, {secure: true});
 		books = getCookie('book');
-//		alert('books='+books);
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
 		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
 		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		document.getElementById('getBookStories').setAttribute('readonly', false);
-//		document.getElementById('getBookStories').setAttribute('disabled', false);
 		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
-	alert('!e.checked='+!e.checked);
+//	alert('!e.checked='+!e.checked);
 	if(!e.checked){
-		alert('блять пиздец какой-то');
 		let valArray = books.split(',');
 		let positionValue = valArray.indexOf(elem_no);
-		valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
+		valArray.splice(positionValue, 1); // начиная с указанной позиции, удалить 1 элемент
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
-		alert('elem_no='+elem_no+'\nvalArray='+valArray);
+//		alert('elem_no='+elem_no+'\nvalArray='+valArray);
 		setCookie('book', valArray.join(','), {secure: true});
 	};
 }
