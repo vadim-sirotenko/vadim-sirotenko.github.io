@@ -185,6 +185,7 @@ function getBook(e){
 //		document.getElementById('getBookStories').setAttribute('disabled', false);
 		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
+	alert('!e.checked='+!e.checked);
 	if(!e.checked){
 		let valArray = bookCookie.split(',');
 		let positionValue = valArray.indexOf(elem_no);
