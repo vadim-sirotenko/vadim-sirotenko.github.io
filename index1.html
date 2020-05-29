@@ -167,8 +167,9 @@ function getBook(e){
 		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
 		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-		document.getElementById('getBookStories').setAttribute('readonly', false);
-		document.getElementById('getBookStories').setAttribute('disabled', false);
+//		document.getElementById('getBookStories').setAttribute('readonly', false);
+//		document.getElementById('getBookStories').setAttribute('disabled', false);
+		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
 }
 function getCounts(e) {
@@ -190,6 +191,7 @@ function getCounts(e) {
 			elems[i].style.backgroundRepeat='no-repeat';
 			elems[i].style.backgroundSize='contain';
 			elems[i].style.backgroundPositionX='right';
+			document.getElementById('getBookStories').removeAttribute('disabled');
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
@@ -286,7 +288,7 @@ function showStory(indx){
 <body>
 <div id="contents" class="contents"></div>
 <div id="formBook" class="formBook">
-<input id="getBookStories" type="checkbox" disabled="true" checked="false" onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
+<input id="getBookStories" type="checkbox" disabled checked="false" onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
 </div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
