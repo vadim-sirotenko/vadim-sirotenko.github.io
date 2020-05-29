@@ -187,6 +187,7 @@ function getBook(e){
 	};
 	alert('!e.checked='+!e.checked);
 	if(!e.checked){
+		alert('блять пиздец какой-то');
 		let valArray = bookCookie.split(',');
 		let positionValue = valArray.indexOf(elem_no);
 		valArray.splice(positionValue, 1); // начиная с позиции 1, удалить 1 элемент
