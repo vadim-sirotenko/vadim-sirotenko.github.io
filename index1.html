@@ -355,8 +355,10 @@ function getBookSelectedStory(){
 			request.onload = function () {
 				let story = request.response;
 				name_story = story.slice(0, story.indexOf('\n')-1);
-				alert('name_story='+name_story+'\nlen(name_story)='+name_story.length+'\nPosition='+stoty.indexOf('\n'));
-				let text = story.substr(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
+				let pos = story.indexOf('\n')-1;
+				alert('name_story='+name_story+'\nlen(name_story)='+name_story.length+'\nposition='+pos);
+//				let text = story.substr(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
+				let text = story.substr(pos); 	// рассказ - от перевода строки ло конца текста
 //				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 //				text_story = text.replace(new RegExp("\r\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 				alert('text='+text);
