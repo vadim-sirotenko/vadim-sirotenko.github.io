@@ -357,7 +357,7 @@ function getBookSelectedStory(){
 				let story_txt = request.response;
 				name_story = story_txt.slice(0, stoty_txt.indexOf('\n')-1); //.indexOf('\n')-1
 				let text = story_txt.slice(stoty_txt.indexOf('\n').indexOf());
-				text_story = text.replace( '\n'/g, '<empty-line/>')+
+				text_story = text.replace( \n/g, '<empty-line/>')+
 				story2book += '<section>'+
 				'<title><strong>'+name_story+'</strong></title>'+
 				'<empty-line/><strong>'+name_story+'</strong>'+
