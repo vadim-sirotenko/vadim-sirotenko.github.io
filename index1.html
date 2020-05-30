@@ -116,9 +116,11 @@ label {vertical-align: middle;}
 	visibility: hidden;
 	top: 2%;
 	left: 35%;
+	width: 50%;
 	height: 90%;
 	overflow: auto;
 	background-color: #bafefc;
+	z-index: 20;
 }
 </style>
 <script>
@@ -390,6 +392,7 @@ function getBookSelectedStory(){
 </script>
 </head>
 <body>
+<div id="showfb2" class="showfb2"></div>
 <div id="contents" class="contents"></div>
 <div id="formBook" class="formBook">
 <input id="getBookStories" type="checkbox" disabled onchange="if(this.checked)getBookSelectedStory();"><label for="getBookStories">Сформировать и скачать электронную книжку (fb2) с выбранными рассказами</label>
@@ -400,7 +403,6 @@ function getBookSelectedStory(){
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
-<div id="showfb2" class="showfb2"></div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 </body>
 <script>
