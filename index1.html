@@ -340,9 +340,9 @@ function showStory(indx){
 }
 function getBookSelectedStory(){
 	let fb2Story = getCookie('book').split(',');
-	for(var i=0; i<fb2Story.length; i++) {
+	for(let i=0; i<fb2Story.length; i++) {
 		let request = new XMLHttpRequest;
-		request.open('GET', 'text/'+nx+'.txt', true);
+		request.open('GET', 'text/'+i+'.txt', true);
 		request.send();
 		request.onload = function () {
 			let story_txt = request.response;
