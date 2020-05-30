@@ -354,7 +354,7 @@ function getBookSelectedStory(){
 			request.open('GET', 'text/'+i+'.txt', true);
 			request.send();
 			request.onload = function () {
-				let story_txt += request.response;
+				let story_txt = request.response;
 				name_story = story_txt.slice(0, stoty_txt.indexOf('\n')-1); //.indexOf('\n')-1
 				let text = story_txt.slice(stoty_txt.indexOf('\n').indexOf());
 				text_story = text.replace( '\n/g', '<empty-line/>')+
