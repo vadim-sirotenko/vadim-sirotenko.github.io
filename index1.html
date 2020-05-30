@@ -344,14 +344,14 @@ function getBookSelectedStory(){
 	let fb2Story = getCookie('book').split(',');
 	for(let i=0; i<fb2Story.length; i++) {
 		let request = new XMLHttpRequest;
-		request.open('GET', 'text/'++'.txt', true);
+		request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
+		alert('Read file='+'text/'+fb2Story[i]+'.txt');
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
 //			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			let request = new XMLHttpRequest;
-			alert('Read file='+'text/'+fb2Story[i]+'.txt');
 			request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 			request.send();
 			request.onload = function () {
