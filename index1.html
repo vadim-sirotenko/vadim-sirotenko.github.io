@@ -353,12 +353,12 @@ function getBookSelectedStory(){
 				name_story = story.slice(0, story.indexOf('\n')-1);
 				alert('name_story='+name_story);
 //				let text = story.slice(stoty_txt.indexOf('\n').indexOf()); 	// рассказ - от перевода строки ло конца текста
-				let text = story.slice(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
-//				text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 	// заменим в рассказе перевод строки на пустую строку fb2
-				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
-				alert('text_story='+text_story);
+//				let text = story.slice(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
+				let text = story.substr(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
+//				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
+				alert('text='+text);
 				// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
-				story2book = '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text_story+'</p></section>';
+				story2book = '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text+'</p></section>';
 				alert('story2book-'+story2book);
 //				let fb2book = fb2Head+story2book+fb2Footer;
 //				alert(fb2book);
