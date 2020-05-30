@@ -343,10 +343,10 @@ function getBookSelectedStory(){
 	let name_story = '';
 	var story2book = '';
 	let fb2Story = getCookie('book').split(',');
-//	for(let i=0; i<fb2Story.length; i++) {
-	for(let i=1; i<fb2Story.length; i++) {
+	alert('aray: '+fb2Story);
+	for(let i=0; i<fb2Story.length; i++) {
 		alert('fb2Story['+i+']='+fb2Story[i]);
-		if(fb2Story[i]!==undefined){
+		if(fb2Story[i] !== undefined){
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 			request.send();
