@@ -344,14 +344,15 @@ function getBookSelectedStory(){
 	let fb2Story = getCookie('book').split(',');
 	for(let i=0; i<fb2Story.length; i++) {
 		let request = new XMLHttpRequest;
-		request.open('GET', 'text/'+nx+'.txt', true);
+		request.open('GET', 'text/'++'.txt', true);
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
-			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
+//			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			let request = new XMLHttpRequest;
-			request.open('GET', 'text/'+i+'.txt', true);
+			alert('Read file='+'text/'+fb2Story[i]+'.txt');
+			request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 			request.send();
 			request.onload = function () {
 				let story_txt = request.response;
@@ -359,11 +360,11 @@ function getBookSelectedStory(){
 				let text = story_txt.slice(stoty_txt.indexOf('\n').indexOf());
 //				text_story = text.replace( \n/g, '<empty-line/>')+
 				text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 
+				alert('Новая история: '+text_story);
 				story2book += '<section>'+
 				'<title><strong>'+name_story+'</strong></title>'+
 				'<empty-line/><strong>'+name_story+'</strong>'+
 				'<empty-line/>'+text_story+'</section>';
-				alert('Новая история: '+text_story);
 			};
 		};
 	};
