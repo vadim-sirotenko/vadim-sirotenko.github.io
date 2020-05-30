@@ -353,6 +353,7 @@ function getBookSelectedStory(){
 			text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 			// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
 			story2book += '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text_story+'</section>';
+			alert('story2book:\n'+story2book);
 		};
 	};
 	let fb2book = fb2Head+story2book+fb2Footer;
