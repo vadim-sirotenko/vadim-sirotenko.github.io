@@ -343,28 +343,38 @@ function getBookSelectedStory(){
 	let story2book = '';
 	let fb2Story = getCookie('book').split(',');
 	for(let i=0; i<fb2Story.length; i++) {
+/*
+		let request = new XMLHttpRequest;
+		request.open('GET', 'text/'+nx+'.txt', true);
+		request.send();
+		request.onload = function () {
+			name_story = request.response;
+			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story;
+		};
+*/
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 		alert('Read file='+'text/'+fb2Story[i]+'.txt');
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
-//			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 			request.send();
 			request.onload = function () {
 				let story_txt = request.response;
-				name_story = story_txt.slice(0, stoty_txt.indexOf('\n')-1); //.indexOf('\n')-1
-				let text = story_txt.slice(stoty_txt.indexOf('\n').indexOf());
+				name_story = story_txt.slice(0, stoty_txt.indexOf('\n')-1); 	// название - от начала и перевода строки
+				let text = story_txt.slice(stoty_txt.indexOf('\n').indexOf()); 	// рассказ - от перевода строки ло конца текста
 //				text_story = text.replace( \n/g, '<empty-line/>')+
-				text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 
-				alert('Новая история: '+text_story);
-				story2book += '<section>'+
+				text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 	// заменим в рассказе перевод строки на пустую строку fb2
+				alert('Новая история: \n'+text_story);
+				story2book += '<section>'+										// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
 				'<title><strong>'+name_story+'</strong></title>'+
 				'<empty-line/><strong>'+name_story+'</strong>'+
 				'<empty-line/>'+text_story+'</section>';
+				alert('Тексты рассказов section:\n'+story2book);
 			};
 		};
 	};
