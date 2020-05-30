@@ -363,10 +363,12 @@ function getBookSelectedStory(){
 				'<title><strong>'+name_story+'</strong></title>'+
 				'<empty-line/><strong>'+name_story+'</strong>'+
 				'<empty-line/>'+text_story+'</section>';
+				alert('Новая история: '+text_story);
 			};
 		};
 	};
-	let fb2book = fb2Head+story2book+fb2Footer
+	let fb2book = fb2Head+story2book+fb2Footer;
+	alert(fb2book);
 	link.href = URL.createObjectURL(new Blob([fb2book], { type: "text/xml" }));
 	link.style.visibility='visible';
 }
