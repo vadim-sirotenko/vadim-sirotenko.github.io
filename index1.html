@@ -348,7 +348,7 @@ function getBookSelectedStory(){
 	for(let i=1; i<fb2Story.length; i++) {
 		alert('fb2Story['+i+']='+fb2Story[i]);
 //		if(fb2Story[i] !== undefined){
-		if(typeof fb2Story[i] !== undefined){
+//		if(typeof fb2Story[i] !== undefined){
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+fb2Story[i]+'.txt', true);
 			request.send();
@@ -366,7 +366,7 @@ function getBookSelectedStory(){
 //				let fb2book = fb2Head+story2book+fb2Footer;
 //				alert(fb2book);
 			};
-		};
+//		};
 	};
 	let fb2book = fb2Head+story2book+fb2Footer;
 //	alert(fb2book);
