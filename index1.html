@@ -112,6 +112,13 @@ label {vertical-align: middle;}
 	word-break: normal;
 	font-size: 1.1em;
 }
+.showfb2 {
+	visibility: hidden;
+	top: 2%;
+	left: 35%;
+	height: 90%;
+	overflow: auto;
+}
 </style>
 <script>
 var max_idx=112;
@@ -120,7 +127,6 @@ var fb2Head = '<?xml version="1.0" encoding="utf-8"?>'+
 '<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
 '<description>'+
 '<title-info>'+
-'<genre>sci_medicine</genre>'+
 '<genre>sf_space</genre>'+
 '<genre>humor_prose</genre>'+
 '<genre>home_entertain</genre>'+
@@ -347,6 +353,8 @@ function getBookSelectedStory(){
 //	for(let i=0; i<fb2Story.length; i++) {
 	for(let i=1; i<fb2Story.length; i++) {
 		alert('fb2Story['+i+']='+fb2Story[i]);
+		document.getElementById('showfb2').style.visibility='visible';
+		document.getElementById('showfb2').innerHTML = 'fb2Story['+i+']=\n'+fb2Story[i];
 //		if(fb2Story[i] !== undefined){
 //		if(typeof fb2Story[i] !== undefined){
 			let request = new XMLHttpRequest;
@@ -357,14 +365,17 @@ function getBookSelectedStory(){
 				name_story = story.slice(0, story.indexOf('\n')-1);
 				let pos = story.indexOf('\n')-1;
 				alert('name_story='+name_story+'\nlen(name_story)='+name_story.length+'\nposition='+pos);
+				document.getElementById('showfb2').innerHTML += '\nName: '+name_story;
 //				let text = story.substr(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
 				let text = story.substr(pos); 	// рассказ - от перевода строки ло конца текста
 //				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 //				text_story = text.replace(new RegExp("\r\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 				alert('text='+text);
+				document.getElementById('showfb2').innerHTML += '\ntext: '+text;
 				// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
 				story2book = '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text+'</p></section>';
-				alert('story2book-'+story2book);
+				document.getElementById('showfb2').innerHTML += '\nstory2fb: '+story2book;
+//				alert('story2book:\n'+story2book);
 //				let fb2book = fb2Head+story2book+fb2Footer;
 //				alert(fb2book);
 			};
@@ -388,6 +399,7 @@ function getBookSelectedStory(){
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
+<div id="showfb2" class="showfb2"></div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 </body>
 <script>
