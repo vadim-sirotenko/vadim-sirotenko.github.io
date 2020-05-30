@@ -351,7 +351,8 @@ function getBookSelectedStory(){
 			request.onload = function () {
 				let story = request.response;
 				name_story = story.slice(0, story.indexOf('\n')-1);
-				let text = story.slice(stoty_txt.indexOf('\n').indexOf()); 	// рассказ - от перевода строки ло конца текста
+//				let text = story.slice(stoty_txt.indexOf('\n').indexOf()); 	// рассказ - от перевода строки ло конца текста
+				let text = story.slice(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
 //				text_story = text.replace(new RegExp("\n","g"), "<empty-line/>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 				// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
