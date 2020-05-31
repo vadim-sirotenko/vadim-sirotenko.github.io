@@ -139,12 +139,12 @@ function clear(elem) {
   }
 }
 function getCounts(e) {
-	let quqi = getCookie('read'); //.split(',');
+	let readStory = getCookie('read').split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		if(quqi.indexOf(elem_no+',')>=0) {
+		if(readStory.includes(elem_no,0)) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
