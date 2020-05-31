@@ -386,7 +386,7 @@ function getBookSelectedStory(){
 //		};
 	};
 	knigaFB2 = fb2Head+txt2book+fb2Footer;
-	alert('knigaFB2=\n'+knigaFB2);
+	alert('txt2book=\n'+txt2book);
 //	document.getElementById('showfb2').innerHTML = '<pre>'+knigaFB2+'</pre>';
 	let link = document.getElementById('dlBook');
 	link.href = URL.createObjectURL(new Blob([knigaFB2], { type: "text/xml" }));
