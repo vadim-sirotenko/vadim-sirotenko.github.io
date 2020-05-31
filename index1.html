@@ -372,12 +372,14 @@ function getBookSelectedStory(){
 //				document.getElementById('showfb2').innerHTML += '\nName: '+name_story;
 //				let text = story.substr(stoty.indexOf('\n')); 	// рассказ - от перевода строки ло конца текста
 				let text = story.substr(pos); 	// рассказ - от перевода строки ло конца текста
+				alert('nstory.substr('+pos+')='+text);
 //				text_story = text.replace(new RegExp("\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 //				text_story = text.replace(new RegExp("\r\n","g"), "</p><p>"); 	// заменим в рассказе перевод строки на пустую строку fb2
 //				alert('text='+text);
 //				document.getElementById('showfb2').innerHTML = '\ntext: '+text;
 				// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
 				txt2book += '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text+'</p></section>';
+				alert('Сформирован txt2book=\n'+txt2book);
 //				document.getElementById('showfb2').innerHTML += '\nstory2fb: \n'+txt2book;
 //				alert('story2book:\n'+story2book);
 //				let fb2book = fb2Head+story2book+fb2Footer;
@@ -386,7 +388,7 @@ function getBookSelectedStory(){
 //		};
 	};
 	knigaFB2 = fb2Head+txt2book+fb2Footer;
-	alert('txt2book=\n'+txt2book);
+	alert('Добавляем заголовок и конец к txt2book=\n'+txt2book+'\nknigaFB2=\n');
 //	document.getElementById('showfb2').innerHTML = '<pre>'+knigaFB2+'</pre>';
 	let link = document.getElementById('dlBook');
 	link.href = URL.createObjectURL(new Blob([knigaFB2], { type: "text/xml" }));
