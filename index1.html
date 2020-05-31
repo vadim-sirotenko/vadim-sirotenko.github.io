@@ -159,6 +159,7 @@ var fb2Head = '<?xml version="1.0" encoding="utf-8"?>'+
 '<body>';
 var fb2Footer = '</body></FictionBook>';
 var knigaFB2 = '';
+var txt2book='';
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -350,9 +351,9 @@ function showStory(indx){
 function getBookSelectedStory(){
 	let text_story = '';
 	let name_story = '';
-	let txt2book='';
+//	let txt2book='';
 	let fb2Story = getCookie('book').split(',');
-	alert('aray: '+fb2Story);
+//	alert('aray: '+fb2Story);
 //	for(let i=0; i<fb2Story.length; i++) {
 	for(let i=1; i<fb2Story.length; i++) {
 //		alert('fb2Story['+i+']='+fb2Story[i]);
