@@ -227,7 +227,7 @@ function showStory(indx){
 //	let mycooki = getCookie('read')+','+indx;
 
 	let mycooki = getCookie('read');
-	mycooki = (mycooki===undefined)?','+indx:mycooki+','+indx;
+	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
