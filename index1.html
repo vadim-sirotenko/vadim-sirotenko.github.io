@@ -390,6 +390,7 @@ function getBookSelectedStory(){
 	knigaFB2 = fb2Head+txt2book+fb2Footer;
 //	alert('fb2book');
 	document.getElementById('showfb2').innerHTML = fb2book;
+	let link = document.getElementById('link');
 	link.href = URL.createObjectURL(new Blob([knigaFB2], { type: "text/xml" }));
 	link.style.visibility='visible';
 }
