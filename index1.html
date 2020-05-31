@@ -353,6 +353,7 @@ function showStory(indx){
 function getBookSelectedStory(){
 	let text_story = '';
 	let name_story = '';
+	let txt2book='';
 	let fb2Story = getCookie('book').split(',');
 	alert('aray: '+fb2Story);
 //	for(let i=0; i<fb2Story.length; i++) {
@@ -378,7 +379,7 @@ function getBookSelectedStory(){
 //				alert('text='+text);
 				document.getElementById('showfb2').innerHTML = '\ntext: '+text;
 				// допишем текущий текст к уже сформированному (или пустому) рассказ для fb2
-				txt2book = '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text+'</p></section>';
+				txt2book += '<section><title><strong>'+name_story+'</strong></title><empty-line/><strong>'+name_story+'</strong><empty-line/>'+text+'</p></section>';
 				document.getElementById('showfb2').innerHTML += '\nstory2fb: \n'+txt2book;
 //				alert('story2book:\n'+story2book);
 //				let fb2book = fb2Head+story2book+fb2Footer;
