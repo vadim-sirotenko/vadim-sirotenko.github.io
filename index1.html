@@ -388,7 +388,8 @@ function getBookSelectedStory(){
 //		};
 	};
 	let fb2book = fb2Head+story2book+fb2Footer;
-//	alert(fb2book);
+	alert('fb2book');
+	document.getElementById('showfb2').innerHTML = fb2book;
 	link.href = URL.createObjectURL(new Blob([fb2book], { type: "text/xml" }));
 	link.style.visibility='visible';
 }
