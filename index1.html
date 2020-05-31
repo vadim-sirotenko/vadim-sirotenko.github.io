@@ -43,11 +43,8 @@ li {
 	cursor: pointer;
 	margin-bottom: 1em;
 	background-color: #ffffff;
-/*	display: inline-block; */
-	vertical-align: top;
 }
 .contents {
-	position: fixed;
 	width: 27%; 
 	height: 60%;
 	top: 3%;
@@ -389,7 +386,7 @@ function getBookSelectedStory(){
 	};
 	knigaFB2 = fb2Head+txt2book+fb2Footer;
 //	alert('fb2book');
-	document.getElementById('showfb2').innerHTML = fb2book;
+	document.getElementById('showfb2').innerHTML = '<pre>'+fb2book+'</pre>;
 	let link = document.getElementById('link');
 	link.href = URL.createObjectURL(new Blob([knigaFB2], { type: "text/xml" }));
 	link.style.visibility='visible';
