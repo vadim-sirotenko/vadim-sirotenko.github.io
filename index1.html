@@ -226,7 +226,6 @@ function showStory(indx){
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
-		book.checked=getCookie('book').includes(indx+',');
 		book.setAttribute('onChange','top.getBook(this);');
 		difr.body.append(book);
 
@@ -237,9 +236,9 @@ function showStory(indx){
 		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
+	document.getElementById('book_'+indx).checked=getCookie('book').includes(indx+',');
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-//	alert('Открытый рассказ N='+indx+'\nCookie='+mycooki);
 	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
 		mycooki = (mycooki===undefined)?indx+',':mycooki+indx+',';
 		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
