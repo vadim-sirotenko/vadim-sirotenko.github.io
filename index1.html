@@ -255,8 +255,8 @@ function getBook(e){
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 	let books = getCookie('book');
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		books = (book===undefined)?indx+',':book+indx+',';
-		setCookie('book', book, {secure: true});
+		books = (books===undefined)?indx+',':books+indx+',';
+		setCookie('book', books, {secure: true});
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
 		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
