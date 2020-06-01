@@ -226,8 +226,8 @@ function showStory(indx){
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
 		book.setAttribute('type', 'checkbox');
+		book.checked=(getCookie('book').indexOf(','+indx)>=0)?true:false;
 		book.setAttribute('onChange','top.getBook(this);');
-		book.checked = (getCookie('book').indexOf(','+indx)>=0)?true:false;
 		difr.body.append(book);
 
 		let book_label = difr.createElement("label");
