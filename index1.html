@@ -255,7 +255,7 @@ function getBook(e){
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 	let books = getCookie('book');
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		books = (books===undefined)?indx+',':books+indx+',';
+		books = (books===undefined)?elem_no+',':books+elem_no+',';
 		setCookie('book', books, {secure: true});
 		document.getElementById('li_'+elem_no).setAttribute('book',true);
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
