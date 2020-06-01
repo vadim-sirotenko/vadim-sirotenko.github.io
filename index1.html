@@ -272,6 +272,12 @@ function getBook(e){
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 //		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
+	if(!e.checked && books.indexOf(','+elem_no)>=0){
+		document.getElementById('li_'+elem_no).style.backgroundImage='none';
+		let reg = elem_no+',';
+		books = books.replace( reg/g, "" );
+		setCookie('book', books, {secure: true});
+	};
 }
 </script>
 </head>
