@@ -222,13 +222,25 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
+
+		let book = difr.createElement("input");
+		book.setAttribute('id', 'book_'+indx);
+		book.setAttribute('type', 'checkbox');
+		book.setAttribute('onChange','top.getBook(this);');
+		book.checked = (getCookie('book').indexOf(','+indx)>=0)?true:false;
+		difr.body.append(book);
+
+		let book_label = difr.createElement("label");
+		book_label.setAttribute('for','book_'+indx);
+		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
+		book_label.innerHTML = 'включить в книжку';
+		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-	alert('Открытый рассказ N='+indx+'\nCookie='+mycooki);
+//	alert('Открытый рассказ N='+indx+'\nCookie='+mycooki);
 	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
-//		mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 		mycooki = (mycooki===undefined)?indx+',':mycooki+indx+',';
 		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	};
