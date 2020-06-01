@@ -224,7 +224,9 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let mycooki = getCookie('read')+','+indx;
+//	let mycooki = getCookie('read')+','+indx;
+	let mycooki = getCookie('read');
+	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
