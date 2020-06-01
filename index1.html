@@ -229,7 +229,7 @@ function showStory(indx){
 	alert('Открытый рассказ N='+indx+'\nCookie='+mycooki);
 	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
 //		mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-		mycooki = (mycooki===undefined)?indx:mycooki+indx+',';
+		mycooki = (mycooki===undefined)?indx+',':mycooki+indx+',';
 		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	};
 	getCounts(useStory);
