@@ -236,7 +236,8 @@ function showStory(indx){
 		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
-	document.getElementById('book_'+indx).checked=getCookie('book').includes(indx+',');
+	alert(getCookie('book')+'\n'+getCookie('book').includes(indx+','))
+//	document.getElementById('book_'+indx).checked=getCookie('book').includes(indx+',');
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
