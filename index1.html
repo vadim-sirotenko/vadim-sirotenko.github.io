@@ -275,8 +275,11 @@ function getBook(e){
 	if(!e.checked && books.indexOf(','+elem_no)>=0){
 		document.getElementById('li_'+elem_no).style.backgroundImage='none';
 		let reg = elem_no+',';
-		books = books.replace( reg/g, "" );
+//		books = books.replace( reg/g, "" );
+//					 .replace(new RegExp("тест",'g'),"прошел") //https://javascript.ru/string/replace
+		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
 		setCookie('book', books, {secure: true});
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
 	};
 }
 </script>
