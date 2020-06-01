@@ -151,7 +151,7 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#ffffff';
 		};
 		let books = getCookie('book');
-		if(book!==undefined && books.indexOf(','+elem_no)<=0) {
+		if(books!==undefined && books.indexOf(','+elem_no)<=0) {
 			document.getElementById('li_'+elem_no).setAttribute('book',true);
 			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
 			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
