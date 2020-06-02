@@ -281,6 +281,7 @@ function getBook(e){
 		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
 	};
 	cooki_book = stoyinbook.join(',');
+	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
 	setCookie('book', books, {secure: true});
 // запишем полученный массив в строку
 // сохраним строку в куки
