@@ -279,6 +279,7 @@ function getBook(e){
 	for(let i=0; i<stoyinbook.length; i++) {
 		let select_story = stoyinbook[i];	// нашли элемент
 		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
+		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
 	};
 	cooki_book = stoyinbook.join(',');
 	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
