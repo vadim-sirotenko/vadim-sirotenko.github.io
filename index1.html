@@ -255,7 +255,6 @@ function showStory(indx){
 	let mycooki = getCookie('read');
 	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
 		mycooki = (mycooki===undefined)?','+indx+',':mycooki+indx+',';
-//		mycooki = (mycooki===undefined)?indx+',':mycooki+indx+',';
 		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	};
 
@@ -274,15 +273,26 @@ function getBook(e){
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 //		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
+// запишем куки в массив
+	stoyinbook = books.names.split(',');
+// пробежим по массиву, удаляя (сброшенный checkbos)
+	for(let i=0; i<stoyinbook.length; i++) {
+		let select_story = stoyinbook[i];	// нашли элемент
+		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
+	};
+	cooki_book = stoyinbook.join(',');
+	setCookie('book', books, {secure: true});
+// запишем полученный массив в строку
+// сохраним строку в куки
+/*
 	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
 		document.getElementById('li_'+elem_no).style.backgroundImage='none';
 		let reg = elem_no+',';
-//		books = books.replace( reg/g, "" );
-//					 .replace(new RegExp("тест",'g'),"прошел") //https://javascript.ru/string/replace
 		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
 		setCookie('book', books, {secure: true});
 		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
 	};
+*/
 }
 </script>
 </head>
