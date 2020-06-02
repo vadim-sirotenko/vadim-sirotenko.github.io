@@ -274,7 +274,7 @@ function getBook(e){
 //		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
 // запишем куки в массив
-	stoyinbook = books.names.split(',');
+	stoyinbook = books.split(',');
 // пробежим по массиву, удаляя (сброшенный checkbos)
 	for(let i=0; i<stoyinbook.length; i++) {
 		let select_story = stoyinbook[i];	// нашли элемент
