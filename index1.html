@@ -139,8 +139,9 @@ function clear(elem) {
   }
 }
 function story2book(numberBook){
-	let knopka = document.getElementById('storyButtom_'+numberBook);
-	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+'\nclick='+knopka.checked);
+//	let knopka = document.getElementById('storyButtom_'+numberBook);
+	let knopka = frames[0].contentWindow.document.getElementById('storyButtom_'+numberBook);
+	alert('кнопка добавления в книжку '+knopka.checked);
 //	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
 //	if(knopka.checked){
 //		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
