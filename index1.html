@@ -177,13 +177,13 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-//		if(storyInBook.indexOf(elem_no+',')>=0) {
-//			document.getElementById('li_'+elem_no).setAttribute('book',true);
-//			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-//			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-//			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-//			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		};
+		if(storyInBook.indexOf(elem_no+',')>=0) {
+			document.getElementById('li_'+elem_no).setAttribute('book',true);
+			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
