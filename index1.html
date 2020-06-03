@@ -253,6 +253,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 //	let mycooki = getCookie('read');
 	let listStories = getCookie('read');
+	alert('useStory='+useStory+'\nlistStories='+listStories);
 	if(listStories===undefined) {
 		setCookie('read', indx, {secure: true, 'max-age': 3600*24*35});
 	}else{
@@ -272,6 +273,7 @@ function showStory(indx){
 function getBook(e){
 	let elem_no = parseInt(e.getAttribute('id').slice(5));
 	let books = getCookie('book');
+//	alert('elem_no='+elem_no+'\nbooks='+books);
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
 		setCookie('book', books, {secure: true});
