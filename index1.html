@@ -138,6 +138,9 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
+function story2book(e){
+	alert('в книжку вставим/уберем рассказ №'+e.getAttribute('id'));
+}
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
 	let markedPage = getCookie('read'); //.split(',');
@@ -241,9 +244,6 @@ function showStory(indx){
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
-}
-function story2book(e){
-	alert('в книжку вставим/уберем рассказ №'+e.getAttribute('id'));
 }
 </script>
 </head>
