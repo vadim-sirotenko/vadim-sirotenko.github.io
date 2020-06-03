@@ -140,13 +140,13 @@ function clear(elem) {
 }
 function story2book(numberBook){
 	let knopka = document.getElementById('storyButtom_'+numberBook);
-	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
-	if(knopka.checked){
-		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
-	}else{
-		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
-	};
-//alert('в книжку вставим/уберем рассказ ('+ document.getElementById('li_'+numberBook).innerHTML +') №'+numberBook+'\nchecked='+knopka.checked);
+	alert('кнопка добавления в книжку '+knopka.getAttribute('id'));
+//	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
+//	if(knopka.checked){
+//		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
+//	}else{
+//		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
+//	};
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
