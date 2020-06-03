@@ -237,11 +237,11 @@ function showStory(indx){
 		bookButtom.setAttribute('id','storyButtom_'+indx);
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
-//		bookButtom.setAttribute('checked', 'none');
+		bookButtom.setAttribute('checked', 'false');
 		difr.body.append(bookButtom);
 
 		let label = document.createElement('label');
-		label.setAttribute('for','story_'+indx);
+		label.setAttribute('for','storyButtom_'+indx);
 		label.innerHTML = 'Добавить рассказ в книжку';
 		difr.body.append(label);
 	})
