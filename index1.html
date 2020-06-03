@@ -186,8 +186,9 @@ function createBook() {
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
 			request.send();
 			request.onload = function () {
-				text_story = request.response;
-//				alert('text_story:'+text_story);
+//				text_story = request.response;
+				text_story = '<p>'+request.response+'</p>';
+				alert('text_story:\n'+text_story);
 			};
 			section+=title+'<p>'+text_story+'</p></section>';
 		};
