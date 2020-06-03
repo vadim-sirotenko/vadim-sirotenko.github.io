@@ -109,6 +109,9 @@ li {
 <script>
 var max_idx=113;
 var idx=1;
+var section = '<section>';
+var title = '';
+var text_story = '';
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -169,9 +172,9 @@ function story2book(numberBook){
 }
 function createBook() {
 //	alert('создадим книжку');
-	let section = '<section>';
-	let title = '';
-	let text_story = '';
+//	let section = '<section>';
+//	let title = '';
+//	let text_story = '';
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 //		alert('txt='+elems[i].getAttribute('txt')+'\nbook='+elems[i].getAttribute('book'));
@@ -186,9 +189,9 @@ function createBook() {
 				text_story = request.response;
 //				alert('text_story:'+text_story);
 			};
-//			section+=title+'<p>'+text_story+'</p></section>';
+			section+=title+'<p>'+text_story+'</p></section>';
 		};
-		section+=title+'<p>'+text_story+'</p></section>';
+//		section+=title+'<p>'+text_story+'</p></section>';
 	};
 	alert('section\n'+section);
 }
