@@ -175,7 +175,7 @@ function createBook() {
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		alert('txt='+elems[i].getAttribute('txt')+'\nbook='+elems[i].getAttribute('book'));
-		if(elems[i].getAttribute('book')==true) {
+		if(elems[i].hasAttribute('book') && elems[i].getAttribute('book')==true) {
 			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
