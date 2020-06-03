@@ -97,6 +97,18 @@ li {
 	border-radius: 50% 50% 50% 50%;
 	cursor: pointer;
 }
+.createBook {
+	position: absolute;
+	top: 5%;
+	right: 0%;
+	cursor: pointer;
+	width: 7%;
+	height: auto;
+	background-image: url('img/Open_book.svg');
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
 </style>
 <script>
 var max_idx=113;
@@ -289,6 +301,7 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
+<span class="createBook"></span>
 </body>
 <script>
 showContents();
