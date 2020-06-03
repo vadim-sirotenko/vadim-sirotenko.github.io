@@ -229,7 +229,7 @@ function showStory(indx){
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','story'+indx);
 // 		        li.setAttribute('onclick', 'showStory('+nx+')');
-		bookButtom.setAttribute('onclick', 'story2book('+indx+')');
+		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
 		bookButtom.setAttribute('type','checkbox');
 //		bookButtom.setAttribute('checked', 'none');
 		difr.body.append(bookButtom);
