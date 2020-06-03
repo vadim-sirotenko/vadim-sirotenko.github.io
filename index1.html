@@ -102,7 +102,7 @@ li {
 	top: 5%;
 	right: 0%;
 	cursor: pointer;
-	width: 7%;
+	width: 4.5%;
 	height: auto;
 }
 </style>
@@ -147,13 +147,9 @@ function clear(elem) {
   }
 }
 function story2book(numberBook){
-//	let knopka = document.getElementById('storyButtom_'+numberBook);
 	let knopka = document.getElementById('showText').contentDocument.getElementById('storyButtom_'+numberBook);
-//	alert('кнопка добавления в книжку '+knopka.checked);
-//	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
 	let listingStories = getCookie('book');
 	if(knopka.checked){
-//		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
 		if(listingStories===undefined){
 			setCookie('book', numberBook, {secure: true});
 		}else{
@@ -165,12 +161,31 @@ function story2book(numberBook){
 		document.getElementById('li_'+numberBook).style.backgroundSize='contain';
 		document.getElementById('li_'+numberBook).style.backgroundPositionX='right';
 	}else{
-//		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
 		let newBookCookie = listingStories.slice(listingStories.indexOf(numberBook+','), numberBook.lenght+1);
 		document.getElementById('li_'+numberBook).removeAttribute('book');
 		document.getElementById('li_'+numberBook).style.backgroundImage = 'none';
 		setCookie('book', newBookCookie, {secure: true});
 	};
+}
+function createBook() {
+	alert('создадим книжку');
+	let text_story = '';
+	let title = '';
+	let elems = document.getElementsByTagName('li');
+	let section = '<section>';
+	for(var i=0; i<elems.length; i++) {
+		if(elems[i].setAttribute('book')==true) {
+			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>'';
+			let request = new XMLHttpRequest;
+			request.open('GET', 'text/'+(i+1)+'.txt', true);
+			request.send();
+			request.onload = function () {
+				text_story = request.response;
+			};
+			section+=title+'<p>'+text_story+'</p></section>';
+		};
+	};
+	alert(section);
 }
 function getCounts(e) {
 	let quqi = getCookie('read');
@@ -275,12 +290,6 @@ function showStory(indx){
 		label.setAttribute('for','storyButtom_'+indx);
 		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
 		difr.body.append(label);
-//		if(bookCooki==undefined || bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
-//		setCookie('book',bookCooki+elem_no+',',{secure: true});
-//		}else{
-//			bookButtom.setAttribute('checked', 'checked');
-//			label.innerHTML = 'Убрать рассказ из книжки';
-//		};
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
@@ -297,7 +306,7 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
-<img class="createBook" src="img/Open_book.svg">
+<img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
 </body>
 <script>
 showContents();
