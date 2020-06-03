@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/swa.ico" type="image/x-icon">
+<title>Разные истории и сказки.&nbsp;¯\_(ツ)_/¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Вадим Сиротенко">
+<meta name="title" content="Другой взгляд на миры">
+<meta name="description" content="Рассказы">
+<meta name="keywords" content="абсурд, жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
+<meta property="og:url" content="https://vadim-sirotenko.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Рассказики" />
+<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
+<meta property="og:image" content="https://vadim-sirotenko.github.io/img/author.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="fb:app_id" content="1559991960821213" />
+<meta property="fb:pages" content="108221997181803">
+<style>
+html, body {
+	height: 100%;
+	width: 100%;
+	min-height:100%;	
+	color: 'navy';
+	user-select: none;
+	margin: 0px;
+	overflow: hidden;
+	position: fixed;
+	background-color: #ffffff;
+	min-height:100%;
+	margin: 0;
+	top: 0px;
+	left: 0px;
+	background-image: url('img/author.jpg');
+	background-size: 20% auto;
+	background-position-x: left;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+li {
+	cursor: pointer;
+	margin-bottom: 1em;
+	background-color: #ffffff;
+}
+.contents {
+	width: 27%; 
+	height: 60%;
+	top: 3%;
+	left: 0px;
+	border-right: 1px solid navy;
+	overflow: auto;
+	word-break: break-all;
+	font-size: 1.4em;
+}
+.textstory {
+	position: fixed;
+	height: 90%;
+	top: 3%;
+	width: 65%;
+	left: 29%;
+	overflow: hidden;
+	z-index: 1;
+}
+.textstory img {
+	width: 50%; 
+	height: auto;
+	object-fit: contain;
+	float: right;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.picture {
+	width: 95%;
+	height: auto;
+	float: left;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+.cat {
+	width: 100%;
+	height: auto;
+}
+.reader_age {
+	position: absolute;
+	bottom: 3px;
+	right: 0%;
+	display: inline-block;
+	margin: 10px;
+	padding: 4px;
+	outline: 1px solid #fff;
+	font-size: 32px;
+	font-weight: bold;
+	color: #ff0000;
+	border: 3px solid black;
+	border-radius: 50% 50% 50% 50%;
+	cursor: pointer;
+}
+</style>
+<script>
+var max_idx=113;
+var idx=1;
+document.oncontextmenu = function (){return false};
+function getCookie(name) {
+	let matches = document.cookie.match(new RegExp(
+    	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	));
+ 	return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+function setCookie(name, value, options = {}) {
+  options = {
+	path: '/',
+	'max-age': 3600*24*35
+  };
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+  document.cookie = updatedCookie;
+}
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+function clear(elem) {
+  while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+}
+function getCounts(e) {
+	let quqi = getCookie('read'); //.split(',');
+	let markedPage = getCookie('read'); //.split(',');
+	let elems = document.getElementsByTagName('li');
+	for(var i=0; i<elems.length; i++) {
+		let elem_id = elems[i].getAttribute('id');
+		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
+		if(markedPage.indexOf(elem_no+',')>=0) {
+			elems[i].style.backgroundColor='#d4d4d4';
+		}else{
+			elems[i].style.backgroundColor='#ffffff';
+		};
+//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
+//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
+	};
+	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
+}
+function showContents(){
+	let ol = document.createElement("ul");
+	document.getElementById('contents').prepend(ol);
+	let nx=1;
+	let name_story = '';
+	while (nx<=max_idx){
+		let li = document.createElement("li");
+		li.setAttribute('id', 'li_'+nx);
+		let request = new XMLHttpRequest;
+		request.open('GET', 'text/'+nx+'.txt', true);
+		request.send();
+		request.onload = function () {
+			name_story = request.response;
+			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
+			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story;
+		};
+		li.setAttribute('onclick', 'showStory('+nx+')');
+		ol.append(li);
+		nx++;
+	};
+	let story_id = getUrlVars()["story"];
+	if(story_id>0 && story_id != undefined ) {
+		let elmView = document.getElementById('li_'+story_id);
+		elmView.scrollIntoView(top);
+		elmView.style.backgroundColor='#8BE3ED';
+		showStory(story_id);
+	}else{
+		document.getElementById('showText').src='about.html';
+		getCounts();
+	};
+}
+function showStory(indx){
+	let ifr_old = document.getElementById('showText');
+	ifr_old.remove();
+	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
+	let ifr = document.getElementById('showText');
+	ifr.addEventListener('load', () => {
+		let difr = ifr.contentDocument;
+		difr.body.style.color = 'navy';
+		difr.body.style.fontSize = '120%';
+		difr.body.style.userSelect = 'none';
+
+		let fbLike = document.createElement("div");
+		fbLike.setAttribute('id', "fb-root");
+		difr.body.prepend(fbLike);
+		
+		let fbLikeScript = document.createElement("script");
+		fbLikeScript.setAttribute("asynk",true);
+		fbLikeScript.setAttribute("defer",true);
+		fbLikeScript.setAttribute('crossorigin', "anonymous");
+		fbLikeScript.setAttribute('src', "https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0&appId=340464793585119&autoLogAppEvents=1");
+		difr.body.prepend(fbLikeScript);
+		
+		let script = document.createElement("script");
+		script.innerText = 'document.oncontextmenu = function (){return false};var swa=1';
+		difr.body.appendChild(script);
+
+		let fbLikeButtom = document.createElement('div');
+		fbLikeButtom.setAttribute('class',"fb-like");
+		fbLikeButtom.setAttribute('data-href',"https://vadim-sirotenko.github.io/?story='+indx+'");
+		fbLikeButtom.setAttribute('data-width', "");
+		fbLikeButtom.setAttribute('data-layout',"standard");
+		fbLikeButtom.setAttribute('data-action',"like");
+		fbLikeButtom.setAttribute('data-size',"small");
+		fbLikeButtom.setAttribute('data-share',"true");
+		difr.body.append(fbLikeButtom);
+		
+		let bookButtom = document.createElement('input');
+		bookButtom.setAttribute('id','story'+indx);
+		bookButtom.setAttribute('onclick','story2book(this)');
+		bookButtom.setAttribute('type','checkbox');
+		bookButtom.setAttribute('checked', 'none');
+		difr.body.append(bookButtom);
+	})
+	ifr.src = 'text/'+indx+'.txt';
+	let useStory = document.getElementById('li_'+indx);
+	let mycooki = getCookie('read');
+	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
+	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	getCounts(useStory);
+}
+function story2book(e){
+	alert('в книжку вставим/уберем рассказ №'+e.getAttribute('id'));
+}
+</script>
+</head>
+<body>
+<div id="contents" class="contents"></div>
+<div id="texts" class="textstory">
+	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
+</div>
+<span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
+</body>
+<script>
+showContents();
+</script>
+</html>
