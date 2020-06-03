@@ -261,6 +261,7 @@ function showStory(indx){
 		alert('listStories='+listStories+'\narrayReadStories='+arrayReadStories+'\narrayReadStories.indexOf('+indx+')='+arrayReadStories.indexOf(indx));
 		if(arrayReadStories.indexOf(indx)<0){
 			arrayReadStories.push(indx);
+			alert('должна добавить '+indx+'\nк массиву:'+arrayReadStories);
 			arrayReadStories.join(',');
 			setCookie('read', indx, {secure: true, 'max-age': 3600*24*35});
 		};
