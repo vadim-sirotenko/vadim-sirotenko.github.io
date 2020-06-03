@@ -238,18 +238,17 @@ function showStory(indx){
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
 		let bookCooki = getCookie('book');
+		difr.body.append(bookButtom);
+		let label = document.createElement('label');
+		label.setAttribute('for','storyButtom_'+indx);
+		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
+		difr.body.append(label);
 //		if(bookCooki==undefined || bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
-		label.innerHTML = 'Добавить рассказ в книжку';
 //		setCookie('book',bookCooki+elem_no+',',{secure: true});
 //		}else{
 //			bookButtom.setAttribute('checked', 'checked');
 //			label.innerHTML = 'Убрать рассказ из книжки';
 //		};
-		difr.body.append(bookButtom);
-
-		let label = document.createElement('label');
-		label.setAttribute('for','storyButtom_'+indx);
-		difr.body.append(label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
