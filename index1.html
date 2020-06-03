@@ -145,13 +145,22 @@ function getCounts(e) {
 	for(var i=0; i<elems.length; i++) {
 //		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-alert(' массив кук markedStory='+markedStory+'\n ищем в куках id элемента li '+elems[i].getAttribute('id')+' его номер='+elem_no+'\n нашли или нет:'+markedStory.indexOf(elem_no));
+//alert(' массив кук markedStory='+markedStory+'\n ищем в куках id элемента li '+elems[i].getAttribute('id')+' его номер='+elem_no+'\n нашли или нет:'+markedStory.indexOf(elem_no));
 //		if(markedStory.indexOf(elem_no+',')>=0) {
-		if(markedStory.indexOf(elem_no)!= -1) {
-			elems[i].style.backgroundColor='#d4d4d4';
-		}else{
-			elems[i].style.backgroundColor='#ffffff';
+		for(let nn=0; nn<markedStory.length; nn++){
+			if(markedStory[nn]==elem_no){
+				elems[i].style.backgroundColor='#d4d4d4';
+			}else{
+				elems[i].style.backgroundColor='#ffffff';
+			};
 		};
+
+//		if(markedStory.indexOf(elem_no)!= -1) {
+//			elems[i].style.backgroundColor='#d4d4d4';
+//		}else{
+//			elems[i].style.backgroundColor='#ffffff';
+//		};
+
 //		let books = getCookie('book');
 //		if(books!==undefined && books.indexOf(','+elem_no)>=0) {
 //			document.getElementById('li_'+elem_no).setAttribute('book',true);
