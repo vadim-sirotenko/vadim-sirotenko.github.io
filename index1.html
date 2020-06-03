@@ -138,8 +138,10 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function story2book(numberBook){
-	alert('в книжку вставим/уберем рассказ №'+numberBook+'\nchecked='.document.getElementById('story'+numberBook).checked);
+//function story2book(numberBook){
+function story2book(e){
+	let numberBook = e.id.slice('story_'.length)
+	alert('в книжку вставим/уберем рассказ №'+numberBook+'\nchecked='.e.checked);
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
@@ -227,9 +229,9 @@ function showStory(indx){
 		difr.body.append(fbLikeButtom);
 		
 		let bookButtom = document.createElement('input');
-		bookButtom.setAttribute('id','story'+indx);
-// 		        li.setAttribute('onclick', 'showStory('+nx+')');
-		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
+		bookButtom.setAttribute('id','story_'+indx);
+//		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
+		bookButtom.setAttribute('onclick', 'top.story2book(this)');
 		bookButtom.setAttribute('type','checkbox');
 //		bookButtom.setAttribute('checked', 'none');
 		difr.body.append(bookButtom);
