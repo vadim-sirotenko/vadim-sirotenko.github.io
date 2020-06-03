@@ -141,13 +141,21 @@ function clear(elem) {
 function story2book(numberBook){
 //	let knopka = document.getElementById('storyButtom_'+numberBook);
 	let knopka = document.getElementById('showText').contentDocument.getElementById('storyButtom_'+numberBook);
-	alert('кнопка добавления в книжку '+knopka.checked);
+//	alert('кнопка добавления в книжку '+knopka.checked);
 //	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
-//	if(knopka.checked){
+	let listingStories = getCookie('book');
+	if(knopka.checked){
 //		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
-//	}else{
+		if(listingStories===undefined){
+			setCookie('book', numberBook, {secure: true});
+		}else{
+			if(listingStories.indexOf(numberBook+',')<0) setCookie('book', listingStories+','+numberBook, {secure: true});
+		};
+	}else{
 //		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
-//	};
+		let newBookCookie = listingStories.slice(listingStories.indexOf(numberBook+','), numberBook.lenght+1);
+		setCookie('book', newBookCookie, {secure: true});
+	};
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
