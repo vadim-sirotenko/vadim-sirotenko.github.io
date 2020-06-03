@@ -232,6 +232,7 @@ function showStory(indx){
 
 		let label = document.createElement('label');
 		label.setAttribute('for','story'+indx);
+		label.innerHTML = 'Добавить рассказ в книжку';
 		difr.body.append(label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
