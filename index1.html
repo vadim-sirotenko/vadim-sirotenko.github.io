@@ -253,8 +253,8 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 //	let mycooki = getCookie('read');
 	let listStories = getCookie('read');
-	alert('useStory='+useStory+'\nlistStories='+listStories);
-	if(listStories===undefined) {
+	alert('код рассказа='+indx+'\nlistStories='+listStories);
+	if(listStories==undefined) {
 		setCookie('read', indx, {secure: true, 'max-age': 3600*24*35});
 	}else{
 		let arrayReadStories = listStories.split(',');
