@@ -174,7 +174,7 @@ function createBook() {
 	let text_story = '';
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		if(elems[i].getAttribute('txt')>0) {
+		if(elems[i].getAttribute('book')) {
 			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
