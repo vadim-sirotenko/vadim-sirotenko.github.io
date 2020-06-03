@@ -145,8 +145,8 @@ function getCounts(e) {
 	for(var i=0; i<elems.length; i++) {
 //		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
+		alert('массив кук markedStory='+markedStory+'\nищем в куках id элемента li '+elems[i].getAttribute('id')+' его номер='+elem_no);
 //		if(markedStory.indexOf(elem_no+',')>=0) {
-		alert('поиск elem_no='+elem_no+' в прочитанных рассказов в массиве markedStory'+markedStory+' куки markedStory.indexOf('+elem_no+')='+markedStory.indexOf(elem_no) );
 		if(markedStory.indexOf(elem_no)!= -1) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
