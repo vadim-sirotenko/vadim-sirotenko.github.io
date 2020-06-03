@@ -140,7 +140,7 @@ function clear(elem) {
 }
 function story2book(numberBook){
 	let knopka = document.getElementById('storyButtom_'+numberBook);
-	alert('кнопка добавления в книжку '+knopka.getAttribute('id'));
+	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+'\nclick='+knopka.checked);
 //	alert('кнопка добавления в книжку '+knopka.getAttribute('id')+' нажата '+knopka.getAttribute('checked'));
 //	if(knopka.checked){
 //		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
@@ -238,13 +238,13 @@ function showStory(indx){
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
 		let bookCooki = getCookie('book');
-		if(bookCooki!==undefined || bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
-			label.innerHTML = 'Добавить рассказ в книжку';
-			setCookie('book',bookCooki+elem_no+',',{secure: true});
-		}else{
-			bookButtom.setAttribute('checked', 'checked');
-			label.innerHTML = 'Убрать рассказ из книжки';
-		};
+//		if(bookCooki==undefined || bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
+		label.innerHTML = 'Добавить рассказ в книжку';
+//		setCookie('book',bookCooki+elem_no+',',{secure: true});
+//		}else{
+//			bookButtom.setAttribute('checked', 'checked');
+//			label.innerHTML = 'Убрать рассказ из книжки';
+//		};
 		difr.body.append(bookButtom);
 
 		let label = document.createElement('label');
