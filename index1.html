@@ -238,7 +238,7 @@ function showStory(indx){
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
 		let bookCooki = getCookie('book');
-		if(bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
+		if(bookCooki!==undefined || bookCooki.indexOf(elem_no+',')==-1) {// проверим в куки book
 			label.innerHTML = 'Добавить рассказ в книжку';
 			setCookie('book',bookCooki+elem_no+',',{secure: true});
 		}else{
