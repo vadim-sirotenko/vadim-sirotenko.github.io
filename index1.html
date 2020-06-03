@@ -139,7 +139,9 @@ function clear(elem) {
   }
 }
 function story2book(numberBook){
-alert('в книжку вставим/уберем рассказ ('+ document.getElementById('li_'+numberBook).innerHTML +') №'+numberBook+'\nchecked='+document.getElementById('story_'+numberBook).checked);
+	let knopka = document.getElementById('story_'+numberBook);
+	alert(knopka.getAttribute('checked'));
+alert('в книжку вставим/уберем рассказ ('+ document.getElementById('li_'+numberBook).innerHTML +') №'+numberBook+'\nchecked='+knopka.checked);
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
