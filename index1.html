@@ -229,6 +229,10 @@ function showStory(indx){
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('checked', 'none');
 		difr.body.append(bookButtom);
+
+		let label = document.createElement('label');
+		label.setAttribute('for','story'+indx);
+		difr.body.append(label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
