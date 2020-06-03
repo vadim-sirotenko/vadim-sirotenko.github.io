@@ -169,12 +169,12 @@ function story2book(numberBook){
 }
 function createBook() {
 	alert('создадим книжку');
-	let text_story = '';
-	let title = '';
-	let elems = document.getElementsByTagName('li');
 	let section = '<section>';
+	let title = '';
+	let text_story = '';
+	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
-		if(elems[i].setAttribute('book')==true) {
+		if(elems[i].setAttribute('book')) {
 			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+(i+1)+'.txt', true);
@@ -185,7 +185,7 @@ function createBook() {
 			section+=title+'<p>'+text_story+'</p></section>';
 		};
 	};
-	alert(section);
+	alert('section\n'+section);
 }
 function getCounts(e) {
 	let quqi = getCookie('read');
