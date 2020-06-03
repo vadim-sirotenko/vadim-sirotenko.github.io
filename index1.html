@@ -151,15 +151,22 @@ function story2book(numberBook){
 		}else{
 			if(listingStories.indexOf(numberBook+',')<0) setCookie('book', listingStories+','+numberBook, {secure: true});
 		};
+		document.getElementById('li_'+numberBook).setAttribute('book',true);
+		document.getElementById('li_'+numberBook).style.backgroundImage = 'url(img/book.svg)';
+		document.getElementById('li_'+numberBook).style.backgroundRepeat='no-repeat';
+		document.getElementById('li_'+numberBook).style.backgroundSize='contain';
+		document.getElementById('li_'+numberBook).style.backgroundPositionX='right';
 	}else{
 //		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
 		let newBookCookie = listingStories.slice(listingStories.indexOf(numberBook+','), numberBook.lenght+1);
 		setCookie('book', newBookCookie, {secure: true});
+		document.getElementById('li_'+numberBook).style.backgroundImage = 'none';
 	};
 }
 function getCounts(e) {
-	let quqi = getCookie('read'); //.split(',');
-	let markedPage = getCookie('read'); //.split(',');
+	let quqi = getCookie('read');
+	let markedPage = getCookie('read');
+	let storyInBook = getCookie('book');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -168,6 +175,13 @@ function getCounts(e) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
+		};
+//		if(storyInBook.indexOf(elem_no+',')>=0) {
+//			document.getElementById('li_'+elem_no).setAttribute('book',true);
+//			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+//			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+//			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+//			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
