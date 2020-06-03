@@ -258,7 +258,8 @@ function showStory(indx){
 		setCookie('read', indx, {secure: true, 'max-age': 3600*24*35});
 	}else{
 		let arrayReadStories = listStories.split(',');
-		if(arrayReadStories.indexOf(indx)>-1){
+		alert('listStories='+listStories+'\narrayReadStories='+arrayReadStories+'\narrayReadStories.indexOf('+indx+')='+arrayReadStories.indexOf(indx));
+		if(arrayReadStories.indexOf(indx)<0){
 			arrayReadStories.push(indx);
 			arrayReadStories.join(',');
 			setCookie('read', indx, {secure: true, 'max-age': 3600*24*35});
