@@ -138,8 +138,8 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function story2book(e){
-	alert('в книжку вставим/уберем рассказ №'+e.getAttribute('id'));
+function story2book(numberBook){
+	alert('в книжку вставим/уберем рассказ №'+numberBook+'\nchecked='.document.getElementById('story'+numberBook).checked);
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
@@ -228,7 +228,8 @@ function showStory(indx){
 		
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','story'+indx);
-		bookButtom.setAttribute('onclick','story2book('+this+')');
+// 		        li.setAttribute('onclick', 'showStory('+nx+')');
+		bookButtom.setAttribute('onclick', 'story2book('+indx+)');
 		bookButtom.setAttribute('type','checkbox');
 //		bookButtom.setAttribute('checked', 'none');
 		difr.body.append(bookButtom);
