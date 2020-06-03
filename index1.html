@@ -146,7 +146,7 @@ function getCounts(e) {
 //		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 //		if(markedStory.indexOf(elem_no+',')>=0) {
-		alert('поиск в прочитанных рассказов в массиве куки markedStory.indexOf('+elem_no+')='+markedStory.indexOf(elem_no));
+		alert('поиск elem_no='+elem_no+' в прочитанных рассказов в массиве markedStory'+markedStory+' куки markedStory.indexOf('+elem_no+')='+markedStory.indexOf(elem_no) );
 		if(markedStory.indexOf(elem_no)!= -1) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
