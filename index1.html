@@ -228,7 +228,7 @@ function showStory(indx){
 		
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','story'+indx);
-		bookButtom.setAttribute('onclick','story2book(this)');
+		bookButtom.setAttribute('onclick','story2book('+this+')');
 		bookButtom.setAttribute('type','checkbox');
 //		bookButtom.setAttribute('checked', 'none');
 		difr.body.append(bookButtom);
