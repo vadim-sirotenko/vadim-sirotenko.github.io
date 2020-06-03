@@ -140,7 +140,12 @@ function clear(elem) {
 }
 function story2book(numberBook){
 	let knopka = document.getElementById('story_'+numberBook);
-alert('в книжку вставим/уберем рассказ ('+ document.getElementById('li_'+numberBook).innerHTML +') №'+numberBook+'\nchecked='+knopka.checked);
+	if(knopka.checked){
+		alert(document.getElementById('li_'+numberBook).innerHTML+' добавить в книжку');
+	}else{
+		alert(document.getElementById('li_'+numberBook).innerHTML+' убрать нахуй из книжки');
+	};
+//alert('в книжку вставим/уберем рассказ ('+ document.getElementById('li_'+numberBook).innerHTML +') №'+numberBook+'\nchecked='+knopka.checked);
 }
 function getCounts(e) {
 	let quqi = getCookie('read'); //.split(',');
@@ -235,7 +240,7 @@ function showStory(indx){
 		difr.body.append(bookButtom);
 
 		let label = document.createElement('label');
-		label.setAttribute('for','story'+indx);
+		label.setAttribute('for','story_'+indx);
 		label.innerHTML = 'Добавить рассказ в книжку';
 		difr.body.append(label);
 	})
