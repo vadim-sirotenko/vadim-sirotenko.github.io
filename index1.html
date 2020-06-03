@@ -168,7 +168,7 @@ function story2book(numberBook){
 	};
 }
 function createBook() {
-	alert('создадим книжку');
+//	alert('создадим книжку');
 	let section = '<section>';
 	let title = '';
 	let text_story = '';
@@ -184,10 +184,11 @@ function createBook() {
 			request.send();
 			request.onload = function () {
 				text_story = request.response;
-				alert('text_story:'+text_story);
+//				alert('text_story:'+text_story);
 			};
-			section+=title+'<p>'+text_story+'</p></section>';
+//			section+=title+'<p>'+text_story+'</p></section>';
 		};
+		section+=title+'<p>'+text_story+'</p></section>';
 	};
 	alert('section\n'+section);
 }
