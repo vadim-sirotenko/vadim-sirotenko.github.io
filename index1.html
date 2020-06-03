@@ -177,6 +177,7 @@ function createBook() {
 //		alert('txt='+elems[i].getAttribute('txt')+'\nbook='+elems[i].getAttribute('book'));
 //		if(elems[i].hasAttribute('book') && elems[i].getAttribute('book')==true) {
 		if(elems[i].hasAttribute('book')) {
+			alert('text/'+elems[i].getAttribute('txt')+'.txt');
 			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
