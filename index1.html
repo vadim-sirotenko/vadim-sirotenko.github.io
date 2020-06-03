@@ -175,7 +175,7 @@ function createBook() {
 	let section = '<section>';
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].setAttribute('book')==true) {
-			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>'';
+			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+(i+1)+'.txt', true);
 			request.send();
