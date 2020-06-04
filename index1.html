@@ -209,9 +209,10 @@ function createBook() {
 				span_book.setAttribute('id','story_'+elems[i].getAttribute('txt'));
 				span_book.setAttribute('story_id',elems[i].getAttribute('txt'));
 //				document.getElementById('all2book').appendChild(span_book);
-				text_story = answer.response;
+//				text_story = answer.response;
 //				document.getElementById('story_'+(i+1)).innerHTML = text_story;
-				span_book.innerHTML = text_story;
+//				span_book.innerHTML = text_story;
+				span_book.innerHTML = answer.response;
 				bookShowTxt.append(span_book);
 //				alert(text_story);
 			};
