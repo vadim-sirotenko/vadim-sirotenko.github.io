@@ -214,14 +214,9 @@ function createBook() {
 				text_story = request.response;
 //				alert(request.response);
 				alert(text_story);
-				document.getElementById('story_'+(i+1)).innerHTML = request.response;
-//				span_book.setAttribute('text',request.response);
-//				text_story = '<p>'+request.response+'</p>';
-//				bookShowTxt.innerHTML=text_story;
-//				alert('text_story:\n'+text_story);
+//				document.getElementById('story_'+(i+1)).innerHTML = request.response;
+				document.getElementById('story_'+(i+1)).innerHTML = text_story;
 			};
-//			section+='<section>'+title+'<p>'+text_story+'</p></section>';
-//			bookShowTxt.innerHTML+='<hr style"width:100%"><plaintext>'+section+'</plaintext>';
 		};
 	};
 	
