@@ -204,8 +204,8 @@ function createBook() {
 			document.getElementById('all2book').append(span_book);
 //			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
-//			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
-			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', false);
+			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
+//			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', false);
 			request.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
 			request.responseType = 'text';
 			request.send();
