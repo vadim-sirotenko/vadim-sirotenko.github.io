@@ -200,13 +200,13 @@ function createBook() {
 			span_book.setAttribute('name',elems[i].innerHTML);
 //			document.getElementById('all2book').appendChild(span_book);
 			bookShowTxt.append(span_book);
-			let request = new XMLHttpRequest;
-			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
-			request.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
-			request.responseType = 'text';
-			request.send();
-			request.onload = function () {
-				text_story = request.response;
+			let answer = new XMLHttpRequest;
+			answer.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
+			answer.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
+			answer.responseType = 'text';
+			answer.send();
+			answer.onload = function () {
+				text_story = answer.response;
 				alert(text_story);
 //				document.getElementById('story_'+(i+1)).innerHTML = text_story;
 				span_book.innerHTML = text_story;
