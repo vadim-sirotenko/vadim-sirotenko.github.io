@@ -193,22 +193,26 @@ function createBook() {
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
-//			span_book = document.createElement('span');
-			span_book = document.createElement('div');
-			span_book.setAttribute('id','story_'+(i+1));
-			span_book.setAttribute('story_id',(i+1));
-			span_book.setAttribute('name',elems[i].innerHTML);
-//			document.getElementById('all2book').appendChild(span_book);
-			bookShowTxt.append(span_book);
+//			span_book = document.createElement('div');
+//			span_book.setAttribute('id','story_'+(i+1));
+//			span_book.setAttribute('story_id',(i+1));
+//			span_book.setAttribute('name',elems[i].innerHTML);
+////			document.getElementById('all2book').appendChild(span_book);
+//			bookShowTxt.append(span_book);
 			let answer = new XMLHttpRequest;
 			answer.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
 			answer.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
 			answer.responseType = 'text';
 			answer.send();
 			answer.onload = function () {
+				span_book = document.createElement('div');
+				span_book.setAttribute('id','story_'+(i+1));
+				span_book.setAttribute('story_id',(i+1));
+//				document.getElementById('all2book').appendChild(span_book);
 				text_story = answer.response;
 //				document.getElementById('story_'+(i+1)).innerHTML = text_story;
 				span_book.innerHTML = text_story;
+				bookShowTxt.append(span_book);
 //				alert(text_story);
 			};
 		};
