@@ -100,10 +100,21 @@ li {
 .createBook {
 	position: absolute;
 	top: 5%;
-	right: 0%;
+	right: 30%;
 	cursor: pointer;
-	width: 4.5%;
-	height: auto;
+	width: 25%;
+	height: 90%;
+	overflow: auto;
+}
+.bookStore {
+	position: absolute;
+	top: 5%;
+	right: 30%;
+	cursor: pointer;
+	width: 25%;
+	height: 90%;
+	overflow: auto;
+	visibility: hidden;
 }
 </style>
 <script>
@@ -175,12 +186,13 @@ function createBook() {
 //	let section = '<section>';
 //	let title = '';
 //	let text_story = '';
+	let bookShowTxt = document.getElementById('bookStore');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 //		alert('txt='+elems[i].getAttribute('txt')+'\nbook='+elems[i].getAttribute('book'));
 //		if(elems[i].hasAttribute('book') && elems[i].getAttribute('book')==true) {
 		if(elems[i].hasAttribute('book')) {
-			alert('text/'+elems[i].getAttribute('txt')+'.txt');
+//			alert('text/'+elems[i].getAttribute('txt')+'.txt');
 			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
@@ -188,9 +200,13 @@ function createBook() {
 			request.onload = function () {
 //				text_story = request.response;
 				text_story = '<p>'+request.response+'</p>';
-				alert('text_story:\n'+text_story);
+				bookShowTxt.innerHTML=text_story;
+				bookShowTxt.style.visibility='visible';
+				
+//				alert('text_story:\n'+text_story);
 			};
-			section+=title+'<p>'+text_story+'</p></section>';
+			section+='<section>'+title+'<p>'+text_story+'</p></section>';
+			bookShowTxt.innerHTML+='<hr style"width:100%">'+section;
 		};
 //		section+=title+'<p>'+text_story+'</p></section>';
 	};
@@ -318,6 +334,7 @@ function showStory(indx){
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
+<div id="bookStore" class="bookStore"></div>
 </body>
 <script>
 showContents();
