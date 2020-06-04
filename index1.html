@@ -113,7 +113,7 @@ li {
 	width: 25%;
 	height: 90%;
 	overflow: auto;
-	visibility: hidden;
+/*	visibility: hidden;*/
 }
 </style>
 <script>
@@ -200,7 +200,7 @@ function createBook() {
 //				text_story = request.response;
 				text_story = '<p>'+request.response+'</p>';
 				bookShowTxt.innerHTML=text_story;
-				bookShowTxt.style.visibility='visible';
+//				bookShowTxt.style.visibility='visible';
 				
 //				alert('text_story:\n'+text_story);
 			};
@@ -210,7 +210,7 @@ function createBook() {
 //		section+=title+'<p>'+text_story+'</p></section>';
 	};
 	
-	alert('section\n'+section+'\ntext_story:\n'+text_story);
+//	alert('section\n'+section+'\ntext_story:\n'+text_story);
 }
 function getCounts(e) {
 	let quqi = getCookie('read');
