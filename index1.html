@@ -204,14 +204,16 @@ function createBook() {
 			document.getElementById('all2book').append(span_book);
 //			let title = '<title><strong>'+ elems[i].innerHTML +'</strong></title><empty-line/><strong>'+ elems[i].innerHTML + '</strong><empty-line/>';
 			let request = new XMLHttpRequest;
-			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
+//			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
+			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', false);
+			request.responseType = 'text';
 			request.send();
 			request.onload = function () {
 //				document.getElementById('story_'+(i+1)).innerHTML = request.response;
 				text_story = request.response;
 				alert(request.response);
 				document.getElementById('story_'+(i+1)).innerHTML = request.response;
-				span_book.setAttribute('text',request.response);
+//				span_book.setAttribute('text',request.response);
 //				text_story = '<p>'+request.response+'</p>';
 //				bookShowTxt.innerHTML=text_story;
 //				alert('text_story:\n'+text_story);
