@@ -210,6 +210,7 @@ function createBook() {
 //				document.getElementById('story_'+(i+1)).innerHTML = request.response;
 				text_story = request.response;
 				document.getElementById('story_'+(i+1)).innerHTML = text_story;
+				span_book.setAttribute('text',text_story);
 //				text_story = '<p>'+request.response+'</p>';
 //				bookShowTxt.innerHTML=text_story;
 //				alert('text_story:\n'+text_story);
