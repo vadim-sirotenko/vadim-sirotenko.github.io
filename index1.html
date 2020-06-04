@@ -197,7 +197,7 @@ function createBook() {
 		if(elems[i].hasAttribute('book')) {
 //			alert('text/'+elems[i].getAttribute('txt')+'.txt');
 			span_book = document.createElement('span');
-			span_book.setAttribute('story_id','story_'+i+1);
+			span_book.setAttribute('story_id','story_'+(i+1));
 			span_book.setAttribute('name',elems[i].innerHTML);
 //			document.getElementById('all2book').appendChild(span_book);
 			document.getElementById('all2book').append(span_book);
@@ -206,7 +206,7 @@ function createBook() {
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
 			request.send();
 			request.onload = function () {
-				document.getElementById('story_'+i+1).innerHTML = request.response;
+				document.getElementById('story_'+(i+1)).innerHTML = request.response;
 //				text_story = request.response;
 //				text_story = '<p>'+request.response+'</p>';
 //				bookShowTxt.innerHTML=text_story;
