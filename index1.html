@@ -189,17 +189,17 @@ function createBook() {
 //	let section = '<section>';
 //	let title = '';
 //	let text_story = '';
-	let bookShowTxt = document.getElementById('bookStore');
+	let bookShowTxt = document.getElementById('all2book');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
-			span_book = document.createElement('span');
-//			span_book = document.createElement('div');
+//			span_book = document.createElement('span');
+			span_book = document.createElement('div');
 			span_book.setAttribute('id','story_'+(i+1));
 			span_book.setAttribute('story_id',(i+1));
 			span_book.setAttribute('name',elems[i].innerHTML);
 //			document.getElementById('all2book').appendChild(span_book);
-			document.getElementById('all2book').append(span_book);
+			bookShowTxt.append(span_book);
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
 			request.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
@@ -208,7 +208,8 @@ function createBook() {
 			request.onload = function () {
 				text_story = request.response;
 				alert(text_story);
-				document.getElementById('story_'+(i+1)).innerHTML = text_story;
+//				document.getElementById('story_'+(i+1)).innerHTML = text_story;
+				span_book.innerHTML = text_story;
 			};
 		};
 	};
