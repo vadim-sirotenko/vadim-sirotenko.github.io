@@ -211,9 +211,10 @@ function createBook() {
 
 function createFB2(){
 	alert('Формируем книжку FB2');
-	let elems = document.getElementsByTagName('all2book');
-	for(var i=0; i<elems.length; i++) {
-		let txt = elems[i].innerHTML;
+	let list = document.getElementsByTagName('all2book');
+	for (let i = 0; i < list.childNodes.length; i++) {
+//	for(var i=0; i<elems.length; i++) {
+		let txt = .childNodes[i].innerHTML;
 		alert(txt);
 	};
 }
