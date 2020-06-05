@@ -205,8 +205,8 @@ function createBook() {
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 
-				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
-				alert(storyfb2);
+//				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
+//				alert(storyfb2);
 
 				document.getElementById('all2book').appendChild(span_book);
 			};
