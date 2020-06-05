@@ -215,7 +215,7 @@ function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
 	for(let idx=1; idx<=pages; idx++){
 		let div_story = document.getElementById('story_'+idx);
-		alert('idx='idx+'\ndocument.getElementById(story_'+idx+'):'+div_story);
+		alert('idx='+idx+'\ndocument.getElementById(story_'+idx+'):'+div_story);
 		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title><empty-line/><p>'+div_story.innerHTML+'</p></section>';
 //		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title>';
 		alert(storyfb2);
