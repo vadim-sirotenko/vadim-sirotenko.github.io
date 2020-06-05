@@ -186,7 +186,6 @@ function story2book(numberBook){
 }
 function createBook() {
 //	alert('создадим книжку');
-	let countPage=0;
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
 	let elems = document.getElementsByTagName('li');
@@ -205,11 +204,10 @@ function createBook() {
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',request.response.slice(0, name_story.indexOf('\n')-1));
 				document.getElementById('all2book').appendChild(span_book);
-				countPage++;
 			};
 		};
 	};
-	createFB2(countPage);
+	createFB2(elems.length);
 }
 
 function createFB2(pages){
