@@ -186,6 +186,7 @@ function story2book(numberBook){
 }
 function createBook() {
 //	alert('создадим книжку');
+	let countPage=0;
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
 	let elems = document.getElementsByTagName('li');
@@ -202,15 +203,22 @@ function createBook() {
 				span_book.setAttribute('id','story_'+book_story_id);
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.innerHTML = request.response;
+				span_book.setAttribute('name',request.response.slice(0, name_story.indexOf('\n')-1));
 				document.getElementById('all2book').appendChild(span_book);
+				countPage++;
 			};
 		};
 	};
-	createFB2();
+	createFB2(countPage);
 }
 
-function createFB2(){
-	alert('Формируем книжку FB2 Из рассков '+document.getElementById('all2book').childNodes.length);
+function createFB2(pages){
+	alert('Формируем книжку FB2 Из рассков '+pages);
+	for(let idx=0; idx<=pages; idx++){
+		let div_story = document.getElementById('story_'+idx);
+		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title><empty-line/><p>'+div_story.innerHTML+'</p></section>';
+		alert(storyfb2);
+	};
 }
 
 function getCounts(e) {
