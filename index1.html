@@ -105,12 +105,12 @@ li {
 	width: 5%;
 	height: auto;
 }
-.EBook {
+.ebook {
 	position: absolute;
 	top: 12%;
 	right: 0%;
 	cursor: pointer;
-	width: 5%;
+/*	width: 5%; */
 	height: auto;
 }
 .bookStore {
@@ -254,8 +254,7 @@ function createBook() {
 	text_fb2 = '<?xml version="1.0" encoding="utf-8"?><root>'+ textfb2_head + section_fb2 + '</body></root>';
 //	document.getElementById('bookDownload').style.visibility='visible';
 	link.href = URL.createObjectURL(new Blob([text_fb2], { type: "text/xml" }));
-//	alert(text_fb2);
-//	createFB2(countStory);
+	alert(text_fb2);
 }
 
 function createFB2(pages){
@@ -390,8 +389,7 @@ function showStory(indx){
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <img id="bookDownload" class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
-<a id="link" download="story.fb2">скачать книжку</a>
-
+<a id="link" class="ebook" download="story.fb2">скачать книжку</a>
 <div id="all2book" style="visibility: hidden;"></div>
 </body>
 <script>
