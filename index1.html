@@ -214,7 +214,7 @@ function createBook() {
 
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
-	for(let idx=0; idx<=pages; idx++){
+	for(let idx=1; idx<=pages; idx++){
 		let div_story = document.getElementById('story_'+idx);
 		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title><empty-line/><p>'+div_story.innerHTML+'</p></section>';
 		alert(storyfb2);
