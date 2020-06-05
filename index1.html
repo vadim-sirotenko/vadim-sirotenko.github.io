@@ -210,15 +210,7 @@ function createBook() {
 }
 
 function createFB2(){
-	alert('Формируем книжку FB2');
-	let composition = document.getElementById('all2book');
-	let str = composition.childNodes.length;
-	alert('внутри дивов='+str);
-//	var elementChildrens = document.querySelector(composition).children;
-//	for (var i=0, child; child=elementChildrens[i]; i++) {
-//		let txt = child.innerHTML;
-//		alert(txt);
-//	};
+	alert('Формируем книжку FB2 Из рассков '+document.getElementById('all2book').childNodes.length);
 }
 
 function getCounts(e) {
@@ -343,7 +335,7 @@ function showStory(indx){
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
 
-<div id="all2book" style="visibility: visible;"></div>
+<div id="all2book" style="visibility: hidden;"></div>
 </body>
 <script>
 showContents();
