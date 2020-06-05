@@ -251,20 +251,22 @@ function createBook() {
 			};
 		};
 	};
-	text_fb2 = textfb2_head + section_fb2 + '</body>';
+	text_fb2 = '<?xml version="1.0" encoding="utf-8"?><root>'+ textfb2_head + section_fb2 + '</body></root>';
+	document.getElementById('bookDownload').style.visibility='visible';
+	link.href = URL.createObjectURL(new Blob([text_fb2], { type: "text/xml" }));
 //	alert(text_fb2);
 //	createFB2(countStory);
 }
 
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
-	var docfb2 = document.implementation.createDocument ('http://www.w3.org/1999/xhtml', 'html', null);
+//	var docfb2 = document.implementation.createDocument ('http://www.w3.org/1999/xhtml', 'html', null);
 //	var body = document.createElementNS('http://www.w3.org/1999/xhtml', 'body');
-	var bodyfb2 = document.createElementNS(text_fb2, 'body');
-	bodyfb2.setAttribute('id', 'SWA3750007551');
-	let book = doc.documentElement.appendChild(body);
-	link.href = URL.createObjectURL(new Blob([book], { type: "text/xml" }));
-//	alert(doc.getElementById('abc')); // [object HTMLBodyElement]
+//	var bodyfb2 = document.createElementNS(text_fb2, 'body');
+//	bodyfb2.setAttribute('id', 'SWA3750007551');
+//	let book = doc.documentElement.appendChild(body);
+//	alert(doc.getElementById('SWA3750007551')); // [object HTMLBodyElement]
+	link.href = URL.createObjectURL(new Blob([docfb2], { type: "text/xml" }));
 }
 
 function getCounts(e) {
@@ -387,8 +389,8 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
-<img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
-<a id="link" name="story.fb2" download><img class="EBook" src="img/ebook.svg" title='Скачать электронную книжку story.fb2'></a>
+<img id="bookDownload" class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
+<a id="link" name="story.fb2" download><img id="bookDownload" class="EBook" style="visibility: hidden;" src="img/ebook.svg" title='Скачать электронную книжку story.fb2'></a>
 
 <div id="all2book" style="visibility: hidden;"></div>
 </body>
