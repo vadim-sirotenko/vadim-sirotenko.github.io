@@ -188,12 +188,13 @@ function createBook() {
 //	alert('создадим книжку');
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
+	let countStory = 0;
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
 			let book_story_id = elems[i].getAttribute('txt');
 //			alert('рассказ № '+book_story_id);
-
+			countStory+=1;
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+book_story_id+'.txt', true);
 			request.send();
@@ -202,12 +203,12 @@ function createBook() {
 				span_book.setAttribute('id','story_'+book_story_id);
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.innerHTML = request.response;
-				span_book.setAttribute('name',request.response.slice(0, name_story.indexOf('\n')-1));
+				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 				document.getElementById('all2book').appendChild(span_book);
 			};
 		};
 	};
-	createFB2(elems.length);
+	createFB2(countStory);
 }
 
 function createFB2(pages){
