@@ -193,6 +193,8 @@ function createBook() {
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
+			let book_story_id = elems[i].getAttribute('book');
+			alert('рассказ № '+book_story_id);
 //			span_book = document.createElement('div');
 //			span_book.setAttribute('id','story_'+(i+1));
 //			span_book.setAttribute('story_id',(i+1));
@@ -205,7 +207,8 @@ function createBook() {
 			answer.responseType = 'text';
 			answer.send();
 			answer.onload = function () {
-				span_book = document.createElement('div');
+				alert('выведем историю в список див '+elems[i].getAttribute('txt'));
+				let span_book = document.createElement('div');
 				span_book.setAttribute('id','story_'+elems[i].getAttribute('txt'));
 				span_book.setAttribute('story_id',elems[i].getAttribute('txt'));
 //				document.getElementById('all2book').appendChild(span_book);
