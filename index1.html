@@ -205,17 +205,21 @@ function createBook() {
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 				document.getElementById('all2book').appendChild(span_book);
+
+				let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title>';
+				alert(storyfb2);
 			};
 		};
 	};
-	createFB2(countStory);
+//	createFB2(countStory);
 }
 
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
 	for(let idx=1; idx<=pages; idx++){
+//		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title><empty-line/><p>'+div_story.innerHTML+'</p></section>';
 		let div_story = document.getElementById('story_'+idx);
-		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title><empty-line/><p>'+div_story.innerHTML+'</p></section>';
+		let storyfb2 = '<section><title><p><strong>'+div_story.getAttribute('name')+'</strong></p></title>';
 		alert(storyfb2);
 	};
 }
