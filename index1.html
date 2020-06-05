@@ -197,7 +197,8 @@ function createBook() {
 			alert('рассказ № '+book_story_id);
 			let answer = new XMLHttpRequest;
 //			answer.open('GET', 'text/'+elems[i].getAttribute('txt')+'.txt', true);
-			answer.open('GET', 'text/'+book_story_id+'.txt', false); //true
+			answer.open('GET', 'text/'+book_story_id+'.txt', true); //true
+			alert('file='+'text/'+book_story_id+'.txt');
 //			answer.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
 //			answer.responseType = 'text';
 			answer.send();
@@ -210,6 +211,7 @@ function createBook() {
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.innerHTML = answer.response;
 				document.getElementById('all2book').appendChild(span_book);
+
 //				text_story = answer.response;
 //				document.getElementById('story_'+(i+1)).innerHTML = text_story;
 //				span_book.innerHTML = text_story;
