@@ -123,7 +123,36 @@ li {
 <script>
 var max_idx=113;
 var idx=1;
-var section = '<section>';
+var text_fb2='';
+var textfb2_head = `<description>
+<title-info>
+<author>
+<first-name>Вадим</first-name>
+<last-name>Сиротенко</last-name>
+</author>
+<book-title>Сборник рассказов</book-title>
+<annotation>
+Все рассказы выдуманы. Некоторые основаны на памяти из детства.
+</annotation>
+<coverpage>
+<image l:href="#cover.jpg" />
+</coverpage>
+<lang>ru</lang>
+</title-info>
+<document-info>
+<author>
+<first-name>Вадим</first-name>
+<last-name>Сиротенко</last-name>
+</author>
+<id>SWA3750007551</id>
+<version>1.0</version>
+</document-info>
+<publish-info>
+<book-name>Сборник рассказов</book-name>
+</publish-info>   
+</description>
+<body>`;
+var section = '';
 var title = '';
 var text_story = '';
 document.oncontextmenu = function (){return false};
@@ -206,12 +235,15 @@ function createBook() {
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 
 				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
-				alert(storyfb2);
+				section_fb2 += storyfb2;
+//				alert(storyfb2);
 
 				document.getElementById('all2book').appendChild(span_book);
 			};
 		};
 	};
+	text_fb2 = textfb2_head + section_fb2 + '</body>';
+	alert(text_fb2);
 //	createFB2(countStory);
 }
 
