@@ -212,7 +212,7 @@ function createBook() {
 function createFB2(){
 	alert('Формируем книжку FB2');
 	let composition = document.getElementById('all2book');
-	let list = document.querySelectorAll('div > '+composition);
+	let list = document.querySelectorAll('div > all2book');
 	for (let current_story of list) {
 		let txt = current_story.innerHTML;
 		alert(txt);
