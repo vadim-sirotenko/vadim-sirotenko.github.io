@@ -206,6 +206,16 @@ function createBook() {
 			};
 		};
 	};
+	createFB2();
+}
+
+function createFB2(){
+	alert('Формируем книжку FB2');
+	let elems = document.getElementsByTagName('all2book');
+	for(var i=0; i<elems.length; i++) {
+		let txt = elems[i].innerHTML;
+		alert(txt);
+	};
 }
 
 function getCounts(e) {
