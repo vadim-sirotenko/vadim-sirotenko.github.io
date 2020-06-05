@@ -245,7 +245,7 @@ function createBook() {
 
 				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
 				section_fb2 += storyfb2;
-				alert(storyfb2);
+				alert(span_book.getAttribute('name')+'\n'+span_book.innerHTML+'\n'+storyfb2);
 
 				document.getElementById('all2book').appendChild(span_book);
 			};
