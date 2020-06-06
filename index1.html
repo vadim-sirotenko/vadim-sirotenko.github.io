@@ -261,6 +261,7 @@ function createFB2(){
 	};
 	text_fb2+='</body></FictionBook>';
 	link.href = URL.createObjectURL(new Blob([text_fb2], { type: "text/xml" }));
+	alert(link.href);
 }
 
 function getCounts(e) {
