@@ -253,10 +253,11 @@ function createBook() {
 function createFB2(){
 	alert('Формируем книжку FB2 Из рассков');
 //	var txt = '<?xml version="1.0" encoding="utf-8"?><root>'; //	</root>';
-	text_fb2 = '<?xml version="1.0" encoding="utf-8"?>'; //+ textfb2_head + section_fb2 + '</body></root>';
+	text_fb2 = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">';
 	alert('start:'+text_fb2);
 	let elem = document.getElementById('all2book');
 	let pages = elem.getElementsByTagName('div'); // все div внутри all2book
+	alert('pages='+pages.length);
 	for (let page of pages) {	// читаем элементы, добавляем fb2 тэги 
 		alert('<section><title><p><strong>'+page.getAttribute('name')+'</strong></p></title><empty-line/><p>'+pahe.innerHTML+'</p></section>');
 		text_fb2 += '<section><title><p><strong>'+page.getAttribute('name')+'</strong></p></title><empty-line/><p>'+pahe.innerHTML+'</p></section>';
