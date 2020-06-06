@@ -133,7 +133,8 @@ var max_idx=113;
 var idx=1;
 var text_fb2='';
 var section_fb2='';
-var textfb2_head = `<description>
+var textfb2_head = `<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
+<description>
 <title-info>
 <author>
 <first-name>Вадим</first-name>
@@ -239,30 +240,27 @@ function createBook() {
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
-
-				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
-				section_fb2 += storyfb2;
-				alert(span_book.getAttribute('name')+'\n'+span_book.innerHTML+'\n'+storyfb2);
-
+//				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
+//				section_fb2 += storyfb2;
+//				alert(span_book.getAttribute('name')+'\n'+span_book.innerHTML+'\n'+storyfb2);
 				document.getElementById('all2book').appendChild(span_book);
 			};
 		};
 	};
-	text_fb2 = '<?xml version="1.0" encoding="utf-8"?><root>'+ textfb2_head + section_fb2 + '</body></root>';
-//	document.getElementById('bookDownload').style.visibility='visible';
-	link.href = URL.createObjectURL(new Blob([text_fb2], { type: "text/xml" }));
-	alert(text_fb2);
+	
 }
 
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
-//	var docfb2 = document.implementation.createDocument ('http://www.w3.org/1999/xhtml', 'html', null);
-//	var body = document.createElementNS('http://www.w3.org/1999/xhtml', 'body');
-//	var bodyfb2 = document.createElementNS(text_fb2, 'body');
-//	bodyfb2.setAttribute('id', 'SWA3750007551');
-//	let book = doc.documentElement.appendChild(body);
-//	alert(doc.getElementById('SWA3750007551')); // [object HTMLBodyElement]
-	link.href = URL.createObjectURL(new Blob([docfb2], { type: "text/xml" }));
+//	var txt = '<?xml version="1.0" encoding="utf-8"?><root>'; //	</root>';
+	text_fb2 = '<?xml version="1.0" encoding="utf-8"?>'; //+ textfb2_head + section_fb2 + '</body></root>';
+	let elem = document.getElementById('all2book');
+	let pages = elem.getElementsByTagName('div'); // все div внутри all2book
+	for (let page of pages) {	// читаем элементы, добавляем fb2 тэги 
+		text_fb2 += '<section><title><p><strong>'+page.getAttribute('name')+'</strong></p></title><empty-line/><p>'+pahe.innerHTML+'</p></section>';
+	};
+	text_fb2+='</body></FictionBook>';
+	link.href = URL.createObjectURL(new Blob([text_fb2], { type: "text/xml" }));
 }
 
 function getCounts(e) {
@@ -386,7 +384,7 @@ function showStory(indx){
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <img id="bookDownload" class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
-<a id="link" class="ebook" download="story.fb2">скачать книжку</a>
+<a id="link" class="ebook" download="story.fb2">скачать</a>
 <div id="all2book" style="visibility: hidden;"></div>
 </body>
 <script>
