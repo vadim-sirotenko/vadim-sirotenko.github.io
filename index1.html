@@ -221,7 +221,7 @@ function story2book(numberBook){
 	};
 }
 function createBook() {
-//	alert('создадим книжку');
+	alert('создадим книжку');
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
 	let countStory = 0;
@@ -229,7 +229,7 @@ function createBook() {
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
 			let book_story_id = elems[i].getAttribute('txt');
-//			alert('рассказ № '+book_story_id);
+			alert('рассказ № '+book_story_id);
 			countStory+=1;
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+book_story_id+'.txt', true);
