@@ -195,6 +195,7 @@ function showContents(){
 	};
 }
 function showStory(indx){
+	
 	document.getElementById('li_'+indx).style.backgroundColor='#ddf3cb';
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
@@ -236,7 +237,7 @@ function showStory(indx){
 	let mycooki = getCookie('read');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-//	getCounts(useStory);
+	getCounts(useStory);
 }
 </script>
 </head>
