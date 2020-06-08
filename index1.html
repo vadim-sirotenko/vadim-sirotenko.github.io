@@ -218,13 +218,11 @@ function createBook() {
 //	alert('создадим книжку');
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
-	let countStory = 0;
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
 			let book_story_id = elems[i].getAttribute('txt');
 //			alert('рассказ № '+book_story_id);
-			countStory+=1;
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+book_story_id+'.txt', true);
 			request.send();
@@ -238,31 +236,27 @@ function createBook() {
 				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
 				section_fb2 += storyfb2;
 //				alert(storyfb2);
-
 				document.getElementById('all2book').appendChild(span_book);
 			};
 		};
 	};
 	text_fb2 = textfb2_head + section_fb2 + '</body>';
-	alert(text_fb2);
-//	createFB2(countStory);
+//	alert(text_fb2);
+	createFB2();
 }
 
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
 	let storyfb2='';
-	let txt_divs = all2book.getElementsByTagName('div');
-	let elements = document.querySelectorAll('div > all2book');
-	alert('elements вложенные div='+txt_divs);
-	alert('div вложенные div='+elements+' всего='+elements.length);
-	for (let elem of elements) {
-//		alert(elem.innerHTML); // "тест", "пройден"
-		storyfb2 += '<section><title><p><strong>'+elem.getAttribute('name')+'</strong></p></title><empty-line/><p>'+elem.innerHTML+'</p></section>';
-	}
-	alert(storyfb2);
-//	for (let txt_div of divs) {
-//		let storyfb2 = '<section><title><p><strong>'+txt_div.getAttribute('name')+'</strong></p></title><empty-line/><p>'+txt_div.innerHTML+'</p></section>';
-//	};
+	let storys2book = document.getElementsById('all2book');
+	let elements = storys2book.getElementsByTagName('div');
+	alert('div вложенные в all2book div='+elements+' всего='+elements.length);
+	for (let i = 0; i < elements.length; i++) {  
+//    	let page = pages[i];
+		storyfb2 += '<section><title><p><strong>'+elements[i].getAttribute('name')+'</strong></p></title><empty-line/><p>'+elements[i].innerHTML+'</p></section>';
+		alert('section: '+storyfb2);
+	};
+	alert('full book:\n'+storyfb2);
 }
 
 function getCounts(e) {
@@ -386,7 +380,6 @@ function showStory(indx){
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
-
 <div id="all2book" style="visibility: hidden;"></div>
 </body>
 <script>
