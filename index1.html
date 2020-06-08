@@ -246,13 +246,12 @@ function createBook() {
 }
 
 function createFB2(pages){
-	alert('Формируем книжку FB2 Из рассков '+pages);
+	alert('Формируем книжку FB2 Из рассков');
 	let storyfb2='';
-	let storys2book = document.getElementsById('all2book');
+	let storys2book = document.getElementById('all2book');
 	let elements = storys2book.getElementsByTagName('div');
 	alert('div вложенные в all2book div='+elements+' всего='+elements.length);
 	for (let i = 0; i < elements.length; i++) {  
-//    	let page = pages[i];
 		storyfb2 += '<section><title><p><strong>'+elements[i].getAttribute('name')+'</strong></p></title><empty-line/><p>'+elements[i].innerHTML+'</p></section>';
 		alert('section: '+storyfb2);
 	};
