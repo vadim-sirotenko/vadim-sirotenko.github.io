@@ -219,36 +219,10 @@ function createBook() {
 		};
 	};
 }
-function getCounts(e) {
-	let quqi = getCookie('read');
-	let markedPage = getCookie('read');
-	let storyInBook = getCookie('book');
-	let elems = document.getElementsByTagName('li');
-	for(var i=0; i<elems.length; i++) {
-		let elem_id = elems[i].getAttribute('id');
-//		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		let elem_no = parseInt(elems[i].getAttribute('text'));
-		if(markedPage.indexOf(elem_no+',')>=0) {
-			elems[i].style.backgroundColor='#d4d4d4';
-		}else{
-			elems[i].style.backgroundColor='#ffffff';
-		};
-		if(storyInBook.indexOf(elem_no+',')>=0) {
-			document.getElementById('li_'+elem_no).setAttribute('book',true);
-			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-		};
-//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
-//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
-	};
-	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
-}
 function showContents(){
 	let markedPage = getCookie('read');
 	let storyInBook = getCookie('book');
-	let ol = document.createElement("ul");
+	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ol);
 	let nx=1;
 	let name_story = '';
@@ -265,11 +239,13 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 			if(markedPage.indexOf(nx+',')>=0) {
+				alert('прочитанная N '+nx);
 				li.style.backgroundColor='#d4d4d4';
 			}else{
 				li.style.backgroundColor='#ffffff';
 			};
 			if(storyInBook.indexOf(nx+',')>=0) {
+				alert('в книге N '+nx);
 				li.setAttribute('book',true);
 				li.style.backgroundImage = 'url(img/book.svg)';
 				li.style.backgroundRepeat='no-repeat';
@@ -281,7 +257,7 @@ function showContents(){
 			};
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
-		ol.append(li);
+		ul.append(li);
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
@@ -292,7 +268,6 @@ function showContents(){
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
-//		getCounts();
 	};
 }
 function showStory(indx){
