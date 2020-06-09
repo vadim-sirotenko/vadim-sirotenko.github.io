@@ -238,15 +238,16 @@ function createBook() {
 
 				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
 				section_fb2 += storyfb2;
-				alert(storyfb2);
+				console.log(section_fb2);
+//				alert(storyfb2);
 //				document.getElementById('all2book').appendChild(span_book);
 				document.getElementById('all2book').append(span_book);
 			};
 		};
-		alert('рассказ в книжке='+stories2book);
+//		alert('рассказ в книжке='+stories2book);
 	};
 	text_fb2 = textfb2_head + section_fb2 + '</body>';
-	alert(text_fb2);
+//	alert(text_fb2);
 //	createFB2();
 }
 
