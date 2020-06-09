@@ -217,6 +217,7 @@ function story2book(numberBook){
 function createBook() {
 //	alert('создадим книжку');
 	let stories2book = 0;
+	let storyfb2 = '';
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
 	let elems = document.getElementsByTagName('li');
@@ -236,9 +237,10 @@ function createBook() {
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 
-				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
+				storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
 				section_fb2 += storyfb2;
-				console.log(section_fb2);
+				console.log('storyfb2\n'+storyfb2);
+				console.log('SECTION\n'+section_fb2);
 //				alert(storyfb2);
 //				document.getElementById('all2book').appendChild(span_book);
 //				document.getElementById('all2book').append(span_book);
