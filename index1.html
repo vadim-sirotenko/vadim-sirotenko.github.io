@@ -216,6 +216,7 @@ function story2book(numberBook){
 }
 function createBook() {
 //	alert('создадим книжку');
+	let stories2book = 0;
 	let bookShowTxt = document.getElementById('all2book');
 	bookShowTxt.innerHTML='';
 	let elems = document.getElementsByTagName('li');
@@ -227,8 +228,10 @@ function createBook() {
 			request.open('GET', 'text/'+book_story_id+'.txt', true);
 			request.send();
 			request.onload = function () {
+				stories2book +=1;
 				let span_book = document.createElement('div');
-				span_book.setAttribute('id','story_'+book_story_id);
+//				span_book.setAttribute('id','story_'+book_story_id);
+				span_book.setAttribute('id','story_'+i);
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.innerHTML = request.response;
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
@@ -241,6 +244,7 @@ function createBook() {
 			};
 		};
 	};
+	alert('рассказов в книжке='+stories2book);
 	text_fb2 = textfb2_head + section_fb2 + '</body>';
 	alert(text_fb2);
 //	createFB2();
