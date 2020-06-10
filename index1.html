@@ -267,9 +267,12 @@ function createBook() {
 
 function createFB2(arr){
 //	alert('Формируем книжку FB2 Из рассков');
+	text_fb2 = '';
 	for (let i=0; i<arr.length; i++){
 		text_fb2 += '<section><title><p><strong>'+arr[i].name+'</strong></p></title><empty-line/><p>'+arr[i].txt+'</p></section>';
+		alert(arr[i].name);
 	};
+	alert(text_fb2);
 	text_fb2 = textfb2_head + text_fb2 + '</body></FictionBook>';
 	console.log(text_fb2);
 }
