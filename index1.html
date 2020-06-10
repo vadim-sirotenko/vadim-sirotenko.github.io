@@ -232,7 +232,7 @@ function createBook() {
 			request.send();
 			request.onload = function () {
 				let span_book = document.createElement('div');
-				span_book.setAttribute('id','story_'+countStory);
+				span_book.setAttribute('id','story_'+i);
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 				span_book.innerHTML = request.response;
