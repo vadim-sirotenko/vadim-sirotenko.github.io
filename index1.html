@@ -97,67 +97,10 @@ li {
 	border-radius: 50% 50% 50% 50%;
 	cursor: pointer;
 }
-.createBook {
-	position: absolute;
-	top: 5%;
-	right: 0%;
-	cursor: pointer;
-	width: 5%;
-	height: auto;
-}
-.bookStore {
-	position: absolute;
-	top: 5%;
-	right: 30%;
-	cursor: pointer;
-	width: 25%;
-	height: 90%;
-	overflow: auto;
-	background-color: #a8cebd;
-/*	visibility: hidden;*/
-}
-.all2book {
-	visibility: hidden;
-}
 </style>
 <script>
-var max_idx=113;
+var max_idx=112;
 var idx=1;
-var text_fb2='';
-var section_fb2='';
-var textfb2_head = `<?xml version="1.0" encoding="utf-8"?>
-<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
-<description>
-<title-info>
-<author>
-<first-name>Вадим</first-name>
-<last-name>Сиротенко</last-name>
-</author>
-<book-title>Сборник рассказов</book-title>
-<annotation>
-Все рассказы выдуманы. Некоторые основаны на памяти из детства.
-</annotation>
-<coverpage>
-<image l:href="#cover.jpg" />
-</coverpage>
-<lang>ru</lang>
-</title-info>
-<document-info>
-<author>
-<first-name>Вадим</first-name>
-<last-name>Сиротенко</last-name>
-</author>
-<id>SWA3750007551</id>
-<version>1.0</version>
-</document-info>
-<publish-info>
-<book-name>Сборник рассказов</book-name>
-</publish-info>   
-</description>
-<body>`;
-var section = '';
-var title = '';
-var text_story = '';
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -195,38 +138,17 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function story2book(numberBook){
-	let knopka = document.getElementById('showText').contentDocument.getElementById('storyButtom_'+numberBook);
-	let listingStories = getCookie('book');
-	if(knopka.checked){
-		if(listingStories===undefined){
-			setCookie('book', numberBook, {secure: true});
-		}else{
-			if(listingStories.indexOf(numberBook+',')<0) setCookie('book', listingStories+','+numberBook, {secure: true});
-		};
-		document.getElementById('li_'+numberBook).setAttribute('book',true);
-		document.getElementById('li_'+numberBook).style.backgroundImage = 'url(img/book.svg)';
-		document.getElementById('li_'+numberBook).style.backgroundRepeat='no-repeat';
-		document.getElementById('li_'+numberBook).style.backgroundSize='contain';
-		document.getElementById('li_'+numberBook).style.backgroundPositionX='right';
-	}else{
-		let newBookCookie = listingStories.slice(listingStories.indexOf(numberBook+','), numberBook.lenght+1);
-		document.getElementById('li_'+numberBook).removeAttribute('book');
-		document.getElementById('li_'+numberBook).style.backgroundImage = 'none';
-		setCookie('book', newBookCookie, {secure: true});
-	};
-}
 function createBook() {
 //	alert('создадим книжку');
 	let bookShowTxt = document.getElementById('all2book');
-	bookShowTxt.innerHTML='';
+	document.getElementById('all2book').innerHTML='';
 	let countStory = 0;
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].hasAttribute('book')) {
 			let book_story_id = elems[i].getAttribute('txt');
-//			alert('рассказ № '+book_story_id);
 			countStory+=1;
+			alert('countStory='+countStory+'\nрассказ № '+book_story_id);
 			let request = new XMLHttpRequest;
 			request.open('GET', 'text/'+book_story_id+'.txt', true);
 			request.send();
@@ -236,11 +158,6 @@ function createBook() {
 				span_book.setAttribute('story_id', book_story_id);
 				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
 				span_book.innerHTML = request.response;
-
-//				let storyfb2 = '<section><title><p><strong>'+span_book.getAttribute('name')+'</strong></p></title><empty-line/><p>'+span_book.innerHTML+'</p></section>';
-//				section_fb2 += storyfb2;
-//				alert(storyfb2);
-
 				document.getElementById('all2book').appendChild(span_book);
 			};
 		};
@@ -249,15 +166,11 @@ function createBook() {
 //	alert(text_fb2);
 	createFB2(countStory);
 }
-
 function createFB2(pages){
 	alert('Формируем книжку FB2 Из рассков '+pages);
 	let storyfb2='';
 	let all_story2book='';
 	let txt_divs = all2book.getElementsByTagName('div');
-//	let elements = document.querySelectorAll('div > all2book');
-//	alert('elements вложенные div='+txt_divs);
-//	alert('div вложенные div='+elements+' всего='+elements.length);
 	for (i=1; i<=pages; i++) {
 		let elm_book = document.getElementById('story_'+i);
 all_story2book += '<section><title>'+elm_book.getAttribute('name')+'</title><strong>'+elm_book.getAttribute('name')+'</strong><empty-line/><strong>'+elm_book.innerHTML+'</strong>';
@@ -265,29 +178,22 @@ all_story2book += '<section><title>'+elm_book.getAttribute('name')+'</title><str
 	all_story2book += textfb2_head + all_story2book + '</body></FictionBook>';
 	console.log(all_story2book);
 	link.href = URL.createObjectURL(new Blob([all_story2book], { type: "text/xml" }));
-//	for (let elem of elements) {
-//		storyfb2 += '<section><title><p><strong>'+elem.getAttribute('name')+'</strong></p></title><empty-line/><p>'+elem.innerHTML+'</p></section>';
-//	}
-//	alert(storyfb2);
-//	for (let txt_div of divs) {
-//		let storyfb2 = '<section><title><p><strong>'+txt_div.getAttribute('name')+'</strong></p></title><empty-line/><p>'+txt_div.innerHTML+'</p></section>';
-//	};
 }
 
 function getCounts(e) {
-	let quqi = getCookie('read');
-	let markedPage = getCookie('read');
-	let storyInBook = getCookie('book');
+//	let markedStory = getCookie('read').split(',');
+	let markedStory = getCookie('read');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		if(markedPage.indexOf(elem_no+',')>=0) {
+		if(markedStory.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(storyInBook.indexOf(elem_no+',')>=0) {
+		let books = getCookie('book');
+		if(books!==undefined && books.indexOf(','+elem_no)>=0) {
 			document.getElementById('li_'+elem_no).setAttribute('book',true);
 			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
 			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
@@ -307,7 +213,6 @@ function showContents(){
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
-		li.setAttribute('txt', nx);
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -367,24 +272,71 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-		
-		let bookButtom = document.createElement('input');
-		bookButtom.setAttribute('id','storyButtom_'+indx);
-		bookButtom.setAttribute('type','checkbox');
-		bookButtom.setAttribute('onclick', 'top.story2book('+indx+')');
-		let bookCooki = getCookie('book');
-		difr.body.append(bookButtom);
-		let label = document.createElement('label');
-		label.setAttribute('for','storyButtom_'+indx);
-		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
-		difr.body.append(label);
+
+		let book = difr.createElement("input");
+		book.setAttribute('id', 'book_'+indx);
+		book.setAttribute('type', 'checkbox');
+		book.setAttribute('onChange','top.getBook(this)');
+		difr.body.append(book);
+//		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
+
+		let book_label = difr.createElement("label");
+		book_label.setAttribute('for','book_'+indx);
+		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
+		book_label.innerHTML = 'включить в книжку';
+		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
+	
+//	alert(getCookie('book')+'\n'+getCookie('book').includes(indx+','))
+//	let story2Book = getCookie('book');
+//	if(story2Book!==undefined || story2Book.indexOf(indx+',')<0) {
+//		document.getElementById('book_'+indx).checked=getCookie('book').includes(indx+',');
+//	};
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
+		mycooki = (mycooki===undefined)?','+indx+',':mycooki+indx+',';
+		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	};
+
 	getCounts(useStory);
+}
+function getBook(e){
+	let elem_no = parseInt(e.getAttribute('id').slice(5));
+	let books = getCookie('book');
+	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
+		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
+		setCookie('book', books, {secure: true});
+		document.getElementById('li_'+elem_no).setAttribute('book',true);
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+//		document.getElementById('getBookStories').removeAttribute('disabled');
+	};
+// запишем куки в массив
+	stoyinbook = books.split(',');
+// пробежим по массиву, удаляя (сброшенный checkbos)
+	for(let i=0; i<stoyinbook.length; i++) {
+		let select_story = stoyinbook[i];	// нашли элемент
+		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
+		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
+	};
+	cooki_book = stoyinbook.join(',');
+	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
+	setCookie('book', books, {secure: true});
+// запишем полученный массив в строку
+// сохраним строку в куки
+/*
+	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
+		document.getElementById('li_'+elem_no).style.backgroundImage='none';
+		let reg = elem_no+',';
+		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
+		setCookie('book', books, {secure: true});
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
+	};
+*/
 }
 </script>
 </head>
