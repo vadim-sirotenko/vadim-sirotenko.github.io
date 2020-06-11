@@ -231,8 +231,8 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
 		let scriptVar = document.createElement("script");
-		scriptVar.innerHTML('window.parent.txtStory.push(ifr.contentDocument.body[0]');
-		difr.body.append(scriptVar);
+		scriptVar.innerText = 'window.parent.txtStory.push(ifr.contentDocument.body[0]';
+		difr.body.appendChild(scriptVar);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
