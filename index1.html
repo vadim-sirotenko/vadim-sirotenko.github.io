@@ -99,8 +99,9 @@ li {
 }
 </style>
 <script>
-var max_idx=112;
+var max_idx=115;
 var idx=1;
+book = [];
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -138,67 +139,17 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function createBook() {
-//	alert('создадим книжку');
-	let bookShowTxt = document.getElementById('all2book');
-	document.getElementById('all2book').innerHTML='';
-	let countStory = 0;
-	let elems = document.getElementsByTagName('li');
-	for(var i=0; i<elems.length; i++) {
-		if(elems[i].hasAttribute('book')) {
-			let book_story_id = elems[i].getAttribute('txt');
-			countStory+=1;
-			alert('countStory='+countStory+'\nрассказ № '+book_story_id);
-			let request = new XMLHttpRequest;
-			request.open('GET', 'text/'+book_story_id+'.txt', true);
-			request.send();
-			request.onload = function () {
-				let span_book = document.createElement('div');
-				span_book.setAttribute('id','story_'+i);
-				span_book.setAttribute('story_id', book_story_id);
-				span_book.setAttribute('name',span_book.innerHTML.slice(0, span_book.innerHTML.indexOf('\n')-1));
-				span_book.innerHTML = request.response;
-				document.getElementById('all2book').appendChild(span_book);
-			};
-		};
-	};
-//	text_fb2 = textfb2_head + section_fb2 + '</body>';
-//	alert(text_fb2);
-	createFB2(countStory);
-}
-function createFB2(pages){
-	alert('Формируем книжку FB2 Из рассков '+pages);
-	let storyfb2='';
-	let all_story2book='';
-	let txt_divs = all2book.getElementsByTagName('div');
-	for (i=1; i<=pages; i++) {
-		let elm_book = document.getElementById('story_'+i);
-all_story2book += '<section><title>'+elm_book.getAttribute('name')+'</title><strong>'+elm_book.getAttribute('name')+'</strong><empty-line/><strong>'+elm_book.innerHTML+'</strong>';
-	};
-	all_story2book += textfb2_head + all_story2book + '</body></FictionBook>';
-	console.log(all_story2book);
-	link.href = URL.createObjectURL(new Blob([all_story2book], { type: "text/xml" }));
-}
-
 function getCounts(e) {
-//	let markedStory = getCookie('read').split(',');
-	let markedStory = getCookie('read');
+	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
-		if(markedStory.indexOf(elem_no+',')>=0) {
+//		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
+		let elem_no = parseInt(elems[i].getAttribute('txt'));
+		if(markedPage.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
-		};
-		let books = getCookie('book');
-		if(books!==undefined && books.indexOf(','+elem_no)>=0) {
-			document.getElementById('li_'+elem_no).setAttribute('book',true);
-			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
@@ -206,13 +157,20 @@ function getCounts(e) {
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-	let ol = document.createElement("ul");
-	document.getElementById('contents').prepend(ol);
+	let markedPage = getCookie('read');
+	let ul = document.createElement("ul");
+	document.getElementById('contents').prepend(ul);
 	let nx=1;
 	let name_story = '';
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
+		li.setAttribute('txt', nx);
+		if(markedPage.indexOf(nx+',')>=0) {
+			li.style.backgroundColor='#d4d4d4';
+		}else{
+			li.style.backgroundColor='#ffffff';
+		};
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -223,7 +181,7 @@ function showContents(){
 			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
-		ol.append(li);
+		ul.append(li);
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
@@ -234,7 +192,7 @@ function showContents(){
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
-		getCounts();
+//		getCounts();
 	};
 }
 function showStory(indx){
@@ -272,71 +230,15 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-
-		let book = difr.createElement("input");
-		book.setAttribute('id', 'book_'+indx);
-		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','top.getBook(this)');
-		difr.body.append(book);
-//		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
-
-		let book_label = difr.createElement("label");
-		book_label.setAttribute('for','book_'+indx);
-		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
-		book_label.innerHTML = 'включить в книжку';
-		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
-	
-//	alert(getCookie('book')+'\n'+getCookie('book').includes(indx+','))
-//	let story2Book = getCookie('book');
-//	if(story2Book!==undefined || story2Book.indexOf(indx+',')<0) {
-//		document.getElementById('book_'+indx).checked=getCookie('book').includes(indx+',');
-//	};
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-	if(mycooki===undefined || mycooki.indexOf(indx+',')<0) {
-		mycooki = (mycooki===undefined)?','+indx+',':mycooki+indx+',';
-		setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-	};
-
+	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
+	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	tfm = window.frames[0].document.body.innerHTM;
+	alert(tfrm);
 	getCounts(useStory);
-}
-function getBook(e){
-	let elem_no = parseInt(e.getAttribute('id').slice(5));
-	let books = getCookie('book');
-	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
-		setCookie('book', books, {secure: true});
-		document.getElementById('li_'+elem_no).setAttribute('book',true);
-		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		document.getElementById('getBookStories').removeAttribute('disabled');
-	};
-// запишем куки в массив
-	stoyinbook = books.split(',');
-// пробежим по массиву, удаляя (сброшенный checkbos)
-	for(let i=0; i<stoyinbook.length; i++) {
-		let select_story = stoyinbook[i];	// нашли элемент
-		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
-		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
-	};
-	cooki_book = stoyinbook.join(',');
-	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
-	setCookie('book', books, {secure: true});
-// запишем полученный массив в строку
-// сохраним строку в куки
-/*
-	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
-		document.getElementById('li_'+elem_no).style.backgroundImage='none';
-		let reg = elem_no+',';
-		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
-		setCookie('book', books, {secure: true});
-		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
-	};
-*/
 }
 </script>
 </head>
@@ -346,9 +248,6 @@ function getBook(e){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
-<img class="createBook" src="img/Open_book.svg" onclick="createBook()" title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
-<a id="link" download="story.fb2">Скачать</a>
-<div id="all2book" style="visibility: hidden;"></div>
 </body>
 <script>
 showContents();
