@@ -239,6 +239,7 @@ function showStory(indx){
 	let mycooki = getCookie('read');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+	console.log(txtStory);
 	getCounts(useStory);
 }
 </script>
