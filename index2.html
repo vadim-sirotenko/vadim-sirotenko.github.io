@@ -62,6 +62,9 @@ li {
 	left: 29%;
 	overflow: hidden;
 	z-index: 1;
+	color: navy;
+	font-size: 120%;
+	user-select: none;
 }
 .textstory img {
 	width: 50%; 
@@ -216,6 +219,9 @@ function showContents(){
 	};
 }
 function showStory(indx){
+	showText = document.getElementById('texts');
+	showText.innerHTML = document.getElementById('li'+indx).getAttribute('story');
+/*
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
@@ -264,6 +270,7 @@ function showStory(indx){
 		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
+*/
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
@@ -312,10 +319,10 @@ function getBook(e){
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div id="texts" class="textstory">
-	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
-</div>
+<div id="texts" class="textstory"></div>
+<!--
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
+//-->
 </body>
 <script>
 showContents();
