@@ -140,6 +140,7 @@ function clear(elem) {
 }
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
+	let story2book = getCookie('book');
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -150,6 +151,13 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
+		if(story2book.indexOf(nx+',')>=0) {
+			document.getElementById('li_'+elem_no).setAttribute('book',true);
+			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
@@ -157,6 +165,7 @@ function getCounts(e) {
 }
 function showContents(){
 	let markedPage = getCookie('read');
+	let story2book = getCookie('book');
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
@@ -170,13 +179,20 @@ function showContents(){
 		}else{
 			li.style.backgroundColor='#ffffff';
 		};
+		if(story2book.indexOf(nx+',')>=0) {
+			document.getElementById('li_'+elem_no).setAttribute('book',true);
+			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+		};
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('text',request.response);
+			li.setAttribute('story',request.response);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
