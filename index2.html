@@ -220,7 +220,8 @@ function showContents(){
 }
 function showStory(indx){
 	showText = document.getElementById('texts');
-	showText.innerHTML = document.getElementById('li_'+indx).getAttribute('story');
+	let textStory = document.getElementById('li_'+indx).getAttribute('story').replace('\n'/g,'<br>');
+	showText.innerHTML = textStory;
 /*
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
