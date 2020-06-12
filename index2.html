@@ -278,6 +278,7 @@ function showStory(elem){
 */
 //	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
+	let indx = elem.getAttribute('txt');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 //	getCounts(useStory);
