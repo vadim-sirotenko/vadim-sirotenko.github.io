@@ -202,8 +202,9 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		li.setAttribute('onclick', 'showStory('+li+')');
-		if(li.getAttribute('mat')) li.style.textDecorationLine='lineThrough';
+//		li.setAttribute('onclick', 'showStory('+li+')');
+		li.setAttribute('onclick', 'showStory(this)');
+//		if(li.getAttribute('mat')) li.style.textDecorationLine='lineThrough';
 		ul.append(li);
 		nx++;
 	};
