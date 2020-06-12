@@ -213,7 +213,6 @@ function showContents(){
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#8BE3ED';
-//		showStory(story_id);
 		showStory(elmView);
 //	}else{
 //		document.getElementById('showText').src='about.html';
@@ -221,9 +220,11 @@ function showContents(){
 	};
 }
 function showStory(elem){
-	showText = document.getElementById('texts');
-	let textStory = elem.getAttribute('story');
-	showText.innerText = textStory;
+//	showText = document.getElementById('texts');
+//	let textStory = elem.getAttribute('story');
+//	showText.innerText = textStory;
+//	showText.innerText = elem.getAttribute('story');
+	document.getElementById('texts').innerText = elem.getAttribute('story');
 /*
 		let book = difr.createElement("input");
 		book.setAttribute('id', 'book_'+indx);
@@ -235,7 +236,6 @@ function showStory(elem){
 		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
 		book_label.innerHTML = 'включить в книжку';
 		difr.body.append(book_label);
-	})
 */
 	let mycooki = getCookie('read');
 	let indx = elem.getAttribute('txt');
