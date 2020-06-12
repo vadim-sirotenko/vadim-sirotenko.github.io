@@ -141,6 +141,8 @@ function clear(elem) {
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let story2book = getCookie('book');
+	if(markedPage===undefined) markedPage ='';
+	if(story2book===undefined) markedPage ='';
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
@@ -166,6 +168,8 @@ function getCounts(e) {
 function showContents(){
 	let markedPage = getCookie('read');
 	let story2book = getCookie('book');
+	if(markedPage===undefined) markedPage ='';
+	if(story2book===undefined) markedPage ='';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
