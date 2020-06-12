@@ -225,18 +225,20 @@ function showStory(elem){
 //	showText.innerText = textStory;
 //	showText.innerText = elem.getAttribute('story');
 	document.getElementById('texts').innerText = elem.getAttribute('story');
-/*
-		let book = difr.createElement("input");
-		book.setAttribute('id', 'book_'+indx);
+
+		let book = document.createElement("input");
+		book.setAttribute('id', 'book_'+elem.getAttribute('text'));
+		book.setAttribute('story_id', elem.getAttribute('text'));
 		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','top.getBook(this)');
-		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
-		let book_label = difr.createElement("label");
-		book_label.setAttribute('for','book_'+indx);
+		book.setAttribute('onChange','getBook(this)');
+//		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
+		let book_label = document.createElement("label");
+		book_label.setAttribute('for','book_'+elem.getAttribute('text'));
 		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
 		book_label.innerHTML = 'включить в книжку';
-		difr.body.append(book_label);
-*/
+		document.getElementById('texts').append(book);
+		document.getElementById('texts').append(book_label);
+
 	let mycooki = getCookie('read');
 	let indx = elem.getAttribute('txt');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
@@ -245,7 +247,7 @@ function showStory(elem){
 }
 
 function getBook(e){
-	let elem_no = parseInt(e.getAttribute('id').slice(5));
+	let elem_no = parseInt(e.getAttribute('story_id'));
 	let books = getCookie('book');
 	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
 		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
@@ -258,18 +260,16 @@ function getBook(e){
 //		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
 // запишем куки в массив
-	stoyinbook = books.split(',');
+	storyinbook = books.split(',');
 // пробежим по массиву, удаляя (сброшенный checkbos)
-	for(let i=0; i<stoyinbook.length; i++) {
-		let select_story = stoyinbook[i];	// нашли элемент
-		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
-		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
+	for(let i=0; i<storyinbook.length; i++) {
+		let select_story = storyinbook[i];	// нашли элемент
+		if(stoyinbook[i]==elem_no) storyinbook.splice(i, 1); // удалим его
+//		alert('elem_no='+elem_no+'\nstoryinbook['+i+']');
 	};
 	cooki_book = stoyinbook.join(',');
 	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
 	setCookie('book', books, {secure: true});
-// запишем полученный массив в строку
-// сохраним строку в куки
 /*
 	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
 		document.getElementById('li_'+elem_no).style.backgroundImage='none';
