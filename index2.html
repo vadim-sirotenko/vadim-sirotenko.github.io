@@ -60,7 +60,7 @@ li {
 	top: 3%;
 	width: 65%;
 	left: 29%;
-	overflow: hidden;
+	overflow: auto;
 	z-index: 1;
 	color: navy;
 	font-size: 120%;
@@ -202,7 +202,7 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
-		li.setAttribute('onclick', 'showStory('+nx+')');
+		li.setAttribute('onclick', 'showStory('+li+')');
 		if(li.getAttribute('mat')) li.style.textDecorationLine='lineThrough';
 		ul.append(li);
 		nx++;
@@ -212,16 +212,17 @@ function showContents(){
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#8BE3ED';
-		showStory(story_id);
+//		showStory(story_id);
+		showStory(elmView);
 //	}else{
 //		document.getElementById('showText').src='about.html';
 //		getCounts();
 	};
 }
-function showStory(indx){
+function showStory(elem){
 	showText = document.getElementById('texts');
-//	let textStory = document.getElementById('li_'+indx).getAttribute('story');
-	let textStory = document.getElementById('li_'+indx).getAttribute('story').replace('\n/g','<br>');
+	let textStory = elem.getAttribute('story');
+//	let textStory = elem.getAttribute('story').replace('\n/g','<br>');
 //	showText.innerHTML = '<pre>'+textStory+'</pre>';
 	showText.innerHTML = textStory;
 /*
@@ -274,11 +275,12 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 */
-	let useStory = document.getElementById('li_'+indx);
+//	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-	getCounts(useStory);
+//	getCounts(useStory);
+	getCounts(elem);
 }
 
 function getBook(e){
@@ -317,7 +319,6 @@ function getBook(e){
 	};
 */
 }
-
 </script>
 </head>
 <body>
