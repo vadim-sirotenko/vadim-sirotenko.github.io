@@ -101,7 +101,6 @@ li {
 <script>
 var max_idx=113;
 var idx=1;
-var txtStory=[];
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -177,6 +176,7 @@ function showContents(){
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('text',request.response);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
@@ -230,18 +230,63 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-		let scriptVar = document.createElement("script");
-		scriptVar.innerText = 'window.parent.txtStory.push(ifr.contentDocument.body)';
-		difr.body.appendChild(scriptVar);
+
+		let book = difr.createElement("input");
+		book.setAttribute('id', 'book_'+indx);
+		book.setAttribute('type', 'checkbox');
+		book.setAttribute('onChange','top.getBook(this)');
+		difr.body.append(book);
+//		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
+		let book_label = difr.createElement("label");
+		book_label.setAttribute('for','book_'+indx);
+		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
+		book_label.innerHTML = 'включить в книжку';
+		difr.body.append(book_label);
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
-	console.log(window.parent.txtStory);
 	getCounts(useStory);
 }
+function getBook(e){
+	let elem_no = parseInt(e.getAttribute('id').slice(5));
+	let books = getCookie('book');
+	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
+		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
+		setCookie('book', books, {secure: true});
+		document.getElementById('li_'+elem_no).setAttribute('book',true);
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
+		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
+		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
+		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+//		document.getElementById('getBookStories').removeAttribute('disabled');
+	};
+// запишем куки в массив
+	stoyinbook = books.split(',');
+// пробежим по массиву, удаляя (сброшенный checkbos)
+	for(let i=0; i<stoyinbook.length; i++) {
+		let select_story = stoyinbook[i];	// нашли элемент
+		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
+		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
+	};
+	cooki_book = stoyinbook.join(',');
+	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
+	setCookie('book', books, {secure: true});
+// запишем полученный массив в строку
+// сохраним строку в куки
+/*
+	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
+		document.getElementById('li_'+elem_no).style.backgroundImage='none';
+		let reg = elem_no+',';
+		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
+		setCookie('book', books, {secure: true});
+		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
+	};
+*/
+}
+
 </script>
 </head>
 <body>
