@@ -191,11 +191,12 @@ function showContents(){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
-		if(markedPage.indexOf(nx+',')>=0) {
-			li.style.backgroundColor='#d4d4d4';
-		}else{
-			li.style.backgroundColor='#ffffff';
-		};
+//		if(markedPage.indexOf(nx+',')>=0) {
+//			li.style.backgroundColor='#d4d4d4';
+//		}else{
+//			li.style.backgroundColor='#ffffff';
+//		};
+
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -221,6 +222,7 @@ function showContents(){
 		document.getElementById('showText').src='about.html';
 //		getCounts();
 	};
+	getCounts();
 }
 function showStory(indx){
 	let ifr_old = document.getElementById('showText');
