@@ -118,8 +118,41 @@ li {
 }
 </style>
 <script>
-var max_idx=113;
+var max_idx=115;
 var idx=1;
+var text_fb2='';
+var section_fb2='';
+var textfb2_head = `<description>
+<title-info>
+<author>
+<first-name>Вадим</first-name>
+<last-name>Сиротенко</last-name>
+</author>
+<book-title>Сборник рассказов</book-title>
+<annotation>
+Все рассказы выдуманы. Некоторые основаны на памяти из детства.
+</annotation>
+<coverpage>
+<image l:href="#cover.jpg" />
+</coverpage>
+<lang>ru</lang>
+</title-info>
+<document-info>
+<author>
+<first-name>Вадим</first-name>
+<last-name>Сиротенко</last-name>
+</author>
+<id>SWA3750007551</id>
+<version>1.0</version>
+</document-info>
+<publish-info>
+<book-name>Сборник рассказов</book-name>
+</publish-info>   
+</description>
+<body>`;
+var section = '';
+var title = '';
+
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -172,6 +205,17 @@ function story2Fb2(e){
 // удалить из куки book
 	};
 }
+function bookCreate(){
+	let bookStory2FB2 = '';
+	let elems = document.getElementsByTagName('li');
+	for(var i=0; i<elems.length; i++) {
+		if(elems[i].getAttribute('book')){
+			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+elems[i].getAttribute('story_txt')+'</p></section>';
+		};
+	};
+	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+bookStory2FB2;
+	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
+}
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
@@ -217,7 +261,6 @@ function showContents(){
 //		}else{
 //			li.style.backgroundColor='#ffffff';
 //		};
-
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -309,7 +352,9 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
-<img class="createBook" src="img/Open_book.svg"  title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
+<a id="link" download="story.fb2">
+	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
+</a>
 </body>
 <script>
 showContents();
