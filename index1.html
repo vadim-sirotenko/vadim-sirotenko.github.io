@@ -207,10 +207,13 @@ function story2Fb2(e){
 }
 function bookCreate(){
 	let bookStory2FB2 = '';
+	let story = '';
 	let elems = document.getElementsByTagName('li');
 	for(var i=0; i<elems.length; i++) {
 		if(elems[i].getAttribute('book')){
-			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+elems[i].getAttribute('story_txt')+'</p></section>';
+			story = elems[i].getAttribute('story_txt').replace('\n','<empty-line/><empty-line/>');
+			story = story.replace('\n'/g, '<empty-line/>')
+			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
 		};
 	};
 	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
