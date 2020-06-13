@@ -139,8 +139,8 @@ function clear(elem) {
   }
 }
 function story2Fb2(e){
-//	checkBook document.getElementById('showText').contentDocument.getElementById('storyButtom_'+nb)
 	console.log('story='+e.getAttribute('text_id')+'; check='+e.checked);
+	let elem = document.getElementById('li_'+e.getAttribute('text_id'));
 	if(e.checked){
 		elem.setAttribute('book',true);
 		elem.style.backgroundImage = 'url(img/book.svg)';
@@ -290,6 +290,7 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
+<img class="createBook" src="img/Open_book.svg"  title='Сформировать из выбранных рассказиков книжку и скачать "story.pdf"'>
 </body>
 <script>
 showContents();
