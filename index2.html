@@ -214,9 +214,9 @@ function showContents(){
 		elmView.scrollIntoView(top);
 		elmView.style.backgroundColor='#8BE3ED';
 		showStory(elmView);
-//	}else{
+	}else{
 //		document.getElementById('showText').src='about.html';
-//		getCounts();
+		getCounts();
 	};
 }
 function showStory(elem){
@@ -259,17 +259,14 @@ function getBook(e){
 		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
 //		document.getElementById('getBookStories').removeAttribute('disabled');
 	};
-// запишем куки в массив
 	storyinbook = books.split(',');
-// пробежим по массиву, удаляя (сброшенный checkbos)
 	for(let i=0; i<storyinbook.length; i++) {
 		let select_story = storyinbook[i];	// нашли элемент
 		if(stoyinbook[i]==elem_no) storyinbook.splice(i, 1); // удалим его
-//		alert('elem_no='+elem_no+'\nstoryinbook['+i+']');
 	};
 	cooki_book = stoyinbook.join(',');
-	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
-	setCookie('book', books, {secure: true});
+//	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
+	setCookie('book', cooki_book, {secure: true});
 /*
 	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
 		document.getElementById('li_'+elem_no).style.backgroundImage='none';
