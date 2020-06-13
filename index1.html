@@ -141,6 +141,7 @@ function clear(elem) {
 function story2Fb2(nb,check_book){
 	let elem = document.getElementById('li_'+nb)
 //	checkBook document.getElementById('showText').contentDocument.getElementById('storyButtom_'+nb)
+	console.log('story='+nb+'; check='+check_book);
 	if(check_book){
 		elem.setAttribute('book',true);
 		elem.style.backgroundImage = 'url(img/book.svg)';
@@ -263,7 +264,6 @@ function showStory(indx){
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','storyButtom_'+indx);
 		bookButtom.setAttribute('type','checkbox');
-		console.log('check='+bookButtom.checked);
 		bookButtom.setAttribute('onclick', 'top.story2Fb2('+indx+','+bookButtom.checked+')');
 		let bookCooki = getCookie('book');
 		difr.body.append(bookButtom);
