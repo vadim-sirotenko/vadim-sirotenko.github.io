@@ -138,18 +138,19 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function story2Fb2(nb,check_book){
-	let elem = document.getElementById('li_'+nb)
+function story2Fb2(e){
 //	checkBook document.getElementById('showText').contentDocument.getElementById('storyButtom_'+nb)
-	console.log('story='+nb+'; check='+check_book);
-	if(check_book){
+	console.log('story='+e.getAttribute('text_id')+'; check='+e.checked);
+	if(e.checked){
 		elem.setAttribute('book',true);
 		elem.style.backgroundImage = 'url(img/book.svg)';
 		elem.style.backgroundRepeat='no-repeat';
 		elem.style.backgroundSize='contain';
 		elem.style.backgroundPositionX='right';
+// записать в куки book
 	}else{
 		elem.style.backgroundImage = 'none';
+// удалить из куки book
 	};
 }
 function getCounts(e) {
@@ -263,8 +264,9 @@ function showStory(indx){
 
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','storyButtom_'+indx);
+		bookButtom.setAttribute('text_id',indx);
 		bookButtom.setAttribute('type','checkbox');
-		bookButtom.setAttribute('onclick', 'top.story2Fb2('+indx+','+bookButtom.checked+')');
+		bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
 		let bookCooki = getCookie('book');
 		difr.body.append(bookButtom);
 		let label = document.createElement('label');
