@@ -216,6 +216,7 @@ function showContents(){
 		showStory(elmView);
 	}else{
 //		document.getElementById('showText').src='about.html';
+		<link rel="import" href="about.html">
 		getCounts();
 	};
 }
@@ -227,13 +228,13 @@ function showStory(elem){
 	document.getElementById('texts').innerText = elem.getAttribute('story');
 
 		let book = document.createElement("input");
-		book.setAttribute('id', 'book_'+elem.getAttribute('text'));
-		book.setAttribute('story_id', elem.getAttribute('text'));
+		book.setAttribute('id', 'book_'+elem.getAttribute('txt'));
+		book.setAttribute('story_id', elem.getAttribute('txt'));
 		book.setAttribute('type', 'checkbox');
 		book.setAttribute('onChange','getBook(this)');
 //		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
 		let book_label = document.createElement("label");
-		book_label.setAttribute('for','book_'+elem.getAttribute('text'));
+		book_label.setAttribute('for','book_'+elem.getAttribute('txt'));
 		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
 		book_label.innerHTML = 'включить в книжку';
 		document.getElementById('texts').append(book);
