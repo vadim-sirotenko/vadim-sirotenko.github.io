@@ -261,7 +261,7 @@ function showStory(indx){
 		let bookButtom = document.createElement('input');
 		bookButtom.setAttribute('id','storyButtom_'+indx);
 		bookButtom.setAttribute('type','checkbox');
-		bookButtom.setAttribute('onclick', 'top.story2Fb2('+indx+','+bookButtom+'')');
+		bookButtom.setAttribute('onclick', 'top.story2Fb2('+indx+','+bookButtom+')');
 		let bookCooki = getCookie('book');
 		difr.body.append(bookButtom);
 		let label = document.createElement('label');
