@@ -138,10 +138,25 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
+function story2Fb2(nb,check_book){
+	let elem = document.getElementById('li_'+nb)
+//	checkBook document.getElementById('showText').contentDocument.getElementById('storyButtom_'+nb)
+	if(check_book){
+		elem.setAttribute('book',true);
+		elem.style.backgroundImage = 'url(img/book.svg)';
+		elem.style.backgroundRepeat='no-repeat';
+		elem.style.backgroundSize='contain';
+		elem.style.backgroundPositionX='right';
+	}else{
+		elem.style.backgroundImage = 'none';
+	};
+}
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
-	let story2book = getCookie('book');
 	let elems = document.getElementsByTagName('li');
+	let story2book = getCookie('book');
+//	if(markedPage===undefined) markedPage ='';
+	if(story2book===undefined) story2book ='';
 	for(var i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 //		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
@@ -151,12 +166,12 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(story2book.indexOf(nx+',')>=0) {
-			document.getElementById('li_'+elem_no).setAttribute('book',true);
-			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
+		if(story2book.indexOf(elem_no+',')>=0) {
+			elems[i].setAttribute('book',true);
+			elems[i].style.backgroundImage = 'url(img/book.svg)';
+			elems[i].style.backgroundRepeat='no-repeat';
+			elems[i].style.backgroundSize='contain';
+			elems[i].style.backgroundPositionX='right';
 		};
 //		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
 //		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
@@ -166,6 +181,8 @@ function getCounts(e) {
 function showContents(){
 	let markedPage = getCookie('read');
 	let story2book = getCookie('book');
+//	if(markedPage===undefined) markedPage ='';
+	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
@@ -179,20 +196,14 @@ function showContents(){
 		}else{
 			li.style.backgroundColor='#ffffff';
 		};
-		if(story2book.indexOf(nx+',')>=0) {
-			document.getElementById('li_'+elem_no).setAttribute('book',true);
-			document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-			document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-			document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-			document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-		};
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('story',request.response);
+//			li.setAttribute('story_txt',request.response);
+			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
@@ -247,17 +258,17 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
 
-		let book = difr.createElement("input");
-		book.setAttribute('id', 'book_'+indx);
-		book.setAttribute('type', 'checkbox');
-		book.setAttribute('onChange','top.getBook(this)');
-		difr.body.append(book);
-//		document.getElementById('book_'+indx).checked=getCookie('book').includes(','+indx+',');
-		let book_label = difr.createElement("label");
-		book_label.setAttribute('for','book_'+indx);
-		book_label.setAttribute('title','Включить в электронную книжку "story.fb2"');
-		book_label.innerHTML = 'включить в книжку';
-		difr.body.append(book_label);
+		let bookButtom = document.createElement('input');
+		bookButtom.setAttribute('id','storyButtom_'+indx);
+		bookButtom.setAttribute('type','checkbox');
+		bookButtom.setAttribute('onclick', 'top.story2Fb2('+indx+','+bookButtom+'')');
+		let bookCooki = getCookie('book');
+		difr.body.append(bookButtom);
+		let label = document.createElement('label');
+		label.setAttribute('for','storyButtom_'+indx);
+		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
+		difr.body.append(label);
+
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
@@ -266,43 +277,6 @@ function showStory(indx){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
-function getBook(e){
-	let elem_no = parseInt(e.getAttribute('id').slice(5));
-	let books = getCookie('book');
-	if(books===undefined || (e.checked && books.indexOf(','+elem_no)<=0)) {
-		books = (books===undefined)?','+elem_no+',':books+elem_no+',';
-		setCookie('book', books, {secure: true});
-		document.getElementById('li_'+elem_no).setAttribute('book',true);
-		document.getElementById('li_'+elem_no).style.backgroundImage = 'url(img/book.svg)';
-		document.getElementById('li_'+elem_no).style.backgroundRepeat='no-repeat';
-		document.getElementById('li_'+elem_no).style.backgroundSize='contain';
-		document.getElementById('li_'+elem_no).style.backgroundPositionX='right';
-//		document.getElementById('getBookStories').removeAttribute('disabled');
-	};
-// запишем куки в массив
-	stoyinbook = books.split(',');
-// пробежим по массиву, удаляя (сброшенный checkbos)
-	for(let i=0; i<stoyinbook.length; i++) {
-		let select_story = stoyinbook[i];	// нашли элемент
-		if(stoyinbook[i]==elem_no) stoyinbook.splice(i, 1); // удалим его
-		alert('elem_no='+elem_no+'\nstoyinbook['+i+']');
-	};
-	cooki_book = stoyinbook.join(',');
-	alert('book='+books+'\stoyinbook='+stoyinbook+'\ncooki_book='+cooki_book);
-	setCookie('book', books, {secure: true});
-// запишем полученный массив в строку
-// сохраним строку в куки
-/*
-	if(!e.checked && books.indexOf(','+elem_no+',')>=0){
-		document.getElementById('li_'+elem_no).style.backgroundImage='none';
-		let reg = elem_no+',';
-		books = books.replace(new RegExp(","+elem_no+",",'g'),"");
-		setCookie('book', books, {secure: true});
-		document.getElementById('li_'+elem_no).style.backgroundImage = 'none';
-	};
-*/
-}
-
 </script>
 </head>
 <body>
