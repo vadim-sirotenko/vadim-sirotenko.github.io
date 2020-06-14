@@ -278,7 +278,6 @@ function showContents(){
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
-//			li.setAttribute('story_txt',request.response);
 			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
@@ -300,6 +299,10 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
+	if(indx===undefined){
+		document.getElementById('showText').src='about.html';
+		return;
+	};
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
