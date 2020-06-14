@@ -202,6 +202,7 @@ function story2Fb2(e){
 // записать в куки book
 	}else{
 		elem.style.backgroundImage = 'none';
+		elem.setAttribute('book',false);
 // удалить из куки book
 	};
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
