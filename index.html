@@ -299,10 +299,6 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
-	if(indx===undefined || indx==0){
-		document.getElementById('showText').src='about.html';
-		return;
-	};
 	let ifr_old = document.getElementById('showText');
 	ifr_old.remove();
 	document.getElementById('texts').insertAdjacentHTML('afterbegin','<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>');
@@ -337,20 +333,20 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-
-		let bookButtom = document.createElement('input');
-		bookButtom.setAttribute('id','storyButtom_'+indx);
-		bookButtom.setAttribute('text_id',indx);
-		bookButtom.setAttribute('type','checkbox');
-		if(document.getElementById('li_'+indx).getAttribute('book')) bookButtom.setAttribute('checked','checked');
-		bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
-		let bookCooki = getCookie('book');
-		difr.body.append(bookButtom);
-		let label = document.createElement('label');
-		label.setAttribute('for','storyButtom_'+indx);
-		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
-		difr.body.append(label);
-
+		if(document.getElementById('showText').getAttribute('src')!='about.html' && document.getElementById('showText').getAttribute('src')!='grafoman.html') {
+			let bookButtom = document.createElement('input');
+			bookButtom.setAttribute('id','storyButtom_'+indx);
+			bookButtom.setAttribute('text_id',indx);
+			bookButtom.setAttribute('type','checkbox');
+			if(document.getElementById('li_'+indx).getAttribute('book')) bookButtom.setAttribute('checked','checked');
+			bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
+			let bookCooki = getCookie('book');
+			difr.body.append(bookButtom);
+			let label = document.createElement('label');
+			label.setAttribute('for','storyButtom_'+indx);
+			label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
+			difr.body.append(label);
+		};
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
