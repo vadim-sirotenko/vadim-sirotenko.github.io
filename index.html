@@ -204,6 +204,7 @@ function story2Fb2(e){
 		elem.style.backgroundImage = 'none';
 // удалить из куки book
 	};
+	if( document.querySelectorAll('li [book=true]').length>0) document.getElementById('link').style.visibility='visible';
 }
 function bookCreate(){
 	let bookStory2FB2 = '';
@@ -214,7 +215,6 @@ function bookCreate(){
 			story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>');
 			story = story.replace('\n/g', '<empty-line/>')
 			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
-//			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerText+'</strong></title><empty-line/>'+elems[i].getAttribute('story_txt')+'</section>';
 		};
 	};
 	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
@@ -362,7 +362,7 @@ function showStory(indx){
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
-<a id="link" download="story.fb2">
+<a id="link" download="story.fb2" style="visibility: none;">
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
 </body>
