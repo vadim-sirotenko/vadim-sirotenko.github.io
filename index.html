@@ -290,7 +290,8 @@ function showContents(){
 	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
-		elmView.style.backgroundColor='#8BE3ED';
+//		elmView.style.backgroundColor='#8BE3ED';
+		elmView.style.backgroundColor='#ddf3cb';
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
