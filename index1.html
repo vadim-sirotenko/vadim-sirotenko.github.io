@@ -213,7 +213,7 @@ function bookCreate(){
 		if(elems[i].getAttribute('book')){
 			story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>');
 			story = story.replace('\n/g', '<empty-line/>')
-			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
+//			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
 			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerText+'</strong></title><empty-line/><p>'+story+'</p></section>';
 		};
 	};
