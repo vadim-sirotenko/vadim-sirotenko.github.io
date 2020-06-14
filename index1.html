@@ -336,6 +336,7 @@ function showStory(indx){
 		bookButtom.setAttribute('id','storyButtom_'+indx);
 		bookButtom.setAttribute('text_id',indx);
 		bookButtom.setAttribute('type','checkbox');
+		if(document.getElementById('li_'+indx).getAttribute('book')) bookButtom.setAttribute('checked','checked');
 		bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
 		let bookCooki = getCookie('book');
 		difr.body.append(bookButtom);
