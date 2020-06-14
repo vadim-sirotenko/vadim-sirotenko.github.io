@@ -333,18 +333,15 @@ function showStory(indx){
 		difr.body.append(fbLikeButtom);
 
 		let bookButtom = document.createElement('input');
-		let check = top. document.getElementById('li_'+indx).getAttribute('book');
 		bookButtom.setAttribute('id','storyButtom_'+indx);
 		bookButtom.setAttribute('text_id',indx);
 		bookButtom.setAttribute('type','checkbox');
 		bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
-		bookButtom.setAttribute('checked', 'checked');
 		let bookCooki = getCookie('book');
 		difr.body.append(bookButtom);
 		let label = document.createElement('label');
 		label.setAttribute('for','storyButtom_'+indx);
-//		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
-		label.innerHTML = (check)?'Убрать рассказ из книжки':'Добавить рассказ в книжку';
+		label.innerHTML = 'Добавить/убрать рассказ в/из книжки';
 		difr.body.append(label);
 
 	})
