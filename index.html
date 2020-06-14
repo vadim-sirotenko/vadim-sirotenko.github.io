@@ -299,7 +299,7 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
-	if(indx===undefined){
+	if(indx===undefined || indx==0){
 		document.getElementById('showText').src='about.html';
 		return;
 	};
