@@ -204,7 +204,8 @@ function story2Fb2(e){
 		elem.style.backgroundImage = 'none';
 // удалить из куки book
 	};
-	if( document.querySelectorAll('li [book=true]').length>0) document.getElementById('link').style.visibility='visible';
+	document.getElementById('link').style.visibility = (document.querySelectorAll('li [book=true]').length>0)? 'visible':'hidden';
+	console.log('books='+document.querySelectorAll('li [book=true]').length);
 }
 function bookCreate(){
 	let bookStory2FB2 = '';
