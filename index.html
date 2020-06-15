@@ -342,7 +342,7 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-		if(document.getElementById('showText').getAttribute('src')!='about.html' && document.getElementById('showText').getAttribute('src')!='grafoman.html' && document.getElementById('showText').getAttribute('src')!='description.html') {
+		if(document.getElementById('showText').getAttribute('src')!='about.html' || document.getElementById('showText').getAttribute('src')!='grafoman.html' || document.getElementById('showText').getAttribute('src')!='description.html') {
 			let bookButtom = document.createElement('input');
 			bookButtom.setAttribute('id','storyButtom_'+indx);
 			bookButtom.setAttribute('text_id',indx);
