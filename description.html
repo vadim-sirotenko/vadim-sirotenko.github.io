@@ -41,8 +41,12 @@ html, body {
 	padding-bottom: 5px;
 }
 .facebook {
-	background-color: #6391cf;
+	background-color: #3e87f4;
+	font-size: 60%;
 	color: #ffffff;
+	border: 1px solid #6391cf;
+	padding: 4px;
+	border-radius: 15% 15% 15% 15%;	
 }
 </style>
 <script>
@@ -53,7 +57,7 @@ var swa=0;
 <body>
 <strong>Сформировать книжку.</strong>
 <img id="portret" class="picture" src="img/description.svg">
-<p>Слева, в "столбик", оглавление. Нажав мышкой на названии, по центру открывается сам рассказик. Сразу под текстом рассказа кнопки для Facrbook "Нравится" и "Поделиться",
+<p>Слева, в "столбик", оглавление. Нажав мышкой на названии, по центру открывается сам рассказик. Сразу под текстом рассказа кнопки для Facebook "<span class="facebook">Нравится</span>" и "<span class="facebook">Поделиться</span>",
 а также кнопка с "птичкой" (<input type="checkbox"/>) — "Добавить/убрать рассказ из книжки". При поставленной "птичке" рассказ добавляется в электронную книжку и в оглавлении
 появляется картинка с книжкой <img src="img/book.svg" style="width: 2%; height: auto;">, а справа на экране возникает картинка с открытой книжкой <img src="img/Open_book.svg" style="width: 3%; height: auto;">.
 <p>Если на кнопке с "галочкой", её не устанавливать, или, щёлкнув, убрать, то рассказ не будет включён в книжку.</p>
