@@ -52,7 +52,8 @@ html, body {
 <script>
 document.oncontextmenu = function (){return false};
 function findText(cont){
-	let find = cont.replace(' /g');
+	document.getElementById('searchStory').innerHTML = '';
+	let find = cont.replace(' /g', ",");
 	let elems = top.document.getElementsByTagName('li[story_txt='+find+']');
 //	["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e))
 	for(var i=0; i<elems.length; i++) {
