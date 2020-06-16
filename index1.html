@@ -395,7 +395,8 @@ function findText(cont){
 	document.getElementById('searchStory').innerHTML = '';
 	let find = cont.split(' ');
 	let elems = document.getElementsByTagName('li');
-	console.log('find='+find+'\nelems='+elems.lenght);
+//	let elems = document.getElementsByTagName('li');
+	console.log('cont='+cont+'\nfind='+find+'\nelems='+elems.lenght);
 //	["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e))
 //	let regexp = 
 	for(let i=0; i<elems.length; i++) {
