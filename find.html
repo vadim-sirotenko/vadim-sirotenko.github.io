@@ -53,11 +53,15 @@ html, body {
 document.oncontextmenu = function (){return false};
 function findText(cont){
 	document.getElementById('searchStory').innerHTML = '';
-	let find = cont.replace(' /g', ",");
-	let elems = top.document.getElementsByTagName('li[story_txt='+find+']');
+	let find = '"'+cont.replace(' /g', " | ")+'"';
+	let elems = top.document.getElementsByTagName('li');
 //	["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e))
+//	let regexp = 
 	for(var i=0; i<elems.length; i++) {
-		document.getElementById('searchStory').innerHTML+='<p>'+elems[i].getAttribute('story_txt').slice(0,100)+'</p>';
+//		if (elems[i].getAttribute('story_txt').match(find)) {
+		if([find].some(e => ~elems[i].getAttribute('story_txt').indexOf(e))){
+			document.getElementById('searchStory').innerHTML+='<p>'+elems[i].getAttribute('story_txt').slice(0,100)+'</p>';
+		};
 	};
 }
 </script>
