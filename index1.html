@@ -402,7 +402,7 @@ function findText(cont){
 //		if (elems[i].getAttribute('story_txt').match(find)) {
 //		if([find].some(e => ~elems[i].getAttribute('story_txt').indexOf(e))){
 		for(let w=0; w<find.lenght; w++){
-			if(elems[i].getAttribute('story_txt')toLowerCase().match(find[w].toLowerCase())) {
+			if(elems[i].getAttribute('story_txt').toLowerCase().match(find[w].toLowerCase())) {
 				document.getElementById('searchStory').innerHTML+='<p>'+elems[i].getAttribute('story_txt').slice(0,100)+'</p>';
 				break;
 			};
