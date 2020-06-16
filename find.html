@@ -54,7 +54,7 @@ document.oncontextmenu = function (){return false};
 function findText(cont){
 	document.getElementById('searchStory').innerHTML = '';
 	let find = '"'+cont.replace(' /g', " | ")+'"';
-	let elems = top.document.getElementsByTagName('li');
+	let elems = document.getElementsByTagName('li');
 	console.log('find='+find+'\nelems='+elems.lenght);
 //	["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e))
 //	let regexp = 
