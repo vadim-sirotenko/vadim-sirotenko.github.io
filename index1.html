@@ -132,6 +132,16 @@ li {
 	height: auto;
 	cursor: pointer;
 }
+findText {
+	position: fixed;
+	height: 90%;
+	top: 3%;
+	width: 65%;
+	left: 29%;
+	overflow: hidden;
+	z-index: 2;
+	visibility: hidden;
+}
 </style>
 <script>
 var max_idx=120;
@@ -352,7 +362,7 @@ function showStory(indx){
 		fbLikeButtom.setAttribute('data-size',"small");
 		fbLikeButtom.setAttribute('data-share',"true");
 		difr.body.append(fbLikeButtom);
-		if(document.getElementById('showText').getAttribute('src')!='about.html' && (document.getElementById('showText').getAttribute('src')!='grafoman.html' && document.getElementById('showText').getAttribute('src')!='description.html' && document.getElementById('showText').getAttribute('src')!='find.html' )) {
+		if(document.getElementById('showText').getAttribute('src')!='about.html' && (document.getElementById('showText').getAttribute('src')!='grafoman.html' && document.getElementById('showText').getAttribute('src')!='description.html')) {
 			let bookButtom = document.createElement('input');
 			bookButtom.setAttribute('id','storyButtom_'+indx);
 			bookButtom.setAttribute('text_id',indx);
@@ -374,6 +384,20 @@ function showStory(indx){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
+function findText(cont){
+	document.getElementById('searchStory').innerHTML = '';
+	let find = '"'+cont.replace(' /g', " | ")+'"';
+	let elems = document.getElementsByTagName('li');
+	console.log('find='+find+'\nelems='+elems.lenght);
+//	["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e))
+//	let regexp = 
+	for(var i=0; i<elems.length; i++) {
+//		if (elems[i].getAttribute('story_txt').match(find)) {
+		if([find].some(e => ~elems[i].getAttribute('story_txt').indexOf(e))){
+			document.getElementById('searchStory').innerHTML+='<p>'+elems[i].getAttribute('story_txt').slice(0,100)+'</p>';
+		};
+	};
+}
 </script>
 </head>
 <body>
@@ -381,7 +405,14 @@ function showStory(indx){
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
-<img class="find" src="img/find.svg" title="Поиск рассказа" onclick="document.getElementById('showText').src='find.html';">
+<div id="findText" class="findText">
+	<strong>Найти рассказик.</strong>
+	<img id="linza" class="picture" src="img/find.svg">
+	<p><textarea id="find_text" minlength="3" required placeholder="Что ищем?"></textarea><img src="img/magnifying.svg" style="width: 30px; height: auto; cursor: pointer;" 
+	onclick="findText(document.getElementById('find_text').value)"></p>
+	<p><div id="searchStory"></div></p>
+</div>
+<img class="find" src="img/description.svg" title="Поиск рассказов" onclick="document.getElementById('').style.visibility='visible';">
 <img class="description" src="img/description.svg" title="Описание работы и формирование электронной книжки" onclick="document.getElementById('showText').src='description.html';">
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <a id="link" download="story.fb2" style="visibility: hidden;">
