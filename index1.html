@@ -142,6 +142,13 @@ findText {
 	z-index: 2;
 	visibility: hidden;
 }
+.smallPicture {
+	width: 35%;
+	height: auto;
+	float: right;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
 </style>
 <script>
 var max_idx=120;
@@ -407,7 +414,7 @@ function findText(cont){
 </div>
 <div id="findText" class="findText">
 	<strong>Найти рассказик.</strong>
-	<img id="linza" class="picture" src="img/find.svg">
+	<img id="linza" class="smallPicture" src="img/find.svg">
 	<p><textarea id="find_text" minlength="3" required placeholder="Что ищем?"></textarea><img src="img/magnifying.svg" style="width: 30px; height: auto; cursor: pointer;" 
 	onclick="findText(document.getElementById('find_text').value)"></p>
 	<p><div id="searchStory"></div></p>
