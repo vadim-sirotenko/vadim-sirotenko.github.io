@@ -124,6 +124,14 @@ li {
 	height: auto;
 	cursor: pointer;
 }
+.find {
+	position: absolute;
+	bottom: 21%;
+	right: 0%;
+	width: 3.5%;
+	height: auto;
+	cursor: pointer;
+}
 </style>
 <script>
 var max_idx=120;
@@ -317,6 +325,7 @@ function showStory(indx){
 		difr.body.style.color = 'navy';
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
+		difr.body.style.wordWrap = 'break-word';
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
