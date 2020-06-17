@@ -254,14 +254,15 @@ function findWord(wrds) {
 	let find = wrds.split(' ');
 	let elems = document.getElementsByTagName('li');
 //	console.log('wrds='+wrds+'\nfind='+find+'\n array(find)='+find.length+'\nelems='+elems.length);
+alert('elems.length='+elems.length);
 	for(let i=0; i<elems.length; i++) {
-		console.log('elem='+elems[i].getAttribute('id'));
-		for(let w=1; w<find.lenght; w++){
+//		console.log('elem='+elems[i].getAttribute('id'));
+		for(let w=0; w<find.lenght; w++){
 //			console.log('смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
-			alert('смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
+alert(elems.length+'/'+i+') смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
 				elems[i].style.backgroundColor='#ecec06';
-				break;
+//				break;
 			};
 		};
 	};
