@@ -257,8 +257,8 @@ function findWord(wrds) {
 	for(let i=0; i<elems.length; i++) {
 		console.log('elem='+elems[i].getAttribute('id'));
 		for(let w=0; w<find.lenght; w++){
+			console.log('смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
-				console.log('смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
 				elems[i].style.backgroundColor='#ecec06';
 				break;
 			};
