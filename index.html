@@ -125,12 +125,21 @@ li {
 	cursor: pointer;
 }
 .find {
-	position: absolute;
-	bottom: 21%;
-	right: 0%;
-	width: 3.5%;
-	height: auto;
-	cursor: pointer;
+	width: 27%; 
+	left: 0px;
+	background-color: #e4effc;
+}
+.subst {
+	background-image: url('img/magnifying.svg');
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-size: contain;
+	float: right;
+	width: calc(100% - 50px);
+}
+.magnifying {
+	height: 16px;
+	width: auto;
 }
 </style>
 <script>
@@ -243,13 +252,25 @@ function bookCreate(){
 	'</binary></FictionBook>';
 	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
 }
+function findWord(wrds) {
+	let find = wrds.split(' ');
+	let elems = document.getElementsByTagName('li');
+	for(let i=0; i<elems.length; i++) {
+		for(let w=0; w<find.length; w++){
+			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
+				elems[i].style.backgroundColor='#b6e4fe';
+				break;
+			};
+		};
+	};
+}
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
 //	if(markedPage===undefined) markedPage ='';
 	if(story2book===undefined) story2book ='';
-	for(var i=0; i<elems.length; i++) {
+	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 //		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
@@ -326,7 +347,7 @@ function showStory(indx){
 		difr.body.style.fontSize = '120%';
 		difr.body.style.userSelect = 'none';
 		difr.body.style.wordWrap = 'break-word';
-		difr.body.style.overflowX = 'hidden';
+//		difr.body.style.overflowX = 'hidden';
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
@@ -378,6 +399,8 @@ function showStory(indx){
 </head>
 <body>
 <div id="contents" class="contents"></div>
+<br/>
+<div class="find">Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст и нажмите Enter"/></div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
@@ -388,6 +411,11 @@ function showStory(indx){
 </a>
 </body>
 <script>
+document.getElementById('searchText').addEventListener('keypress', function(event) {
+  if (event.code == 'Enter' || event.code == NumpadEnter) {
+    findWord(document.getElementById('searchText').value);
+  };
+});
 showContents();
 </script>
 </html>
