@@ -413,7 +413,7 @@ function showStory(indx){
 </body>
 <script>
 document.getElementById('searchText').addEventListener('keypress', function(event) {
-  if (event.code == 'Enter' || event.code == NumpadEnter) {
+  if (event.code == 'Enter' || event.code == 'NumpadEnter') {
     findWord(document.getElementById('searchText').value);
   };
 });
