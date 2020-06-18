@@ -405,9 +405,7 @@ function showStory(indx){
 <body>
 <div id="contents" class="contents"></div>
 <br/>
-<form action="findWord()">
 <div class="find">Поиск <input id="searchText" class="subst" type="text" placeholder="Найти рассказ"/></div>
-</form>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
@@ -418,6 +416,11 @@ function showStory(indx){
 </a>
 </body>
 <script>
+document.getElementById('searchText').addEventListener('keypress', function(event) {
+  if (event.code == 'Enter') {
+    findWord(document.getElementById('searchText').value);
+  };
+});
 showContents();
 </script>
 </html>
