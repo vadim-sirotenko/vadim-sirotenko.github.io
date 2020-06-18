@@ -257,14 +257,14 @@ function findWord(wrds) {
 	alert('elems.length='+elems.length+' массив '+ find.length +' слов');
 	for(let i=0; i<elems.length; i++) {
 //		console.log('elem='+elems[i].getAttribute('id'));
-		alert(' elem='+elems[i].innerHTML);
+//		alert(' elem='+elems[i].innerHTML);
 		for(let w=0; w<find.lenght; w++){
 			alert('ищем cлово'+find[w]+' в строке '+elems[i].innerHTML);
 //			console.log('смотрим: '+elems[i].innerHTML+'\nищем слово='+find[w]+'\nнашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
 				alert('нашли в '+elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0));
 				elems[i].style.backgroundColor='#ecec06';
-//				break;
+				break;
 			};
 		};
 	};
