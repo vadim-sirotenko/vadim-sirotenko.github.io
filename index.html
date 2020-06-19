@@ -317,7 +317,7 @@ function showContents(){
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
-			li.setAttribute('mat',["ебат", "лять", "издец", "ахуй", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
