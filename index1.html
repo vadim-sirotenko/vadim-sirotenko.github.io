@@ -404,7 +404,7 @@ function showLeksika(show){
 		if(show){
 			li.style.display = 'none';
 		}else{
-			if(!show)li.style.display = 'block'; //'run-in';
+			if(!show)li.style.display = 'run-in'; // 'block';
 		}
 //		li.style.display = (show==true)?'none':'run-in';
 	};
@@ -414,8 +414,8 @@ function showLeksika(show){
 <body>
 <div id="contents" class="contents"></div>
 <br/>
-<div class="find"><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 <div class="find">Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст и нажмите Enter"/></div>
+<div class="find"><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
