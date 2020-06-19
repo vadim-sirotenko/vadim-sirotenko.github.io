@@ -401,7 +401,7 @@ function showLeksika(show){
 	console.log('чо на входе='+show);
 	let lis = document.querySelectorAll('li[mat=true]');
 	for (let li of lis) {
-		li.style.display = (show)?'none':'run-in';
+		li.style.display = (show==true)?'none':'run-in';
 	};
 }
 </script>
