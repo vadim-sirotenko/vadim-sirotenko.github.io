@@ -399,8 +399,12 @@ function showStory(indx){
 }
 function showLeksika(show){
 	let lis = document.querySelectorAll('li[mat=true]');
-	for (let li of lis) {
-		li.style.display = (show)?'none':'';
+	if(show){
+		for (let li of lis) {
+			li.style.display = 'none';
+		};
+	}else{
+		li.style.remove("display");
 	};
 }
 </script>
