@@ -327,7 +327,8 @@ function showContents(){
 		nx++;
 	};
 	let story_id = getUrlVars()["story"];
-	if(story_id>0 && story_id != undefined ) {
+	if(story_id != undefined && (story_id>0 && story_id <= max_idx)) {
+//	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
 //		elmView.style.backgroundColor='#8BE3ED';
