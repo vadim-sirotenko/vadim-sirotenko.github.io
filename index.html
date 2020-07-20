@@ -226,11 +226,9 @@ function story2Fb2(e){
 		elem.style.backgroundRepeat='no-repeat';
 		elem.style.backgroundSize='contain';
 		elem.style.backgroundPositionX='right';
-// записать в куки book
 	}else{
 		elem.style.backgroundImage = 'none';
 		elem.setAttribute('book',false);
-// удалить из куки book
 	};
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 	console.log('books='+document.querySelectorAll('li[book="true"]').length);
@@ -297,7 +295,6 @@ function getCounts(e) {
 function showContents(){
 	let markedPage = getCookie('read');
 	let story2book = getCookie('book');
-//	if(markedPage===undefined) markedPage ='';
 	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
@@ -307,11 +304,6 @@ function showContents(){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
-//		if(markedPage.indexOf(nx+',')>=0) {
-//			li.style.backgroundColor='#d4d4d4';
-//		}else{
-//			li.style.backgroundColor='#ffffff';
-//		};
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
