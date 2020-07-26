@@ -145,7 +145,7 @@ li {
 }
 </style>
 <script>
-var max_idx=145;
+var max_idx=150;
 var idx=1;
 var text_fb2='';
 var section_fb2='';
@@ -217,11 +217,6 @@ function clear(elem) {
     elem.firstChild.remove();
   }
 }
-function contains(str,arr){
-   var i=arr.length;
-   while(i--)if(str.indexOf(arr[i])==-1)return false;
-   return true
-}
 function story2Fb2(e){
 	console.log('story='+e.getAttribute('text_id')+'; check='+e.checked);
 	let elem = document.getElementById('li_'+e.getAttribute('text_id'));
@@ -231,11 +226,9 @@ function story2Fb2(e){
 		elem.style.backgroundRepeat='no-repeat';
 		elem.style.backgroundSize='contain';
 		elem.style.backgroundPositionX='right';
-// записать в куки book
 	}else{
 		elem.style.backgroundImage = 'none';
 		elem.setAttribute('book',false);
-// удалить из куки book
 	};
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 	console.log('books='+document.querySelectorAll('li[book="true"]').length);
@@ -260,15 +253,9 @@ function bookCreate(){
 	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
 }
 function findWord(wrds) {
-//	let find = wrds.split(' ');
-	let find = wrds.toLowerCase().split(' ');
+	let find = wrds.split(' ');
 	let elems = document.getElementsByTagName('li');
 	for(let i=0; i<elems.length; i++) {
-		if (contains(elems[i].getAttribute('story_txt').toLowerCase(),find)){
-			elems[i].style.backgroundColor='#b6e4fe';
-			elems[i].scrollIntoView(top);
-		};
-/*
 		for(let w=0; w<find.length; w++){
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
 				elems[i].style.backgroundColor='#b6e4fe';
@@ -276,7 +263,6 @@ function findWord(wrds) {
 				break;
 			};
 		};
-*/		
 	};
 }
 function getCounts(e) {
@@ -309,7 +295,6 @@ function getCounts(e) {
 function showContents(){
 	let markedPage = getCookie('read');
 	let story2book = getCookie('book');
-//	if(markedPage===undefined) markedPage ='';
 	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
@@ -319,11 +304,6 @@ function showContents(){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
-//		if(markedPage.indexOf(nx+',')>=0) {
-//			li.style.backgroundColor='#d4d4d4';
-//		}else{
-//			li.style.backgroundColor='#ffffff';
-//		};
 		let request = new XMLHttpRequest;
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
@@ -438,7 +418,12 @@ function showLeksika(show){
 </a>
 </body>
 <script>
-document.getElementById('searchText').addEventListener('keypress', function(event) {
+document.getElementsByTagName('body')[0].addEventListener('keydown',function(event){
+	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
+		alert('press '+event.code);
+	};
+});
+document.getElementById('searchText').addEventListener('keydown', function(event) {
 	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
 		findWord(document.getElementById('searchText').value);
 	};
