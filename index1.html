@@ -425,11 +425,11 @@ document.getElementsByTagName('body')[0].addEventListener('keydown',function(eve
 		let elems = document.getElementsByTagName('li');
 		for(let i=0; i<elems.length; i++) {
 			if(elems[i].getAttribute('find')) {
-				elem.setAttribute('book',true);
-				elem.style.backgroundImage = 'url(img/book.svg)';
-				elem.style.backgroundRepeat='no-repeat';
-				elem.style.backgroundSize='contain';
-				elem.style.backgroundPositionX='right';
+				elems[i].setAttribute('book',true);
+				elems[i].style.backgroundImage = 'url(img/book.svg)';
+				elems[i].style.backgroundRepeat='no-repeat';
+				elems[i].style.backgroundSize='contain';
+				elems[i].style.backgroundPositionX='right';
 			};
 		};
 		return false;
