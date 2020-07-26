@@ -419,7 +419,7 @@ function showLeksika(show){
 </body>
 <script>
 document.getElementsByTagName('body')[0].addEventListener('keydown',function(event){
-	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
+	if ((event.code == 'KeyA' || event.code == 'KeyP') && (event.ctrlKey || event.metaKey)) {
 		alert('press '+event.code);
 	};
 });
