@@ -421,6 +421,7 @@ function showLeksika(show){
 document.getElementsByTagName('body')[0].addEventListener('keydown',function(event){
 	if ((event.code == 'KeyA' || event.code == 'KeyP') && (event.ctrlKey || event.metaKey)) {
 		alert('press '+event.code);
+		return false;
 	};
 });
 document.getElementById('searchText').addEventListener('oninput', function(event) {
