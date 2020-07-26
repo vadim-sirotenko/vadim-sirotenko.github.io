@@ -423,12 +423,17 @@ document.getElementsByTagName('body')[0].addEventListener('keydown',function(eve
 		alert('press '+event.code);
 	};
 });
-document.getElementById('searchText').addEventListener('keydown', function(event) {
-	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
-		findWord(document.getElementById('searchText').value);
-	};
+document.getElementById('searchText').addEventListener('oninput', function(event) {
+//	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
+//		findWord(document.getElementById('searchText').value);
+//	};
 	if (event.code == 'Escape' || event.code == 'Esc') {
 		document.getElementById('searchText').setAttribute('value','');
+		getCounts();
+	};
+	if(document.getElementById('searchText').value.length>=3) {
+		getCounts();
+		findWord(document.getElementById('searchText').value);
 	};
 });
 showContents();
