@@ -259,6 +259,7 @@ function findWord(wrds) {
 		for(let w=0; w<find.length; w++){
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
 				elems[i].style.backgroundColor='#b6e4fe';
+				elems[i].setAttribute('find', true);
 				elems[i].scrollIntoView(top);
 				break;
 			};
@@ -419,16 +420,22 @@ function showLeksika(show){
 </body>
 <script>
 document.getElementsByTagName('body')[0].addEventListener('keydown',function(event){
-	if ((event.code == 'KeyA' || event.code == 'KeyP') && (event.ctrlKey || event.metaKey)) {
-		alert('press '+event.code);
+	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) { // пометить все или выбранные поиском рассказы для печати
+//		alert('press '+event.code);
+		for(let i=0; i<elems.length; i++) {
+			if(elems[i].getAttribute('find')) {
+				elem.setAttribute('book',true);
+				elem.style.backgroundImage = 'url(img/book.svg)';
+				elem.style.backgroundRepeat='no-repeat';
+				elem.style.backgroundSize='contain';
+				elem.style.backgroundPositionX='right';
+			};
+		};
 		return false;
 	};
 });
 //document.getElementById('searchText').addEventListener('oninput', function(event) {
 document.getElementById('searchText').oninput = function() {	
-//	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
-//		findWord(document.getElementById('searchText').value);
-//	};
 	if (event.code == 'Escape' || event.code == 'Esc') {
 		document.getElementById('searchText').setAttribute('value','');
 		getCounts();
