@@ -418,7 +418,7 @@ function showLeksika(show){
 </a>
 </body>
 <script>
-document.getElementById('searchText').addEventListener('keypress', function(event) {
+document.getElementById('searchText').addEventListener('keydown', function(event) {
 	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
 		findWord(document.getElementById('searchText').value);
 	};
