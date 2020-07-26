@@ -422,6 +422,7 @@ function showLeksika(show){
 document.getElementsByTagName('body')[0].addEventListener('keydown',function(event){
 	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) { // пометить все или выбранные поиском рассказы для печати
 //		alert('press '+event.code);
+		let elems = document.getElementsByTagName('li');
 		for(let i=0; i<elems.length; i++) {
 			if(elems[i].getAttribute('find')) {
 				elem.setAttribute('book',true);
