@@ -425,7 +425,7 @@ document.getElementById('searchText').oninput = function() {
 //	};
 	if(document.getElementById('searchText').value.trim().length>=3) {
 		getCounts();
-		findWord(document.getElementById('searchText').value);
+		findWord(document.getElementById('searchText').value.trim());
 	};
 };
 document.getElementById('searchText').addEventListener('keydown', function(event) {
