@@ -125,7 +125,7 @@ li {
 	cursor: pointer;
 }
 .find {
-	width: 27%; 
+	width: 24%; 
 	left: 0px;
 	background-color: #e4effc;
 }
@@ -423,13 +423,13 @@ function findWord(wrds) {
 </a>
 </body>
 <script>
-function selectStory2book(e){
-	switch(e.code){ //.code
-		case KeyA:
-			document.querySelectorAll('li[mat=true][find=true]')
-		case KeyU:
-	};
-}
+//function selectStory2book(e){
+//	switch(e.code){ //.code
+//		case KeyA:
+//			document.querySelectorAll('li[mat=true][find=true]')
+//		case KeyU:
+//	};
+//}
 document.getElementById('searchText').onpaste = function(e) { return false }
 document.getElementById('searchText').oninput = function(e) {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
@@ -437,7 +437,7 @@ document.getElementById('searchText').oninput = function(e) {
 		findWord(document.getElementById('searchText').value.trim());
 	};
 };
-document.getElementsByTagName('body')[0].addEventListener('keydown', selectStory2book, false);
+//document.getElementsByTagName('body')[0].addEventListener('keydown', selectStory2book, false);
 document.getElementById('searchText').addEventListener('keydown', function(event) {
 	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
 		findWord(document.getElementById('searchText').value.trim());
