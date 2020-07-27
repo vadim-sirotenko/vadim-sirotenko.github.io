@@ -342,7 +342,8 @@ function showStory(indx){
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
-		difr.body.style.fontSize = '120%';
+//		difr.body.style.fontSize = '120%';//
+		difr.body.style.fontSize = 'calc(0.7vw + 1vh + 1vmin)';
 		difr.body.style.userSelect = 'none';
 		difr.body.style.wordWrap = 'break-word';
 //		difr.body.style.overflowX = 'hidden';
