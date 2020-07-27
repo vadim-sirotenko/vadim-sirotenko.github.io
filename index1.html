@@ -136,8 +136,8 @@ li {
 	background-size: contain;
 	background-color: #e4effc;
 	border: inherit;
-	float: right;
-	width: calc(100% - 40px);
+/*	float: right;*/
+	width: calc(100% - 27px);
 }
 .magnifying {
 	height: 16px;
@@ -410,7 +410,7 @@ function findWord(wrds) {
 <br/>
 <div class="find">
 Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст длиннее трёх букв"/>
-<input id="showFind" type="checkbox" title="Показать только найденные">
+<input id="showFind" type="checkbox" style="float: right;" title="Показать только найденные">
 </div>
 <div class="find"><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 <div id="texts" class="textstory">
