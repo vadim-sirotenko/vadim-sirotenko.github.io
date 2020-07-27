@@ -437,7 +437,7 @@ document.getElementById('searchText').oninput = function(e) {
 		findWord(document.getElementById('searchText').value.trim());
 	};
 };
-document.getElementsByTagName('body')[0].('keydown', selectStory2book, false);
+document.getElementsByTagName('body')[0].addEventListener('keydown', selectStory2book, false);
 document.getElementById('searchText').addEventListener('keydown', function(event) {
 	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
 		findWord(document.getElementById('searchText').value.trim());
