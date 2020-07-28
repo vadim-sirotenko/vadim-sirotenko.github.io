@@ -430,7 +430,8 @@ function showLeksika(show){
 document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
 		document.getElementById('searchText').value='';
-		getCounts();
+		showContents();
+//		getCounts();
 	};
 };
 document.getElementById('searchText').oninput = function() {	
