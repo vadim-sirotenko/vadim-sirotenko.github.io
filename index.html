@@ -423,7 +423,7 @@ function showLeksika(show){
 <script>
 document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
-		document.getElementById('searchText').setAttribute('value','');
+		document.getElementById('searchText').value='';
 		getCounts();
 	};
 };
