@@ -448,6 +448,7 @@ document.getElementById('contents').onkeydown = function() {
 				li.style.display = 'none';
 			}else{
 				if(!show)li.style.display = '';
+				if( document.getElementById('leksika').checked && li.getAttribute('mat')) li.style.display = 'none';
 			};
 		};
 	};
