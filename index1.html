@@ -52,7 +52,8 @@ li {
 	border-right: 1px solid navy;
 	overflow: auto;
 	word-break: break-all;
-	font-size: 1.4em;
+/*	font-size: 1.4em;*/
+	font-size: calc(0.7vw + 1vh + 1vmin);
 }
 .textstory {
 	position: fixed;
@@ -62,6 +63,7 @@ li {
 	left: 29%;
 	overflow: hidden;
 	z-index: 1;
+	font-size: calc(0.8vw + 0.8vh + 0.8vmin);
 }
 .textstory img {
 	width: 50%; 
@@ -125,9 +127,12 @@ li {
 	cursor: pointer;
 }
 .find {
-	width: 27%; 
+	width: 25%; 
 	left: 0px;
-	background-color: #e4effc;
+	background-color: #f3f9fe;
+	border: 1px solid #333;
+	padding: 10px;
+	border-radius: 10px;
 }
 .subst {
 	background-image: url('img/magnifying.svg');
@@ -136,8 +141,8 @@ li {
 	background-size: contain;
 	background-color: #e4effc;
 	border: inherit;
-/*	float: right;*/
-	width: calc(100% - 27px);
+	float: right;
+	width: 87%;
 }
 .magnifying {
 	height: 16px;
@@ -145,7 +150,7 @@ li {
 }
 </style>
 <script>
-var max_idx=150;
+var max_idx=151;
 var idx=1;
 var text_fb2='';
 var section_fb2='';
@@ -260,7 +265,6 @@ function getCounts(e) {
 	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-		elems[i].setAttribute('find',false);
 //		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
 		if(markedPage.indexOf(elem_no+',')>=0) {
@@ -328,7 +332,8 @@ function showStory(indx){
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
-		difr.body.style.fontSize = '120%';
+//		difr.body.style.fontSize = '120%';//
+		difr.body.style.fontSize = 'calc(0.7vw + 1vh + 1vmin)';
 		difr.body.style.userSelect = 'none';
 		difr.body.style.wordWrap = 'break-word';
 //		difr.body.style.overflowX = 'hidden';
@@ -379,6 +384,21 @@ function showStory(indx){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
+function findWord(wrds) {
+	let find = wrds.split(' ');
+	let elems = document.getElementsByTagName('li');
+	for(let i=0; i<elems.length; i++) {
+		elems[i].style.display = 'none';
+		for(let w=0; w<find.length; w++){
+			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
+				elems[i].style.display = '';
+				elems[i].style.backgroundColor='#b6e4fe';
+				elems[i].scrollIntoView(top);
+//				break;
+			};
+		};
+	};
+}
 function showLeksika(show){
 	let lis = document.querySelectorAll('li[mat=true]');
 	for (let li of lis) {
@@ -389,30 +409,14 @@ function showLeksika(show){
 		};
 	};
 }
-function findWord(wrds) {
-	let find = wrds.split(' ');
-	let elems = document.getElementsByTagName('li');
-	for(let i=0; i<elems.length; i++) {
-		for(let w=0; w<find.length; w++){
-			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
-				elems[i].style.backgroundColor='#b6e4fe';
-				elems[i].setAttribute('find',true);
-				elems[i].style.display=(document.getElementById('showFind').checked)?'none':'';
-			};
-		};
-	};
-	elems[first_find].scrollIntoView(top);
-}
 </script>
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<br/>
 <div class="find">
-Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст длиннее трёх букв"/>
-<input id="showFind" type="checkbox" style="float: right;" title="Показать только найденные">
+	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
+	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 </div>
-<div class="find"><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
@@ -423,29 +427,30 @@ function findWord(wrds) {
 </a>
 </body>
 <script>
-//function selectStory2book(e){
-//	switch(e.code){ //.code
-//		case KeyA:
-//			document.querySelectorAll('li[mat=true][find=true]')
-//		case KeyU:
-//	};
-//}
-document.getElementById('searchText').onpaste = function(e) { return false }
-document.getElementById('searchText').oninput = function(e) {	
+document.getElementById('searchText').onkeydown = function() {
+	if (event.keyCode == 27) {
+		document.getElementById('searchText').value='';
+		getCounts();
+	};
+};
+document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
 		getCounts();
 		findWord(document.getElementById('searchText').value.trim());
 	};
 };
-//document.getElementsByTagName('body')[0].addEventListener('keydown', selectStory2book, false);
-document.getElementById('searchText').addEventListener('keydown', function(event) {
-	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
-		findWord(document.getElementById('searchText').value.trim());
+document.getElementById('contents').onkeydown = function() {
+	if(document.getElementById('searchText').value.trim().length>=3) {
+		let li_s = ocument.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
+		for (let li of li_s) {
+			if(show){
+				li.style.display = 'none';
+			}else{
+				if(!show)li.style.display = '';
+			};
+		};
 	};
-	if (event.code == 'Escape' || event.code == 'Esc') {
-		document.getElementById('searchText').setAttribute('value','');
-	};
-});
+}
 showContents();
 </script>
 </html>
