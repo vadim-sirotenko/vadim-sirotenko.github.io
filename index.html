@@ -421,24 +421,18 @@ function showLeksika(show){
 </a>
 </body>
 <script>
-document.getElementById('searchText').oninput = function() {	
+document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
 		document.getElementById('searchText').setAttribute('value','');
 		getCounts();
 	};
+};
+document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
 		getCounts();
 		findWord(document.getElementById('searchText').value.trim());
 	};
 };
-document.getElementById('searchText').addEventListener('keydown', function(event) {
-	if (event.code == 'Enter' || event.code == 'NumpadEnter') {
-		findWord(document.getElementById('searchText').value.trim());
-	};
-	if (event.code == 'Escape' || event.code == 'Esc') {
-		document.getElementById('searchText').setAttribute('value','');
-	};
-});
 showContents();
 </script>
 </html>
