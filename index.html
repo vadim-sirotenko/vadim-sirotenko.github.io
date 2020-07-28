@@ -422,10 +422,10 @@ function showLeksika(show){
 </body>
 <script>
 document.getElementById('searchText').oninput = function() {	
-//	if (event.code == 'Escape' || event.code == 'Esc') {
-//		document.getElementById('searchText').setAttribute('value','');
-//		getCounts();
-//	};
+	if (event.keyCode == 27) {
+		document.getElementById('searchText').setAttribute('value','');
+		getCounts();
+	};
 	if(document.getElementById('searchText').value.trim().length>=3) {
 		getCounts();
 		findWord(document.getElementById('searchText').value.trim());
