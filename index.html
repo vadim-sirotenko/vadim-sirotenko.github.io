@@ -127,12 +127,12 @@ li {
 	cursor: pointer;
 }
 .find {
-	width: 27%; 
+	width: 26%; 
 	left: 0px;
 	background-color: #f3f9fe;
-  	border: 1px solid #333;
-  	padding: 1am;
-  	border-radius: 1am;
+	border: 1px solid #333;
+	padding: 10px;
+	border-radius: 10px;}
 }
 .subst {
 	background-image: url('img/magnifying.svg');
@@ -412,8 +412,10 @@ function showLeksika(show){
 <body>
 <div id="contents" class="contents"></div>
 <br/>
-<div class="find">Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст длиннее трёх букв"/></div>
-<div class="find"><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
+<div class="find">
+	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="введите текст длиннее трёх букв"/></div>
+	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
+</div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
