@@ -450,13 +450,13 @@ document.getElementById('contents').onkeydown = function() {
 				if(!show)li.style.display = '';
 				if( document.getElementById('leksika').checked && li.getAttribute('mat')) li.style.display = 'none';
 			};
-			if(event.keyCode == 27){
+			if(event.keyCode == 65){
 				li.setAttribute('book',true);
 				li.style.backgroundImage = 'url(img/book.svg)';
 				li.style.backgroundRepeat='no-repeat';
 				li.style.backgroundSize='contain';
 				li.style.backgroundPositionX='right';
-				document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
+				document.getElementById('link').style.visibility = 'visible';
 			};
 		};
 	};
