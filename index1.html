@@ -441,7 +441,7 @@ document.getElementById('searchText').oninput = function() {
 	};
 };
 //document.getElementById('contents').onkeydown = function() {
-document.addEventListener('keydown', function(event)) {
+document.addEventListener('keydown', function(event) {
 //document.getElementByTag('body')[0].onkeydown = function() {
 	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
 		let mat_show = document.getElementById('leksika').checked?true:false;
@@ -461,7 +461,7 @@ document.addEventListener('keydown', function(event)) {
 			document.getElementById('link').style.visibility = (page2book>0)?'visible':'hidden';
 		};
 	};
-}
+});
 showContents();
 </script>
 </html>
