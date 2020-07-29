@@ -440,9 +440,12 @@ document.getElementById('searchText').oninput = function() {
 		findWord(document.getElementById('searchText').value.trim());
 	};
 };
-document.getElementById('contents').onkeydown = function() {
-	let mat_show = document.getElementById('leksika').checked?true:false;
-	if(event.keyCode == 65){
+//document.getElementById('contents').onkeydown = function() {
+document.addEventListener('keydown', function(event)) {
+//document.getElementByTag('body')[0].onkeydown = function() {
+	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
+		let mat_show = document.getElementById('leksika').checked?true:false;
+//		if(event.keyCode == 65){
 		if(document.getElementById('searchText').value.trim().length>=3 || show) {
 			let li_s = document.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
 			let page2book = 0;
