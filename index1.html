@@ -441,27 +441,21 @@ document.getElementById('searchText').oninput = function() {
 	};
 };
 document.getElementById('contents').onkeydown = function() {
-	let li_s;
-	if(document.getElementById('searchText').value.trim().length>=3) {
-		li_s = ocument.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
-		for (let li of li_s) {
-			if(show){
-				li.style.display = 'none';
-			}else{
-				if(!show)li.style.display = '';
-				if( document.getElementById('leksika').checked && li.getAttribute('mat')) li.style.display = 'none';
-			};
-		};
-
-		if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
+	let mat_show = document.getElementById('leksika').checked?true:false;
+	if(event.keyCode == 65){
+		if(document.getElementById('searchText').value.trim().length>=3 || show) {
+			let li_s = document.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
+			let page2book = 0;
 			for (let li of li_s) {
-				elems[i].setAttribute('book',true);
-				elems[i].style.backgroundImage = 'url(img/book.svg)';
-				elems[i].style.backgroundRepeat='no-repeat';
-				elems[i].style.backgroundSize='contain';
-				elems[i].style.backgroundPositionX='right';
+				li.style.display = (li.getAttribute('mat') && mat_show)?'':'none';
+				li.setAttribute('book',(li.getAttribute('mat') && mat_show)?false:true);
+				li.style.backgroundImage = (li.getAttribute('mat') && mat_show)?'none':'url(img/book.svg)';
+				li.style.backgroundRepeat='no-repeat';
+				li.style.backgroundSize='contain';
+				li.style.backgroundPositionX='right';
+				page2book++;
 			};
-			document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
+			document.getElementById('link').style.visibility = (page2book>0)?'visible':'hidden';
 		};
 	};
 }
