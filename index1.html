@@ -446,7 +446,7 @@ document.addEventListener('keydown', function(event) {
 	if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
 		let mat_show = document.getElementById('leksika').checked?true:false;
 //		if(event.keyCode == 65){
-		if(document.getElementById('searchText').value.trim().length>=3 || show) {
+		if(document.getElementById('searchText').value.trim().length>=3 || mat_show) {
 			let li_s = document.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
 			let page2book = 0;
 			for (let li of li_s) {
