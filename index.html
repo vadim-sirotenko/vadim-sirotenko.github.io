@@ -450,6 +450,14 @@ document.getElementById('contents').onkeydown = function() {
 				if(!show)li.style.display = '';
 				if( document.getElementById('leksika').checked && li.getAttribute('mat')) li.style.display = 'none';
 			};
+			if(event.keyCode == 65){
+				elems[i].setAttribute('book',true);
+				elems[i].style.backgroundImage = 'url(img/book.svg)';
+				elems[i].style.backgroundRepeat='no-repeat';
+				elems[i].style.backgroundSize='contain';
+				elems[i].style.backgroundPositionX='right';
+				document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
+			};
 		};
 	};
 }
