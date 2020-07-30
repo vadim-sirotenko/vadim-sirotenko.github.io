@@ -217,6 +217,9 @@ function getUrlVars() {
 	});
 	return vars;
 }
+function leftAdd(n, glue, str) {	// n - сколько всего симоволо должно стать; glue - чем дополнить; str - что дополнить
+	return str.length<n?str=Array(n+1).join(glue).replace(RegExp(".{"+str.length+"}$"),str):str;
+}
 function clear(elem) {
   while (elem.firstChild) {
     elem.firstChild.remove();
@@ -381,7 +384,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-	mycooki = (mycooki===undefined || mycooki.indexOf(('000' + indx).slice(-3)+','))?indx:mycooki+','+('000' + indx).slice(-3);
+	mycooki = (mycooki===undefined || mycooki.indexOf(leftAdd(3,0,indx)+','))? indx:mycooki+','+leftAdd(3,0,indx)+',';
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
