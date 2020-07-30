@@ -342,7 +342,6 @@ function showStory(indx){
 			bookButtom.setAttribute('type','checkbox');
 			if(document.getElementById('li_'+indx).getAttribute('book')) bookButtom.setAttribute('checked','checked');
 			bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
-			let bookCooki = getCookie('book');
 			difr.body.append(bookButtom);
 			let label = document.createElement('label');
 			label.setAttribute('for','storyButtom_'+indx);
@@ -353,7 +352,8 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
+	mycooki = (mycooki===undefined || mycooki.indexOf(indx.padStart(4, "0"))==-1)?indx.padStart(4, "0")+',':mycooki+indx.padStart(4, "0")+',';
+//	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
