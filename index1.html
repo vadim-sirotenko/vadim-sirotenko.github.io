@@ -384,7 +384,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-	mycooki = (mycooki===undefined || mycooki.indexOf(leftAdd(3,0,indx)+','))? indx:mycooki+','+leftAdd(3,0,indx)+',';
+	mycooki = (mycooki===undefined || mycooki.indexOf(leftAdd(3,0,indx)+',')<0)? leftAdd(3,0,indx)+',':mycooki+','+leftAdd(3,0,indx)+',';
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
