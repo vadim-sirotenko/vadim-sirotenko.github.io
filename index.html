@@ -52,6 +52,7 @@ li {
 	border-right: 1px solid navy;
 	overflow: auto;
 	word-break: break-all;
+/*	font-size: 1.4em;*/
 	font-size: calc(0.7vw + 1vh + 1vmin);
 }
 .textstory {
@@ -105,6 +106,17 @@ li {
 	cursor: pointer;
 	width: 5%;
 	height: auto;
+}
+.bookStore {
+	position: absolute;
+	top: 5%;
+	right: 30%;
+	cursor: pointer;
+	width: 25%;
+	height: 90%;
+	overflow: auto;
+	background-color: #a8cebd;
+/*	visibility: hidden;*/
 }
 .description {
 	position: absolute;
@@ -248,24 +260,34 @@ function bookCreate(){
 function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
-//	let story2book = getCookie('book');
-//	if(story2book===undefined) story2book ='';
+	let story2book = getCookie('book');
+//	if(markedPage===undefined) markedPage ='';
+	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-		let elem_no = elems[i].getAttribute('txt');
-//		let elem_no = parseInt(elems[i].getAttribute('txt'));
-		if(markedPage.indexOf(elem_no.padStart(4, "0")+',')>=0) {
+//		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
+		let elem_no = parseInt(elems[i].getAttribute('txt'));
+		if(markedPage.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
+		if(story2book.indexOf(elem_no+',')>=0) {
+			elems[i].setAttribute('book',true);
+			elems[i].style.backgroundImage = 'url(img/book.svg)';
+			elems[i].style.backgroundRepeat='no-repeat';
+			elems[i].style.backgroundSize='contain';
+			elems[i].style.backgroundPositionX='right';
+		};
+//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
+//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
 	let markedPage = getCookie('read');
-//	let story2book = getCookie('book');
-//	if(story2book===undefined) story2book ='';
+	let story2book = getCookie('book');
+	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
@@ -290,12 +312,15 @@ function showContents(){
 	};
 	let story_id = getUrlVars()["story"];
 	if(story_id != undefined && (story_id>0 && story_id <= max_idx)) {
+//	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
+//		elmView.style.backgroundColor='#8BE3ED';
 		elmView.style.backgroundColor='#ddf3cb';
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
+//		getCounts();
 	};
 	getCounts();
 }
@@ -307,6 +332,7 @@ function showStory(indx){
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
+//		difr.body.style.fontSize = '120%';//
 		difr.body.style.fontSize = 'calc(0.7vw + 1vh + 1vmin)';
 		difr.body.style.userSelect = 'none';
 		difr.body.style.wordWrap = 'break-word';
@@ -343,6 +369,7 @@ function showStory(indx){
 			bookButtom.setAttribute('type','checkbox');
 			if(document.getElementById('li_'+indx).getAttribute('book')) bookButtom.setAttribute('checked','checked');
 			bookButtom.setAttribute('onclick', 'top.story2Fb2(this)');
+			let bookCooki = getCookie('book');
 			difr.body.append(bookButtom);
 			let label = document.createElement('label');
 			label.setAttribute('for','storyButtom_'+indx);
@@ -353,9 +380,7 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
-	mycooki = (mycooki===undefined || mycooki.indexOf(indx.padStart(4, "0"))==-1)?indx.padStart(4, "0")+',':mycooki+indx.padStart(4, "0")+',';
-	alert('cooki(read)='+mycooki);
-//	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
+	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
@@ -367,7 +392,9 @@ function findWord(wrds) {
 		for(let w=0; w<find.length; w++){
 			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
 				elems[i].style.display = '';
-//				elems[i].scrollIntoView(top);
+//				elems[i].style.backgroundColor='#b6e4fe';
+				elems[i].scrollIntoView(top);
+//				break;
 			};
 		};
 	};
