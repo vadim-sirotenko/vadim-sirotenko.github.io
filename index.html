@@ -252,8 +252,9 @@ function getCounts(e) {
 //	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-		let elem_no = parseInt(elems[i].getAttribute('txt'));
-		if(markedPage.indexOf(elem_no+',')>=0) {
+		let elem_no = elems[i].getAttribute('txt');
+//		let elem_no = parseInt(elems[i].getAttribute('txt'));
+		if(markedPage.indexOf(elem_no.padStart(4, "0")+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
