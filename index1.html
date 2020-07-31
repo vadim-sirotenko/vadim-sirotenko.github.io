@@ -469,7 +469,7 @@ function choiceStory(e){
 			alert('document.querySelectorAll(\'li[find=true]\'='+elems.length);
 //			let li_book = elems.querySelectorAll('li[mat=document.getElementById('leksika').checked?true:false]');
 			if(elems.length>0){
-				for (let li of li_book) {
+				for (let li of elems) {
 					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
