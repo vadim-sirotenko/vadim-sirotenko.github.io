@@ -446,7 +446,7 @@ function choiceStory(e){
 		case 65:	// ctrl + A
 			let searchTerms = 'li[find=true]'+document.getElementById('leksika').checked?'[mat=false]':'';
 			let elems = document.querySelectorAll(searchTerms);
-			alert('document.querySelectorAll(\'li[find=true]\')='+elems.length);
+			alert('document.querySelectorAll('+searchTerms+')='+elems.length);
 			if(elems.length>0){
 				for (let li of elems) {
 //					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
