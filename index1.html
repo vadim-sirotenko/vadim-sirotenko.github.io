@@ -445,14 +445,16 @@ function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
 			if(document.getElementById('leksika').checked){
-				let elems = document.querySelectorAll('li[find=true][mat=true]');
+				let elems = document.querySelectorAll('li[find=true][mat=false][mat=\'\']');
 			}else{
 				let elems = document.querySelectorAll('li[find=true]');
 			}
+//			let cls = `li[find=true]${showDefected.checked ? '[defect=false]' : ''}`
+//			let lst = document.querySelectorAll(cls);
 			alert('document.querySelectorAll(\'li[find=true]\'='+elems.length);
 			if(elems.length>0){
 				for (let li of elems) {
-					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
+//					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
 					li.style.backgroundRepeat='no-repeat';
