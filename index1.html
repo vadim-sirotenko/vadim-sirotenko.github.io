@@ -465,7 +465,7 @@ document.getElementById('contents').onkeydown = function() {
 function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
-			let elems = document.querySelectorAll('li[find=true]', 'li[mat=document.getElementById('leksika').checked?true:false]');
+			let elems = document.querySelectorAll('li[find=true, mat=document.getElementById('leksika').checked?true:false]');
 			if(elems.length>0){
 				for (let li of elems) {
 					li.setAttribute('book',true);
