@@ -466,6 +466,7 @@ function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
 			let elems = document.querySelectorAll('li[find=true]');
+			alert('document.querySelectorAll(\'li[find=true]\'='+elems.length);
 //			let li_book = elems.querySelectorAll('li[mat=document.getElementById('leksika').checked?true:false]');
 			if(elems.length>0){
 				for (let li of li_book) {
