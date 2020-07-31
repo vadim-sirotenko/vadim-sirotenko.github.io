@@ -467,9 +467,10 @@ function choiceStory(e){
 		case 65:	// ctrl + A
 //			let elems = document.querySelectorAll('li[find=true, mat=document.getElementById('leksika').checked?true:false]');
 			let elems = document.querySelectorAll('li[find=true]');
-			let li_book = elems.querySelectorAll('li[mat=document.getElementById('leksika').checked?true:false]');
+//			let li_book = elems.querySelectorAll('li[mat=document.getElementById('leksika').checked?true:false]');
 			if(li_book.length>0){
 				for (let li of li_book) {
+					if(li.getAttribute('mat')) continue;
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
 					li.style.backgroundRepeat='no-repeat';
