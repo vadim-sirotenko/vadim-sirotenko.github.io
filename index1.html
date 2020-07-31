@@ -444,7 +444,7 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
-			let searchTerms = 'li[find=true]'+document.getElementById('leksika').checked?'[mat=false]':'';
+			let searchTerms = 'li[find=true]'+(document.getElementById('leksika').checked)?'[mat=false]':'';
 			let elems = document.querySelectorAll(searchTerms);
 			alert('document.querySelectorAll('+searchTerms+')='+elems.length);
 			if(elems.length>0){
