@@ -444,11 +444,12 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
-			let searchTerms = 'li[find=true]'+(document.getElementById('leksika').checked)?'[mat=false]':'';
-			let elems = document.querySelectorAll(searchTerms);
-			alert('document.querySelectorAll('+searchTerms+')='+elems.length);
+			let searchTerms = 'li[find=true]';
+			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
+			let elems_find = document.querySelectorAll(searchTerms);
+			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
 			if(elems.length>0){
-				for (let li of elems) {
+				for (let li of elems_find) {
 //					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
