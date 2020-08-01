@@ -447,8 +447,9 @@ function choiceStory(e){
 			let searchTerms = 'li[find=true]';
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
 //			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
-			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
+			alert('поиск: document.querySelectorAll('+searchTerms+')');
 			let elems_find = document.querySelectorAll(searchTerms);
+			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
 			if(elems.length>0){
 				for (let li of elems_find) {
 					li.setAttribute('book',true);
