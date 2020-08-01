@@ -445,12 +445,12 @@ function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
 			let searchTerms = 'li[find=true]';
-			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
-			let elems_find = document.querySelectorAll(searchTerms);
+			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
+//			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
 			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
+			let elems_find = document.querySelectorAll(searchTerms);
 			if(elems.length>0){
 				for (let li of elems_find) {
-//					if(document.getElementById('leksika').checked && li.getAttribute('mat')) continue;
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
 					li.style.backgroundRepeat='no-repeat';
