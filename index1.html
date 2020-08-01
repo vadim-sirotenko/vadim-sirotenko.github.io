@@ -450,7 +450,7 @@ function choiceStory(e){
 			alert('поиск: document.querySelectorAll('+searchTerms+')');
 			let elems_find = document.querySelectorAll(searchTerms);
 			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
-			if(elems.length>0){
+			if(elems_find.length>0){
 				for (let li of elems_find) {
 					li.setAttribute('book',true);
 					li.style.backgroundImage = 'url(img/book.svg)';
