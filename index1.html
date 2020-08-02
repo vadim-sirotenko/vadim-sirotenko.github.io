@@ -386,7 +386,11 @@ function showStory(indx){
 }
 function findWord(wrds) {
 	let find = wrds.split(' ');
-	let elems = document.getElementsByTagName('li');
+	
+	let searchTerms = (document.getElementById('searchText').lenght>=3)?'li[story_txt*=document.getElementById('searchText').value.replace(/ /g, 'li[story_txt*=]')]':'';
+//	let elems = document.getElementsByTagName('li');
+	let elems = document.getElementsByTagName(searchTerms);
+alert('поиск: '+searchTerms+'\nвыбралось='+elems.length);
 	for(let i=0; i<elems.length; i++) {
 		elems[i].style.display = 'none';
 		for(let w=0; w<find.length; w++){
@@ -445,6 +449,9 @@ function choiceStory(e){
 	switch(e.keyCode){
 		case 65:	// ctrl + A
 			let searchTerms = 'li[find=true]';
+//			let searchTerms = (!document.getElementById('leksika').checked)?'li[mat=false]':'';
+//			let searchTerms = (document.getElementById('searchText').lenght>=3)?'li[story_txt*=document.getElementById('searchText').value.replace(/ /g, '[story_txt*=]')]':'';
+			
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
 //			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
 			alert('поиск: document.querySelectorAll('+searchTerms+')');
