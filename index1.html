@@ -387,7 +387,7 @@ function showStory(indx){
 function findWord(wrds) {
 	let find = wrds.split(' ');
 	
-	let searchTerms = (document.getElementById('searchText').lenght>=3)?'li[story_txt*=document.getElementById('searchText').value.replace(/ /g, 'li[story_txt*=]')]':'';
+	let searchTerms = (document.getElementById('searchText').lenght>=3)?'li[story_txt*=document.getElementById('searchText').value.replace(/ /g, "li[story_txt*=]")]':'';
 //	let elems = document.getElementsByTagName('li');
 	let elems = document.getElementsByTagName(searchTerms);
 alert('поиск: '+searchTerms+'\nвыбралось='+elems.length);
