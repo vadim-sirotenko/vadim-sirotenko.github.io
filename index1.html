@@ -459,7 +459,7 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 			document.getElementById('sel2prn').style.top = e.clientY + 'px';
 			document.getElementById('sel2prn').style.left = e.clientX + 'px';
-			if (parseInt(document.getElementById('sel2prn')style.left)+document.getElementById('sel2prn').offsetWidth >= document.getElementById('contents').offsetWidth) {
+if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementById('sel2prn').offsetWidth >= document.getElementById('contents').offsetWidth) {
 				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
 			};
 			document.getElementById('sel2prn').style.visibility = 'visible';
