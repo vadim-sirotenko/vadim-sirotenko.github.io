@@ -461,7 +461,7 @@ function choiceStory(e){
 				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
 			};
 			document.getElementById('sel2prn').style.visibility = 'visible';
-//			document.getElementById('selAll').focus();
+			setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 10000);
 			document.getElementById('selAll').oninput = function(){
 				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
 			};
