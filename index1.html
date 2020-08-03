@@ -319,6 +319,12 @@ function showContents(){
 //			name_story = request.response;
 			txt_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
+			if(li.getAttribute('mat')){
+				elems[i].style.backgroundImage = 'url(img/mat.svg)';
+				elems[i].style.backgroundRepeat='no-repeat';
+				elems[i].style.backgroundSize='contain';
+				elems[i].style.backgroundPositionX='80%';				
+			};
 			li.setAttribute('story_txt',txt_story);
 			name_story = txt_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
@@ -329,15 +335,12 @@ function showContents(){
 	};
 	let story_id = getUrlVars()["story"];
 	if(story_id != undefined && (story_id>0 && story_id <= max_idx)) {
-//	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
-//		elmView.style.backgroundColor='#8BE3ED';
 		elmView.style.backgroundColor='#ddf3cb';
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
-//		getCounts();
 	};
 	getCounts();
 }
