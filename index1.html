@@ -432,6 +432,9 @@ function showLeksika(show){
 <a id="link" download="story.fb2" style="visibility: hidden;">
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
+<div id="sel2prn" style="visibility: hidden;">
+Добавить выбранное в книжку: <input type="checkbox"/>
+</div>
 </body>
 <script>
 document.getElementById('searchText').onkeydown = function() {
@@ -448,6 +451,10 @@ document.getElementById('searchText').oninput = function() {
 	};
 };
 function choiceStory(e){
+			document.getElementById('sel2prn').style.top = e.clientY + 'px';
+			document.getElementById('sel2prn').style.left = e.clientX + 'px';
+			document.getElementById('sel2prn').style.visibility = 'visible';
+
 			let searchTerms = 'li[find=true]';
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
 			alert('поиск: document.querySelectorAll('+searchTerms+')');
