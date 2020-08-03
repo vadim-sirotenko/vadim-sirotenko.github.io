@@ -150,7 +150,7 @@ li {
 }
 </style>
 <script>
-var max_idx=157;
+var max_idx=152;
 var idx=1;
 var text_fb2='';
 var section_fb2='';
@@ -448,14 +448,8 @@ document.getElementById('searchText').oninput = function() {
 	};
 };
 function choiceStory(e){
-	switch(e.keyCode){
-		case 65:	// ctrl + A
 			let searchTerms = 'li[find=true]';
-//			let searchTerms = (!document.getElementById('leksika').checked)?'li[mat=false]':'';
-//			let searchTerms = (document.getElementById('searchText').lenght>=3)?'li[story_txt*=document.getElementById('searchText').value.replace(/ /g, '[story_txt*=]')]':'';
-			
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
-//			searchTerms+=(document.getElementById('leksika').checked)?'[mat=false]':'';
 			alert('поиск: document.querySelectorAll('+searchTerms+')');
 			let elems_find = document.querySelectorAll(searchTerms);
 			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
@@ -469,13 +463,8 @@ function choiceStory(e){
 				};
 				document.getElementById('link').style.visibility = 'visible';
 			};
-            break;
-		case 27:	// Esc
-			showContents();
-			break;
-	};
 }
-document.getElementsByTagName('body')[0].addEventListener('keydown', choiceStory, false);
+document.getElementsById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
 </html>
