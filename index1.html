@@ -472,9 +472,9 @@ if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementB
 			};
 			let searchTerms = 'li[find=true]';
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
-			alert('поиск: document.querySelectorAll('+searchTerms+')');
+//			alert('поиск: document.querySelectorAll('+searchTerms+')');
 			let elems_find = document.querySelectorAll(searchTerms);
-			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
+//			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
 			if(elems_find.length>0){
 				for (let li of elems_find) {
 					li.setAttribute('book',true);
