@@ -452,6 +452,7 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 			document.getElementById('sel2prn').style.top = document.clientY + 'px';
 			document.getElementById('sel2prn').style.left = document.clientX + 'px';
+			document.getElementById('sel2prn').innerHTML = 'x='+document.clientX + 'px'+'; y='+document.clientY + 'px';
 			document.getElementById('sel2prn').style.visibility = 'visible';
 
 			let searchTerms = 'li[find=true]';
