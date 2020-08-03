@@ -287,6 +287,12 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
+		if(elems[i].getAttribute('mat')){
+			elems[i].style.backgroundImage = 'url(img/mat.svg)';
+			elems[i].style.backgroundRepeat='no-repeat';
+			elems[i].style.backgroundSize='contain';
+			elems[i].style.backgroundPositionX='80%';				
+		};
 		if(story2book.indexOf(elem_no+',')>=0) {
 			elems[i].setAttribute('book',true);
 			elems[i].style.backgroundImage = 'url(img/book.svg)';
@@ -294,8 +300,6 @@ function getCounts(e) {
 			elems[i].style.backgroundSize='contain';
 			elems[i].style.backgroundPositionX='right';
 		};
-//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
-//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
@@ -323,12 +327,6 @@ function showContents(){
 			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
-		if(["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e))){
-			li.style.backgroundImage = 'url(img/mat.svg)';
-			li.style.backgroundRepeat='no-repeat';
-			li.style.backgroundSize='contain';
-			li.style.backgroundPositionX='80%';				
-		};
 		ul.append(li);
 		nx++;
 	};
