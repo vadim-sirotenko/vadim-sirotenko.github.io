@@ -324,10 +324,10 @@ function showContents(){
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		if(li.getAttribute('mat')){
-			elems[i].style.backgroundImage = 'url(img/mat.svg)';
-			elems[i].style.backgroundRepeat='no-repeat';
-			elems[i].style.backgroundSize='contain';
-			elems[i].style.backgroundPositionX='80%';				
+			li.style.backgroundImage = 'url(img/mat.svg)';
+			li.style.backgroundRepeat='no-repeat';
+			li.style.backgroundSize='contain';
+			li.style.backgroundPositionX='80%';				
 		};
 		ul.append(li);
 		nx++;
