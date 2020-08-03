@@ -463,6 +463,7 @@ if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementB
 				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
 			};
 			document.getElementById('sel2prn').style.visibility = 'visible';
+			setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 5000);
 
 			let searchTerms = 'li[find=true]';
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
