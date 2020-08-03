@@ -452,7 +452,7 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 			document.getElementById('sel2prn').style.top = e.clientY + 'px';
 			document.getElementById('sel2prn').style.left = e.clienX + 'px';
-//			document.getElementById('sel2prn').innerHTML = 'x='+e.clientX + 'px'+';\ny='+e.clientY + 'px';
+			document.getElementById('sel2prn').innerHTML += 'x='+e.clientX + 'px'+';\ny='+e.clientY + 'px';
 			document.getElementById('sel2prn').style.visibility = 'visible';
 
 			let searchTerms = 'li[find=true]';
