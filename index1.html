@@ -439,7 +439,7 @@ function showLeksika(show){
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
 <div id="sel2prn" class="menu2prn">
-<label>Добавить выбранное в книжку: <input type="checkbox"/></label>
+<label>Добавить выбранное в книжку: <input id="selAll" type="checkbox"/></label>
 </div>
 </body>
 <script>
@@ -463,8 +463,13 @@ if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementB
 				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
 			};
 			document.getElementById('sel2prn').style.visibility = 'visible';
-			setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 5000);
-
+			document.getElementById('sel2prn').focus();
+			document.getElementById('selAll').oninput = function(){
+				document.getElementById('sel2prn').style.visibility='hidden';
+			};
+			document.getElementById('sel2prn').onblur = function(){
+				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
+			};
 			let searchTerms = 'li[find=true]';
 			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
 			alert('поиск: document.querySelectorAll('+searchTerms+')');
