@@ -326,7 +326,7 @@ function showContents(){
 				elems[i].style.backgroundPositionX='80%';				
 			};
 			li.setAttribute('story_txt',txt_story);
-			name_story = txt_story.slice(0, name_story.indexOf('\n')-1);
+			name_story = txt_story.slice(0, txt_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
