@@ -316,19 +316,19 @@ function showContents(){
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
-			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = request.response;
-			if(li.getAttribute('mat')){
-				elems[i].style.backgroundImage = 'url(img/mat.svg)';
-				elems[i].style.backgroundRepeat='no-repeat';
-				elems[i].style.backgroundSize='contain';
-				elems[i].style.backgroundPositionX='80%';				
-			};
+			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
+		if(li.getAttribute('mat')){
+			elems[i].style.backgroundImage = 'url(img/mat.svg)';
+			elems[i].style.backgroundRepeat='no-repeat';
+			elems[i].style.backgroundSize='contain';
+			elems[i].style.backgroundPositionX='80%';				
+		};
 		ul.append(li);
 		nx++;
 	};
