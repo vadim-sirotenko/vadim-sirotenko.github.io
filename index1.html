@@ -127,9 +127,20 @@ li {
 .find {
 	width: 25%; 
 	background-color: #f3f9fe;
+/*
 	border: 1px solid #333;
 	padding: 10px;
 	border-radius: 10px;
+*/
+}
+fieldset{
+	font-size:1em;
+	border: 1px solid #333;
+	padding: 10px;
+	border-radius: 10px;
+}
+fieldset legend{
+  padding: 0 1em;
 }
 .subst {
 	background-image: url('img/magnifying.svg');
@@ -424,10 +435,13 @@ function showLeksika(show){
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div class="find">
-	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
-	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
-</div>
+<fieldset>
+	<legend align="left">Закроется через <span id="timerClose">10</span>сек.</legend>
+		<div class="find">
+			<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
+			<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
+		</div>
+</fieldset>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
