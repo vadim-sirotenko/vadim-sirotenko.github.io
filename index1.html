@@ -323,7 +323,7 @@ function showContents(){
 			li.innerHTML = name_story;
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
-		if(li.getAttribute('mat')){
+		if(["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e))){
 			li.style.backgroundImage = 'url(img/mat.svg)';
 			li.style.backgroundRepeat='no-repeat';
 			li.style.backgroundSize='contain';
