@@ -463,9 +463,9 @@ if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementB
 				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
 			};
 			document.getElementById('sel2prn').style.visibility = 'visible';
-			document.getElementById('sel2prn').focus();
+			document.getElementById('selAll').focus();
 			document.getElementById('selAll').oninput = function(){
-				document.getElementById('sel2prn').style.visibility='hidden';
+				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
 			};
 			document.getElementById('sel2prn').onblur = function(){
 				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
