@@ -431,7 +431,7 @@ function showLeksika(show){
 <a id="link" download="story.fb2" style="visibility: hidden;">
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
-<div id="sel2prn" style="position: fixed; visibility: hidden;">
+<div id="sel2prn" style="position: fixed; visibility: hidden; background-color: #7abdfa;">
 Добавить выбранное в книжку: <input type="checkbox"/>
 </div>
 </body>
@@ -452,7 +452,7 @@ document.getElementById('searchText').oninput = function() {
 function choiceStory(e){
 			document.getElementById('sel2prn').style.top = e.clientY + 'px';
 			document.getElementById('sel2prn').style.left = e.clienX + 'px';
-			document.getElementById('sel2prn').innerHTML = 'x='+e.clientX + 'px'+';\ny='+e.clientY + 'px';
+//			document.getElementById('sel2prn').innerHTML = 'x='+e.clientX + 'px'+';\ny='+e.clientY + 'px';
 			document.getElementById('sel2prn').style.visibility = 'visible';
 
 			let searchTerms = 'li[find=true]';
