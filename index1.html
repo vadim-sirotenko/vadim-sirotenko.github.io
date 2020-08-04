@@ -276,23 +276,34 @@ function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
-//	if(markedPage===undefined) markedPage ='';
 	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-//		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
 		if(markedPage.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(story2book.indexOf(elem_no+',')>=0) {
-			elems[i].setAttribute('book',true);
+		if(elems[i].getAttribute('book')) {
 			elems[i].style.backgroundImage = 'url(img/book.svg)';
 			elems[i].style.backgroundRepeat='no-repeat';
 			elems[i].style.backgroundSize='contain';
 			elems[i].style.backgroundPositionX='right';
+		}else{
+			elems[i].style.backgroundImage = 'none';
+		};
+		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
+			elems[i].style.display = 'none';
+		}else{
+			elems[i].style.display = '';
+		};
+		if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
+			elems[i].setAttribute('find', true);
+			elems[i].style.display = '';
+		}else{
+			elems[i].setAttribute('find', false);
+			elems[i].style.display = 'none';
 		};
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
@@ -395,9 +406,17 @@ function showStory(indx){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
+function findWordInText(txt,words) {
+	let find = wrds.split(' ');
+	for(let w=0; w<find.length; w++){
+		if (elems[i].getAttribute('story_txt').toLowerCase().includesfind[w].toLowerCase(),0)) { 
+			return true;
+		};
+	};
+	return false;
+}
 function findWord(wrds) {
 	let find = wrds.split(' ');
-	
 	let searchTerms = (document.getElementById('searchText').lenght>=3)?document.getElementById("searchText").value.trim().toLowerCase().replace("/ /g", "li[story_txt*=]"):' ';
 //	+((document.getElementById('leksika').checked)?[mat!=true]:'');
 alert('поиск: '+searchTerms);
@@ -458,7 +477,7 @@ document.getElementById('searchText').onkeydown = function() {
 document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
 		getCounts();
-		findWord(document.getElementById('searchText').value.trim());
+//		findWord(document.getElementById('searchText').value.trim());
 	};
 };
 function choiceStory(e){
