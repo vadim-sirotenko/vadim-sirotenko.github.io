@@ -489,7 +489,7 @@ function selectedAll2book(sign){
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
 <div id="sel2prn" class="menu2prn">
-	<label>Выбрать всё и добавить в книжку: <input id="selAll" type="checkbox"/></label>
+	<label>Выбрать всё и добавить в книжку: <input id="selAll" type="checkbox" onclick="selectedAll2book(this.checked)"/></label>
 </div>
 </body>
 <script>
