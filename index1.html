@@ -298,7 +298,7 @@ function getCounts(e) {
 		}else{
 			elems[i].style.display = '';
 		};
-		if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
+		if(document.getElementById('searchText').value.trim().length>=3 && findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
 			elems[i].setAttribute('find', true);
 			elems[i].style.display = '';
 		}else{
