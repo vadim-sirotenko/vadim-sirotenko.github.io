@@ -298,13 +298,18 @@ function getCounts(e) {
 		}else{
 			elems[i].style.display = '';
 		};
-		if(document.getElementById('searchText').value.trim().length>=3 && findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
-			elems[i].setAttribute('find', true);
-			elems[i].style.display = '';
+		if(document.getElementById('searchText').value.trim().length>=3)
+			if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
+				elems[i].setAttribute('find', true);
+				elems[i].style.display = '';
+			}else{
+				elems[i].setAttribute('find', false);
+				elems[i].style.display = 'none';
+			};
 		}else{
 			elems[i].setAttribute('find', false);
-			elems[i].style.display = 'none';
-		};
+			elems[i].style.display = '';
+		}
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
