@@ -442,19 +442,6 @@ function showFindWord(find){
 		};
 	};
 }
-function selectedAll2book(sign){
-	let elems = document.querySelectorAll('li');
-	for (let li of elems) {
-		if(li.style.display==''){
-			elem.setAttribute('book',sign);
-			elem.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
-			elem.style.backgroundRepeat='no-repeat';
-			elem.style.backgroundSize='contain';
-			elem.style.backgroundPositionX='right';
-		};
-	};	
-	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
-}
 function choiceStory(e){
 	document.getElementById('sel2prn').style.top = e.clientY + 'px';
 	document.getElementById('sel2prn').style.left = e.clientX + 'px';
@@ -470,6 +457,20 @@ function choiceStory(e){
 	document.getElementById('sel2prn').onblur = function(){
 		setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
 	};
+}
+function selectedAll2book(sign){
+	alert('sign='+sign);
+	let elems = document.querySelectorAll('li');
+	for (let li of elems) {
+		if(li.style.display==''){
+			elem.setAttribute('book',sign);
+			elem.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
+			elem.style.backgroundRepeat='no-repeat';
+			elem.style.backgroundSize='contain';
+			elem.style.backgroundPositionX='right';
+		};
+	};	
+	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 }
 </script>
 </head>
