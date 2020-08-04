@@ -421,6 +421,22 @@ function findWordInText(txt,words) {
 	};
 	return false;
 }
+function choiceStory(e){
+	document.getElementById('sel2prn').style.top = e.clientY + 'px';
+	document.getElementById('sel2prn').style.left = e.clientX + 'px';
+	if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementById('sel2prn').offsetWidth >= document.getElementById('contents').offsetWidth) {
+		document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
+	};
+	document.getElementById('sel2prn').style.visibility = 'visible';
+	setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 10000);
+			
+	document.getElementById('selAll').oninput = function(){
+		setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
+	};
+	document.getElementById('sel2prn').onblur = function(){
+		setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
+	};
+}
 </script>
 </head>
 <body>
@@ -454,39 +470,6 @@ document.getElementById('searchText').oninput = function() {
 		getCounts();
 	};
 };
-function choiceStory(e){
-			document.getElementById('sel2prn').style.top = e.clientY + 'px';
-			document.getElementById('sel2prn').style.left = e.clientX + 'px';
-			if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementById('sel2prn').offsetWidth >= document.getElementById('contents').offsetWidth) {
-				document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
-			};
-			document.getElementById('sel2prn').style.visibility = 'visible';
-			setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 10000);
-			
-			document.getElementById('selAll').oninput = function(){
-				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
-			};
-			document.getElementById('sel2prn').onblur = function(){
-				setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
-			};
-/*
-			let searchTerms = 'li[find=true]';
-			if(document.getElementById('leksika').checked) searchTerms = searchTerms + '[mat=false]';
-//			alert('поиск: document.querySelectorAll('+searchTerms+')');
-			let elems_find = document.querySelectorAll(searchTerms);
-//			alert('document.querySelectorAll('+searchTerms+')='+elems_find.length);
-			if(elems_find.length>0){
-				for (let li of elems_find) {
-					li.setAttribute('book',true);
-					li.style.backgroundImage = 'url(img/book.svg)';
-					li.style.backgroundRepeat='no-repeat';
-					li.style.backgroundSize='contain';
-					li.style.backgroundPositionX='right';
-				};
-				document.getElementById('link').style.visibility = 'visible';
-			};
-*/
-}
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
