@@ -459,10 +459,9 @@ function choiceStory(e){
 	};
 }
 function selectedAll2book(sign){
-	alert('sign='+sign);
 	let elems = document.querySelectorAll('li');
 	for (let li of elems) {
-		if(li.style.display==''){
+		if(li.style.display!='none'){
 			elem.setAttribute('book',sign);
 			elem.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
 			elem.style.backgroundRepeat='no-repeat';
