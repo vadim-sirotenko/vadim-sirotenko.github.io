@@ -421,6 +421,16 @@ function findWordInText(txt,words) {
 	};
 	return false;
 }
+function showLeksika(show){
+	let lis = document.querySelectorAll('li[mat=true]');
+	for (let li of lis) {
+		if(show){
+			li.style.display = 'none';
+		}else{
+			if(!show)li.style.display = '';
+		};
+	};
+}
 function choiceStory(e){
 	document.getElementById('sel2prn').style.top = e.clientY + 'px';
 	document.getElementById('sel2prn').style.left = e.clientX + 'px';
@@ -443,7 +453,7 @@ function choiceStory(e){
 <div id="contents" class="contents"></div>
 	<div class="find">
 		<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
-		<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="getCounts()"/></label></div>
+		<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 	</div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
