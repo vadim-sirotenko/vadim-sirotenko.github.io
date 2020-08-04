@@ -431,7 +431,7 @@ function showLeksika(show){
 	};
 }
 function showFindWord(find){
-	let elems = document.querySelectorAll('li[display=""]');
+	let elems = document.querySelectorAll('li');
 	for (let li of elems) {
 		if(findWordInText(li.getAttribute('story_txt'), find)) {
 			li.setAttribute('find', true);
