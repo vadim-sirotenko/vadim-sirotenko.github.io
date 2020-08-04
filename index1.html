@@ -409,7 +409,7 @@ function showStory(indx){
 function findWordInText(txt,words) {
 	let find = words.split(' ');
 	for(let w=0; w<find.length; w++){
-		if (txt.toLowerCase().includesfind([w].toLowerCase(),0)) { 
+		if (txt.toLowerCase().includesfind(find[w].toLowerCase(),0)) { 
 			return true;
 		};
 	};
