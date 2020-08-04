@@ -293,7 +293,7 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundImage = 'none';
 		};
-		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')==true) {
+		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
 			elems[i].style.display = 'none';
 		}else{
 			elems[i].style.display = '';
@@ -413,7 +413,6 @@ function showStory(indx){
 }
 function findWordInText(txt,words) {
 	let find = words.split(' ');
-//	alert('слов в поиске find: '+find.length);
 	for(let w=0; w<find.length; w++){
 		if (txt.toLowerCase().includes(find[w].toLowerCase())) { 
 			return true;
@@ -428,6 +427,18 @@ function showLeksika(show){
 			li.style.display = 'none';
 		}else{
 			if(!show)li.style.display = '';
+		};
+	};
+}
+function showFindWord(find){
+	let elems = document.querySelectorAll('li[display=""]');
+	for (let li of elems) {
+		if(findWordInText(li.getAttribute('story_txt'), find)) {
+			li.setAttribute('find', true);
+			li.style.display = '';
+		}else{
+			li.setAttribute('find', false);
+			li.style.display = 'none';
 		};
 	};
 }
@@ -477,7 +488,8 @@ document.getElementById('searchText').onkeydown = function() {
 };
 document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
-		getCounts();
+//		getCounts();
+		showFindWord(document.getElementById('searchText').value.trim());
 	};
 };
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
