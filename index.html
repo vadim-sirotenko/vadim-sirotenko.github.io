@@ -52,7 +52,6 @@ li {
 	border-right: 1px solid navy;
 	overflow: auto;
 	word-break: break-all;
-/*	font-size: 1.4em;*/
 	font-size: calc(0.7vw + 1vh + 1vmin);
 }
 .textstory {
@@ -116,7 +115,6 @@ li {
 	height: 90%;
 	overflow: auto;
 	background-color: #a8cebd;
-/*	visibility: hidden;*/
 }
 .description {
 	position: absolute;
@@ -126,13 +124,31 @@ li {
 	height: auto;
 	cursor: pointer;
 }
+.beer {
+	position: absolute;
+	bottom: 25%;
+	right: 0%;
+	width: 5%;
+	height: auto;
+	cursor: pointer;
+}
 .find {
 	width: 25%; 
-	left: 0px;
 	background-color: #f3f9fe;
+/*
 	border: 1px solid #333;
 	padding: 10px;
 	border-radius: 10px;
+*/
+}
+fieldset{
+	font-size:1em;
+	border: 1px solid #333;
+	padding: 10px;
+	border-radius: 10px;
+}
+fieldset legend{
+  padding: 0 1em;
 }
 .subst {
 	background-image: url('img/magnifying.svg');
@@ -147,6 +163,13 @@ li {
 .magnifying {
 	height: 16px;
 	width: auto;
+}
+.menu2prn {
+	position: fixed; 
+	visibility: hidden; 
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #7abdfa;
 }
 </style>
 <script>
@@ -241,13 +264,14 @@ function story2Fb2(e){
 function bookCreate(){
 	let bookStory2FB2 = '';
 	let story = '';
-	let elems = document.getElementsByTagName('li');
+//	let elems = document.getElementsByTagName('li');
+	let elems = document.querySelectorAll('li[book="true"]')
 	for(var i=0; i<elems.length; i++) {
-		if(elems[i].getAttribute('book')){
+//		if(elems[i].getAttribute('book')){
 			story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>'); 
 			story = story.replace(/\n/g, '<empty-line/>');	// /\+/g, "*"
 			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
-		};
+//		};
 	};
 	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
 	textfb2_head+
@@ -261,26 +285,40 @@ function getCounts(e) {
 	let markedPage = getCookie('read'); //.split(',');
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
-//	if(markedPage===undefined) markedPage ='';
 	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
-//		let elem_no = parseInt(elems[i].getAttribute('id').slice(3));
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
 		if(markedPage.indexOf(elem_no+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(story2book.indexOf(elem_no+',')>=0) {
-			elems[i].setAttribute('book',true);
+		if(elems[i].getAttribute('book')) {
 			elems[i].style.backgroundImage = 'url(img/book.svg)';
 			elems[i].style.backgroundRepeat='no-repeat';
 			elems[i].style.backgroundSize='contain';
 			elems[i].style.backgroundPositionX='right';
+		}else{
+			elems[i].style.backgroundImage = 'none';
 		};
-//		if(elems[i].getAttribute('mat')) elems[i].style.textDecorationLine=lineThrough;
-//		if(elems[i].getAttribute('mat')) elems[i].style.backgroundColor='#E9978B';
+		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
+			elems[i].style.display = 'none';
+		}else{
+			elems[i].style.display = '';
+		};
+		if(document.getElementById('searchText').value.trim().length>=3) {
+			if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
+				elems[i].setAttribute('find', true);
+				elems[i].style.display = '';
+			}else{
+				elems[i].setAttribute('find', false);
+				elems[i].style.display = 'none';
+			};
+		}else{
+			elems[i].setAttribute('find', false);
+			elems[i].style.display = '';
+		};
 	};
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
@@ -292,6 +330,7 @@ function showContents(){
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
 	let name_story = '';
+	let txt_story = '';
 	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
@@ -312,15 +351,12 @@ function showContents(){
 	};
 	let story_id = getUrlVars()["story"];
 	if(story_id != undefined && (story_id>0 && story_id <= max_idx)) {
-//	if(story_id>0 && story_id != undefined ) {
 		let elmView = document.getElementById('li_'+story_id);
 		elmView.scrollIntoView(top);
-//		elmView.style.backgroundColor='#8BE3ED';
 		elmView.style.backgroundColor='#ddf3cb';
 		showStory(story_id);
 	}else{
 		document.getElementById('showText').src='about.html';
-//		getCounts();
 	};
 	getCounts();
 }
@@ -384,20 +420,14 @@ function showStory(indx){
 	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
-function findWord(wrds) {
-	let find = wrds.split(' ');
-	let elems = document.getElementsByTagName('li');
-	for(let i=0; i<elems.length; i++) {
-		elems[i].style.display = 'none';
-		elems[i].setAttribute('find',false);
-		for(let w=0; w<find.length; w++){
-			if(elems[i].getAttribute('story_txt').toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1) { 
-				elems[i].setAttribute('find',true);
-				elems[i].style.display = '';
-				elems[i].scrollIntoView(top);
-			};
+function findWordInText(txt,words) {
+	let find = words.split(' ');
+	for(let w=0; w<find.length; w++){
+		if (txt.toLowerCase().includes(find[w].toLowerCase())) { 
+			return true;
 		};
 	};
+	return false;
 }
 function showLeksika(show){
 	let lis = document.querySelectorAll('li[mat=true]');
@@ -409,58 +439,87 @@ function showLeksika(show){
 		};
 	};
 }
+function showFindWord(find){
+	let elems = document.querySelectorAll('li');
+	for (let li of elems) {
+		if(findWordInText(li.getAttribute('story_txt'), find)) {
+			li.setAttribute('find', true);
+			li.style.display = '';
+		}else{
+			li.setAttribute('find', false);
+			li.style.display = 'none';
+		};
+	};
+}
+function choiceStory(e){
+	document.getElementById('sel2prn').style.top = e.clientY + 'px';
+	document.getElementById('sel2prn').style.left = e.clientX + 'px';
+	if (parseInt(document.getElementById('sel2prn').style.left)+document.getElementById('sel2prn').offsetWidth >= document.getElementById('contents').offsetWidth) {
+		document.getElementById('sel2prn').style.left = document.getElementById('contents').offsetWidth-document.getElementById('sel2prn').offsetWidth-5 + 'px';
+	};
+	document.getElementById('sel2prn').style.visibility = 'visible';
+	setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 10000);
+			
+	document.getElementById('selAll').oninput = function(){
+		setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
+	};
+	document.getElementById('sel2prn').onblur = function(){
+		setTimeout(() => document.getElementById('sel2prn').style.visibility='hidden' , 2000);
+	};
+}
+function selectedAll2book(sign){
+	let elems = document.querySelectorAll('li');
+	for (let li of elems) {
+		if(li.style.display!='none'){
+			li.setAttribute('book',sign);
+			li.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
+			li.style.backgroundRepeat='no-repeat';
+			li.style.backgroundSize='contain';
+			li.style.backgroundPositionX='right';
+		};
+	};
+	alert('найдено: '+document.querySelectorAll('li[book="true"]').length );
+	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
+}
 </script>
 </head>
 <body>
 <div id="contents" class="contents"></div>
-<div class="find">
-	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
-	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
-</div>
+	<div class="find">
+		<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
+		<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
+	</div>
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
+<img class="beer" src="img/bonus.svg" title="Поблагодарить автора" onclick="document.getElementById('showText').src='description.html';">
 <img class="description" src="img/description.svg" title="Описание работы и формирование электронной книжки" onclick="document.getElementById('showText').src='description.html';">
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <a id="link" download="story.fb2" style="visibility: hidden;">
 	<img class="createBook" src="img/Open_book.svg" onclick="bookCreate()" title='Сформировать из выбранных рассказиков книжку и скачать "story.fb2"'>
 </a>
+<div id="sel2prn" class="menu2prn">
+	<label>Выбрать всё и добавить в книжку: <input id="selAll" type="checkbox" onclick="selectedAll2book(this.checked)"/></label>
+</div>
 </body>
 <script>
 document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
 		document.getElementById('searchText').value='';
-		showContents();
+//		showContents();
 		getCounts();
 	};
 };
 document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
-		getCounts();
-		findWord(document.getElementById('searchText').value.trim());
+//		getCounts();
+		showFindWord(document.getElementById('searchText').value.trim());
 	};
 };
-document.getElementById('contents').onkeydown = function() {
-	if(document.getElementById('searchText').value.trim().length>=3) {
-		let li_s = ocument.querySelectorAll('li[story_txt.toLowerCase().indexOf(find[w].toLowerCase(),0)!=-1]');
-		for (let li of li_s) {
-			if(show){
-				li.style.display = 'none';
-			}else{
-				if(!show)li.style.display = '';
-				if( document.getElementById('leksika').checked && li.getAttribute('mat')) li.style.display = 'none';
-			};
-			if(event.keyCode == 65){
-				li.setAttribute('book',true);
-				li.style.backgroundImage = 'url(img/book.svg)';
-				li.style.backgroundRepeat='no-repeat';
-				li.style.backgroundSize='contain';
-				li.style.backgroundPositionX='right';
-				document.getElementById('link').style.visibility = 'visible';
-			};
-		};
-	};
-}
+//document.getElementById('selAll').oninput = function() {
+//	selectedAll2book((document.getElementById('selAll').checked)?true:false);
+//};
+document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
 </html>
