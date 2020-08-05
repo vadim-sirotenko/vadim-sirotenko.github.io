@@ -462,11 +462,11 @@ function selectedAll2book(sign){
 	let elems = document.querySelectorAll('li');
 	for (let li of elems) {
 		if(li.style.display!='none'){
-			elem.setAttribute('book',sign);
-			elem.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
-			elem.style.backgroundRepeat='no-repeat';
-			elem.style.backgroundSize='contain';
-			elem.style.backgroundPositionX='right';
+			li.setAttribute('book',sign);
+			li.style.backgroundImage = (sign)?'url(img/book.svg)':'none';
+			li.style.backgroundRepeat='no-repeat';
+			li.style.backgroundSize='contain';
+			li.style.backgroundPositionX='right';
 		};
 	};
 	alert('найдено: '+document.querySelectorAll('li[book="true"]').length );
