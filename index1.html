@@ -302,6 +302,7 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundImage = 'none';
 		};
+		if(elems[i].getAttribute('book')===null) elems[i].style.backgroundImage = 'none';
 		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
 			elems[i].style.display = 'none';
 		}else{
