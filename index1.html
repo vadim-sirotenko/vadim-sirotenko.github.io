@@ -131,6 +131,7 @@ li {
 	width: 5%;
 	height: auto;
 	cursor: pointer;
+	visibility: hidden;
 }
 .find {
 	width: 25%; 
@@ -173,7 +174,7 @@ fieldset legend{
 }
 </style>
 <script>
-var max_idx=157;
+var max_idx=160;
 var idx=1;
 var text_fb2='';
 var section_fb2='';
@@ -264,14 +265,11 @@ function story2Fb2(e){
 function bookCreate(){
 	let bookStory2FB2 = '';
 	let story = '';
-//	let elems = document.getElementsByTagName('li');
 	let elems = document.querySelectorAll('li[book="true"]')
 	for(var i=0; i<elems.length; i++) {
-//		if(elems[i].getAttribute('book')){
 			story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>'); 
 			story = story.replace(/\n/g, '<empty-line/>');	// /\+/g, "*"
 			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
-//		};
 	};
 	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
 	textfb2_head+
@@ -294,7 +292,8 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(elems[i].getAttribute('book')) {
+//		if(elems[i].getAttribute('book')) {
+		if(elems[i].getAttribute('book') || elems[i].getAttribute('book')=='true') {
 			elems[i].style.backgroundImage = 'url(img/book.svg)';
 			elems[i].style.backgroundRepeat='no-repeat';
 			elems[i].style.backgroundSize='contain';
@@ -478,7 +477,6 @@ function selectedAll2book(sign){
 			li.style.backgroundPositionX='right';
 		};
 	};
-	alert('найдено: '+document.querySelectorAll('li[book="true"]').length );
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 }
 </script>
@@ -492,7 +490,7 @@ function selectedAll2book(sign){
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
-<img class="beer" src="img/bonus.svg" title="Поблагодарить автора" onclick="document.getElementById('showText').src='description.html';">
+<img class="beer" src="img/bonus.svg" title="Поблагодарить автора" onclick="document.getElementById('showText').src='https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D1%8C&targets-hint=&default-sum=50&button-text=13&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=41001144863751';">
 <img class="description" src="img/description.svg" title="Описание работы и формирование электронной книжки" onclick="document.getElementById('showText').src='description.html';">
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
 <a id="link" download="story.fb2" style="visibility: hidden;">
