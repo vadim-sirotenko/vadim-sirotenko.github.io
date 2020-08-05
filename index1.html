@@ -468,7 +468,8 @@ function selectedAll2book(sign){
 			elem.style.backgroundSize='contain';
 			elem.style.backgroundPositionX='right';
 		};
-	};	
+	};
+	alert('найдено: '+document.querySelectorAll('li[book="true"]').length );
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 }
 </script>
