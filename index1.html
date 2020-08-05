@@ -320,6 +320,9 @@ function getCounts(e) {
 			elems[i].setAttribute('find', false);
 			elems[i].style.display = '';
 		};
+		if(elems[i].getAttribute('mat')==true) {
+			elems[i].style.display = (document.getElementById('leksika').checked)?'none':'';
+		};
 	};
 	document.getElementById('link').style.visibility = (document.querySelectorAll('li[book="true"]').length>0)? 'visible':'hidden';
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
