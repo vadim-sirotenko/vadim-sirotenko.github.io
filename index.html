@@ -208,8 +208,12 @@ var textfb2_head = `<description>
 <body>`;
 var section = '';
 var title = '';
-
 document.oncontextmenu = function (){return false};
+function foo(n, glue, str) {
+// return str.length<n?str=Array(n+1).join(glue).replace(RegExp(".{"+str.length+"}$"),str):str;
+//	return (glue.repeat(n) + str).slice(-n);
+	return ('00000' + str).slice(-n);
+}
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
     	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -283,14 +287,15 @@ function bookCreate(){
 	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
 }
 function getCounts(e) {
-	let markedPage = getCookie('read'); //.split(',');
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
+	
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
-		if(markedPage.indexOf(elem_no+',')>=0) {
+		if(markedPage.indexOf(foo(3, 0, elem_no)+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
@@ -324,7 +329,8 @@ function getCounts(e) {
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-	let markedPage = getCookie('read');
+//	let markedPage = getCookie('read');
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
@@ -416,9 +422,17 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let mycooki = getCookie('read');
-	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
+//	let mycooki = getCookie('read');
+	let mycooki = (getCookie('read')!=undefined)?getCookie('read'):'';
+//	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
+//	if (mycooki===undefined) mycooki=indx+',';
+//	if(mycooki.indexOf(indx+',')==-1) {
+	if(mycooki.indexOf(foo(3, 0, indx)+',')==-1) {
+//		mycooki = mycooki+indx+',';
+		mycooki = mycooki+foo(3, 0, indx)+',';
+		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
+	};
+//	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
 function findWordInText(txt,words) {
