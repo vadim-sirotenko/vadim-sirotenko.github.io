@@ -209,6 +209,9 @@ var textfb2_head = `<description>
 var section = '';
 var title = '';
 document.oncontextmenu = function (){return false};
+function foo(n, glue, str) {
+ return str.length<n?str=Array(n+1).join(glue).replace(RegExp(".{"+str.length+"}$"),str):str;
+}
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
     	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -289,7 +292,7 @@ function getCounts(e) {
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
-		if(markedPage.indexOf((('000' + elem_no).slice(-3))+',')>=0) {
+		if(markedPage.indexOf(foo(3, 0, elem_no)+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
@@ -419,9 +422,9 @@ function showStory(indx){
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 //	if (mycooki===undefined) mycooki=indx+',';
 //	if(mycooki.indexOf(indx+',')==-1) {
-	if(mycooki.indexOf((('000' + indx).slice(-3))+',')==-1) {
+	if(mycooki.indexOf(foo(3, 0, indx)+',')==-1) {
 //		mycooki = mycooki+indx+',';
-		mycooki = mycooki+(('000' + indx).slice(-3))+',';
+		mycooki = mycooki+foo(3, 0, indx)+',';
 		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
 	};
 //	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
