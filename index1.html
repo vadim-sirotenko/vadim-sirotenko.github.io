@@ -285,7 +285,8 @@ function bookCreate(){
 	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
 }
 function getCounts(e) {
-	let markedPage = getCookie('read'); //.split(',');
+	let markedPage = if(getCookie('read')!=undefined)?getCookie('read'):'';
+	
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
@@ -326,7 +327,8 @@ function getCounts(e) {
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-	let markedPage = getCookie('read');
+//	let markedPage = getCookie('read');
+	let markedPage = if(getCookie('read')!=undefined)?getCookie('read'):'';
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
@@ -418,7 +420,8 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-	let mycooki = getCookie('read');
+//	let mycooki = getCookie('read');
+	let mycooki = if(getCookie('read')!=undefined)?getCookie('read'):'';
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 //	if (mycooki===undefined) mycooki=indx+',';
 //	if(mycooki.indexOf(indx+',')==-1) {
