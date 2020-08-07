@@ -418,12 +418,12 @@ function showStory(indx){
 	let mycooki = getCookie('read');
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 //	if (mycooki===undefined) mycooki=indx+',';
-	if (mycooki===undefined) mycooki=(('000' + indx).slice(-3))+',';
-	if(mycooki.indexOf(indx+',')==-1) {
+//	if(mycooki.indexOf(indx+',')==-1) {
+	if(mycooki.indexOf((('000' + indx).slice(-3))+',')==-1) {
 //		mycooki = mycooki+indx+',';
 		mycooki = mycooki+(('000' + indx).slice(-3))+',';
 		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
-	}
+	};
 //	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
