@@ -208,24 +208,6 @@ var textfb2_head = `<description>
 <body>`;
 var section = '';
 var title = '';
-
-if (!String.prototype.padStart) {
-    String.prototype.padStart = function padStart(targetLength,padString) {
-        targetLength = targetLength>>0; //floor if number or convert non-number to 0;
-        padString = String(padString || ' ');
-        if (this.length > targetLength) {
-            return String(this);
-        }
-        else {
-            targetLength = targetLength-this.length;
-            if (targetLength > padString.length) {
-                padString += padString.repeat(targetLength/padString.length); //append to original to ensure we are longer than needed
-            }
-            return padString.slice(0,targetLength) + String(this);
-        }
-    };
-}
-
 document.oncontextmenu = function (){return false};
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
@@ -307,7 +289,7 @@ function getCounts(e) {
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
-		if(markedPage.indexOf(elem_no.padStart(3, "0")+',')>=0) {
+		if(markedPage.indexOf((('000' + elem_no).slice(-3))+',')>=0) {
 			elems[i].style.backgroundColor='#d4d4d4';
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
@@ -435,9 +417,11 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 	let mycooki = getCookie('read');
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-	if (mycooki===undefined) mycooki=indx.padStart(3, "0")+',';
+//	if (mycooki===undefined) mycooki=indx+',';
+	if (mycooki===undefined) mycooki=(('000' + indx).slice(-3))+',';
 	if(mycooki.indexOf(indx+',')==-1) {
-		mycooki = mycooki+indx.padStart(3, "0")+',';
+//		mycooki = mycooki+indx+',';
+		mycooki = mycooki+(('000' + indx).slice(-3))+',';
 		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
 	}
 //	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
