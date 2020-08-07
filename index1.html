@@ -285,7 +285,7 @@ function bookCreate(){
 	link.href = URL.createObjectURL(new Blob([bookFull], { type: "text/xml" }));
 }
 function getCounts(e) {
-	let markedPage = if(getCookie('read')!=undefined)?getCookie('read'):'';
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	
 	let elems = document.getElementsByTagName('li');
 	let story2book = getCookie('book');
