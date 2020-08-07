@@ -328,7 +328,7 @@ function getCounts(e) {
 }
 function showContents(){
 //	let markedPage = getCookie('read');
-	let markedPage = if(getCookie('read')!=undefined)?getCookie('read'):'';
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
 	let ul = document.createElement("ul");
@@ -421,7 +421,7 @@ function showStory(indx){
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
 //	let mycooki = getCookie('read');
-	let mycooki = if(getCookie('read')!=undefined)?getCookie('read'):'';
+	let mycooki = (getCookie('read')!=undefined)?getCookie('read'):'';
 //	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
 //	if (mycooki===undefined) mycooki=indx+',';
 //	if(mycooki.indexOf(indx+',')==-1) {
