@@ -211,7 +211,8 @@ var title = '';
 document.oncontextmenu = function (){return false};
 function foo(n, glue, str) {
 // return str.length<n?str=Array(n+1).join(glue).replace(RegExp(".{"+str.length+"}$"),str):str;
-	return (glue.repeat(n) + str).slice(-n);
+//	return (glue.repeat(n) + str).slice(-n);
+	return ('00000' + str).slice(-n);
 }
 function getCookie(name) {
 	let matches = document.cookie.match(new RegExp(
