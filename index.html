@@ -210,8 +210,6 @@ var section = '';
 var title = '';
 document.oncontextmenu = function (){return false};
 function foo(n, glue, str) {
-// return str.length<n?str=Array(n+1).join(glue).replace(RegExp(".{"+str.length+"}$"),str):str;
-//	return (glue.repeat(n) + str).slice(-n);
 	return ('00000' + str).slice(-n);
 }
 function getCookie(name) {
@@ -269,14 +267,11 @@ function story2Fb2(e){
 function bookCreate(){
 	let bookStory2FB2 = '';
 	let story = '';
-//	let elems = document.getElementsByTagName('li');
 	let elems = document.querySelectorAll('li[book="true"]')
 	for(var i=0; i<elems.length; i++) {
-//		if(elems[i].getAttribute('book')){
-			story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>'); 
-			story = story.replace(/\n/g, '<empty-line/>');	// /\+/g, "*"
-			bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
-//		};
+		story = '<strong>'+elems[i].getAttribute('story_txt').replace('\n','</strong><empty-line/><empty-line/>'); 
+		story = story.replace(/\n/g, '<empty-line/>');	// /\+/g, "*"
+		bookStory2FB2 += '<section><title><p><strong>'+elems[i].innerHTML+'</strong></title><empty-line/><p>'+story+'</p></section>';
 	};
 	let bookFull = '<?xml version="1.0" encoding="utf-8"?><FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">'+
 	textfb2_head+
@@ -329,7 +324,6 @@ function getCounts(e) {
 	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-//	let markedPage = getCookie('read');
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let story2book = getCookie('book');
 	if(story2book===undefined) story2book ='';
@@ -375,11 +369,9 @@ function showStory(indx){
 	ifr.addEventListener('load', () => {
 		let difr = ifr.contentDocument;
 		difr.body.style.color = 'navy';
-//		difr.body.style.fontSize = '120%';//
 		difr.body.style.fontSize = 'calc(0.7vw + 1vh + 1vmin)';
 		difr.body.style.userSelect = 'none';
 		difr.body.style.wordWrap = 'break-word';
-//		difr.body.style.overflowX = 'hidden';
 
 		let fbLike = document.createElement("div");
 		fbLike.setAttribute('id', "fb-root");
@@ -422,17 +414,11 @@ function showStory(indx){
 	})
 	ifr.src = 'text/'+indx+'.txt';
 	let useStory = document.getElementById('li_'+indx);
-//	let mycooki = getCookie('read');
 	let mycooki = (getCookie('read')!=undefined)?getCookie('read'):'';
-//	mycooki = (mycooki===undefined)?indx:mycooki+','+indx;
-//	if (mycooki===undefined) mycooki=indx+',';
-//	if(mycooki.indexOf(indx+',')==-1) {
 	if(mycooki.indexOf(foo(3, 0, indx)+',')==-1) {
-//		mycooki = mycooki+indx+',';
 		mycooki = mycooki+foo(3, 0, indx)+',';
 		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
 	};
-//	setCookie('read',mycooki, {secure: true, 'max-age': 3600*24*35});
 	getCounts(useStory);
 }
 function findWordInText(txt,words) {
@@ -520,19 +506,14 @@ function selectedAll2book(sign){
 document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
 		document.getElementById('searchText').value='';
-//		showContents();
 		getCounts();
 	};
 };
 document.getElementById('searchText').oninput = function() {	
 	if(document.getElementById('searchText').value.trim().length>=3) {
-//		getCounts();
 		showFindWord(document.getElementById('searchText').value.trim());
 	};
 };
-//document.getElementById('selAll').oninput = function() {
-//	selectedAll2book((document.getElementById('selAll').checked)?true:false);
-//};
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
