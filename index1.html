@@ -425,6 +425,7 @@ function showStory(indx){
 	let useStory = document.getElementById('li_'+indx);
 //	let mycooki = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let mycooki = localStorage.getItem('read');
+	if(mycooki==undefined) mycooki='';
 	if(mycooki.indexOf(foo(3, 0, indx)+',')==-1) {
 		let mycooki = mycooki+foo(3, 0, indx)+',';
 //		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
