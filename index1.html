@@ -528,9 +528,5 @@ document.getElementById('searchText').oninput = function() {
 };
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
-if (!navigator.cookieEnabled) { 
-	document.getElementById('nocookie').style.visibility='visible';
-	setTimeout(() => document.getElementById('nocookie').style.visibility='hidden' , 5000);  
-};
 </script>
 </html>
