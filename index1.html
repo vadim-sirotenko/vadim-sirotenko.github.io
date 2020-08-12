@@ -405,7 +405,8 @@ function showStory(indx){
 	let mycooki = (getCookie('read')!=undefined)?getCookie('read'):'';
 	if(mycooki.indexOf(foo(3, 0, indx)+',')==-1) {
 		mycooki = mycooki+foo(3, 0, indx)+',';
-		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
+//		setCookie('read', mycooki, {secure: true, 'max-age': 3600*24*35});
+		setCookie('read', mycooki);
 	};
 	getCounts(useStory);
 }
