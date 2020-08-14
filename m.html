@@ -76,10 +76,11 @@ function showContents() {
 			request.onload = function () {
 			story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			li.setAttribute('onclick', 'showStory('+nx+')');
 			name_story = story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story;
+			li.setAttribute('onclick', 'showStory('+nx+')');
+			ul.append(li);
 
 			div_story = document.createElement("div");
 			div_story.setAttribute('id', 'story'+nx);
@@ -87,8 +88,6 @@ function showContents() {
 			div_story.innerHTML = story;
 			li.append(div_story);
 		};
-		li.setAttribute('onclick', 'showStory('+nx+')');
-		ul.append(li);
 		nx++;
 	};
 }
