@@ -94,8 +94,8 @@ function showContents() {
 			li.setAttribute('onclick', 'showStory('+nx+')');
 			li.innerHTML = name_story + '<p id="story'+nx+'" class="text">'+story+'</p>';
 			ul.append(li);
+			nx++;
 		};
-		nx++;
 	};
 }
 showContents();
