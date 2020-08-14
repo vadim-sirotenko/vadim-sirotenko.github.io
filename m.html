@@ -75,7 +75,7 @@ function showStory(idx) {
 function showContents() {
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let ul = document.createElement("ul");
-	document.getElementById('contents').prepend(ul);
+	document.getElementById('catalog').prepend(ul);
 	let nx=1;
 	let name_story = '';
 	let txt_story = '';
