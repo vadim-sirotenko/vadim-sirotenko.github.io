@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Книжки-открытки&nbsp;¯\_(ツ)_/¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta content="post-card" name="SWA">
+<meta name="copyright" content="swa">
+<meta name="Author" content="swa">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/vo16.png" type="image/png">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://book-card.ru/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="https://book-card.ru/js/jquery.lazyload.js?v=1.9.1"></script>
+<script type="text/javascript" src="https://book-card.ru/js/device.js"></script>
+<script type="text/javascript" src="https://book-card.ru/js/getUrlVars.js"></script>
+<style>
+.catalog {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		z-index: 1;
+		position: absolute;
+}
+.text {
+		top: 20px;
+		left: 2px;
+		width: 89%;
+		height: 30%
+		overflow: auto;
+		display: none;
+		background-color: #ebebeb;
+		opacity: 70%;
+		z-index: 10;
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		margin: 0 auto;
+}
+#closeabout{
+	float: right;
+	top: 0;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+document.oncontextmenu = function (){return false};
+$(window).resize(function(){window.setTimeout('location.reload()', 500);})
+</script>
+</head>
+<body>
+<div id="catalog">
+	<div id="story">
+		<img id="closeabout" onclick="document.getElementByID().style.display='none')"/>
+	</div>
+</div>
+</body>
+<script>
+function showContents() {
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
+	let ul = document.createElement("ul");
+	document.getElementById('contents').prepend(ul);
+	let nx=1;
+	let name_story = '';
+	let txt_story = '';
+		while (nx<=max_idx) {
+			let story = '';
+			let li = document.createElement("li");
+			li.setAttribute('id', 'li_'+nx);
+			li.setAttribute('txt', nx);
+			let request = new XMLHttpRequest;
+			request.open('GET', 'text/'+nx+'.txt', true);
+			request.send();
+			request.onload = function () {
+			story = request.response;
+			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('onclick', 'showStory('+nx+')');
+			name_story = story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story;
+
+			div_story = document.createElement("div");
+			div_story.setAttribute('id', 'story'+nx);
+			div_story.setAttribute('class', 'text');
+			div_story.innerHTML = story;
+			li.append(div_story);
+		};
+		li.setAttribute('onclick', 'showStory('+nx+')');
+		ul.append(li);
+		nx++;
+	};
+}
+function showStory(idx)  {
+		document.getElementById('story'+idx).style.display='';
+}
+showContents()
+</script>
+</html>
