@@ -37,18 +37,19 @@
 </style>
 <script type="text/javascript" charset="utf-8">
 document.oncontextmenu = function (){return false};
-$(window).resize(function() {window.setTimeout('location.reload()', 500);});
 var max_idx=10;
 </script>
 </head>
 <body>
 <div id="catalog">
 	<div id="story">
-		<img id="closeabout" onclick="document.getElementByID().style.display='none')"/>
 	</div>
 </div>
 </body>
 <script>
+function showStory(idx) {
+	document.getElementById('story'+idx).style.display='';
+}
 function showContents() {
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let ul = document.createElement("ul");
@@ -82,9 +83,6 @@ function showContents() {
 		nx++;
 	};
 }
-function showStory(idx)  {
-		document.getElementById('story'+idx).style.display='';
-}
-showContents()
+showContents();
 </script>
 </html>
