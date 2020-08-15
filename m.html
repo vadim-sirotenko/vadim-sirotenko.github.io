@@ -156,6 +156,7 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundImage = 'none';
 		};
+/*
 		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
 			elems[i].style.display = 'none';
 		}else{
@@ -173,8 +174,9 @@ function getCounts(e) {
 			elems[i].setAttribute('find', false);
 			elems[i].style.display = '';
 		};
+*/
 	};
-	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
+//	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
