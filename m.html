@@ -194,15 +194,15 @@ function showContents(){
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
-			name_story = request.response;
+			let story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.innerHTML = name_story+'<div id="txt_'+nx+'" class="textstory">'+name_story+'</div>';
-//			li.setAttribute('story_txt',name_story);
-			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-//			li.innerHTML = name_story;
+			name_story = story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story+'<div id="txt_'+nx+'" class="textstory">'+story+'</div>';
+			li.setAttribute('onclick', 'showStory('+nx+')');
+			ul.append(li);
 		};
-		li.setAttribute('onclick', 'showStory('+nx+')');
-		ul.append(li);
+//		li.setAttribute('onclick', 'showStory('+nx+')');
+//		ul.append(li);
 		nx++;
 	};
 	getCounts();
