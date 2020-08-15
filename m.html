@@ -208,7 +208,8 @@ function showContents(){
 	getCounts();
 }
 function showStory(indx){
-	getCounts(useStory);
+	document.getElementById('txt_'+indx).style.display='';
+//	getCounts(useStory);
 }
 function findWordInText(txt,words) {
 	let find = words.split(' ');
