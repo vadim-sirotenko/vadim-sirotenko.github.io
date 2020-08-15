@@ -134,14 +134,14 @@ function showContents(){
 //			let story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = request.response.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story; //+'<div id="txt_'+nx+'" class="textstory">'+story+'</div>';
-			li.setAttribute('onclick', 'showStory('+nx+')');
+			li.innerHTML = name_story;
+			li.setAttribute('onclick', 'showStory(this.id)');
 			let div = document.createElement('div');
-			div.setAttribute('id',nx);
+			div.setAttribute('id','txt_'+nx);
 			div.className = 'textstory';
 			div.innerHTML = request.response;
 			li.append(div);
-//			alert('nx='+nx+'\ni='+i+'\nname='+name_story);
+			alert('nx='+nx+'\ni='+i+'\nname='+name_story);
 			ul.append(li);
 		};
 		nx++;
@@ -149,7 +149,7 @@ function showContents(){
 //	getCounts();
 }
 function showStory(indx){
-	document.getElementById('txt_'+indx).style.display='';
+	document.getElementById('txt_'+parseInt(indx)).style.display='';
 //	getCounts(useStory);
 }
 function findWordInText(txt,words) {
