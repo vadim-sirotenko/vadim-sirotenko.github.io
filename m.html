@@ -243,18 +243,6 @@ function showFindWord(find){
 <div id="contents" class="contents"></div>
 </body>
 <script>
-document.getElementById('searchText').onkeydown = function() {
-	if (event.keyCode == 27) {
-		document.getElementById('searchText').value='';
-		getCounts();
-	};
-};
-document.getElementById('searchText').oninput = function() {	
-	if(document.getElementById('searchText').value.trim().length>=3) {
-		showFindWord(document.getElementById('searchText').value.trim());
-	};
-};
-document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
 </html>
