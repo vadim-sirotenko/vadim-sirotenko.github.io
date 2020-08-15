@@ -1,104 +1,262 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Рассказы</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="robots" content="noindex,nofollow">
-<meta name="copyright" content="swa">
-<meta name="Author" content="swa">
-<meta http-equiv="Pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/swa.ico" type="image/x-icon">
+<title>Разные истории и сказки.&nbsp;¯\_(ツ)_/¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Вадим Сиротенко">
+<meta name="title" content="Другой взгляд на миры">
+<meta name="description" content="Рассказы">
+<meta name="keywords" content="абсурд, жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
+<meta property="og:url" content="https://vadim-sirotenko.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Рассказики" />
+<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
+<meta property="og:image" content="https://vadim-sirotenko.github.io/img/author.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="fb:app_id" content="1559991960821213" />
+<meta property="fb:pages" content="108221997181803">
 <style>
-.catalog {
-		width: 100%;
-		height: 100%;
-		overflow: auto;
-		z-index: 1;
-		position: absolute;
-		overflow: auto;
-		word-break: break-all;
-		font-size: calc(0.7vw + 1vh + 1vmin);
-		cursor: pointer;
+html, body {
+	height: 100%;
+	width: 100%;
+	min-height:100%;	
+	color: 'navy';
+	user-select: none;
+	margin: 0px;
+	overflow: hidden;
+	position: fixed;
+	background-color: #ffffff;
+	min-height:100%;
+	margin: 0;
+	top: 0px;
+	left: 0px;
+	background-image: url('img/author.jpg');
+	background-size: 20% auto;
+	background-position-x: left;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
-.text {
-		top: 20px;
-		left: 2px;
-		width: 89%;
-		height: 30%
-		overflow: auto;
-		display: none;
-		background-color: #ebebeb;
-		position: absolute;
-		margin-left: auto;
-		margin-right: auto;
-		margin: 0 auto;
-		word-break: break-all;
-		font-size: calc(0.85vw + 1vh + 1vmin);
+li {
+	cursor: pointer;
+	margin-bottom: 1em;
+	background-color: #ffffff;
 }
-#closeabout{
+.contents {
+	width: 100%; 
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: auto;
+	word-break: break-all;
+	font-size: calc(0.7vw + 1vh + 1vmin);
+}
+.textstory {
+	font-size: calc(0.8vw + 0.8vh + 0.8vmin);
+}
+.find {
+	width: 25%; 
+	background-color: #f3f9fe;
+}
+fieldset{
+	font-size:1em;
+	border: 1px solid #333;
+	padding: 10px;
+	border-radius: 10px;
+}
+fieldset legend{
+  padding: 0 1em;
+}
+.subst {
+	background-image: url('img/magnifying.svg');
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-size: contain;
+	background-color: #e4effc;
+	border: inherit;
 	float: right;
-	top: 0;
+	width: 87%;
+}
+.magnifying {
+	height: 16px;
+	width: auto;
+}
+.menu2prn {
+	position: fixed; 
+	visibility: hidden; 
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #7abdfa;
 }
 </style>
-<script type="text/javascript" charset="utf-8">
-document.oncontextmenu = function (){return false};
+<script>
 var max_idx=10;
+var idx=1;
+document.oncontextmenu = function (){return false};
+function foo(n, glue, str) {
+	return ('00000' + str).slice(-n);
+}
 function getCookie(name) {
-	let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-	return matches ? decodeURIComponent(matches[1]) : undefined;
+	let matches = document.cookie.match(new RegExp(
+    	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	));
+ 	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 function setCookie(name, value, options = {}) {
-	options = {
-		path: '/',
-		'max-age': 3600*24*35
-		};
-		if (options.expires instanceof Date) {
-			options.expires = options.expires.toUTCString();
-		};
-		let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-		for (let optionKey in options) {
-			updatedCookie += "; " + optionKey;
-			let optionValue = options[optionKey];
-			if (optionValue !== true) {
-				updatedCookie += "=" + optionValue;
-			};
-		};
-		document.cookie = updatedCookie;
+  options = {
+	path: '/',
+	'max-age': 3600*24*35
+  };
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+  document.cookie = updatedCookie;
 }
-</script>
-</head>
-<body>
-<div id="catalog"></div>
-</body>
-<script>
-function showContents() {
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+function clear(elem) {
+  while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+}
+function getCounts(e) {
+	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
+	let elems = document.getElementsByTagName('li');
+	let story2book = getCookie('book');
+	if(story2book===undefined) story2book ='';
+	for(let i=0; i<elems.length; i++) {
+		let elem_id = elems[i].getAttribute('id');
+		let elem_no = parseInt(elems[i].getAttribute('txt'));
+		if(markedPage.indexOf(foo(3, 0, elem_no)+',')>=0) {
+			elems[i].style.backgroundColor='#d4d4d4';
+		}else{
+			elems[i].style.backgroundColor='#ffffff';
+		};
+		if(elems[i].getAttribute('book')) {
+			elems[i].style.backgroundImage = 'url(img/book.svg)';
+			elems[i].style.backgroundRepeat='no-repeat';
+			elems[i].style.backgroundSize='contain';
+			elems[i].style.backgroundPositionX='right';
+		}else{
+			elems[i].style.backgroundImage = 'none';
+		};
+		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
+			elems[i].style.display = 'none';
+		}else{
+			elems[i].style.display = '';
+		};
+		if(document.getElementById('searchText').value.trim().length>=3) {
+			if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
+				elems[i].setAttribute('find', true);
+				elems[i].style.display = '';
+			}else{
+				elems[i].setAttribute('find', false);
+				elems[i].style.display = 'none';
+			};
+		}else{
+			elems[i].setAttribute('find', false);
+			elems[i].style.display = '';
+		};
+	};
+	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
+}
+function showContents(){
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let ul = document.createElement("ul");
-	document.getElementById('catalog').prepend(ul);
+	document.getElementById('contents').prepend(ul);
 	let nx=1;
 	let name_story = '';
 	let txt_story = '';
-	while (nx<=max_idx) {
-		let story = '';
+	while (nx<=max_idx){
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
 		let request = new XMLHttpRequest;
-		request.open('GET', 'text/'+nx+'.txt', false);
+		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
+			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story + '<p id="story'+nx+'" class="text">'+request.response+'</p>';
-			li.setAttribute('onclick', 'showStory('+nx+')');
+			li.innerHTML = name_story;
 		};
+		li.setAttribute('onclick', 'showStory('+nx+')');
 		ul.append(li);
 		nx++;
 	};
+	getCounts();
 }
-function showStory(idx)	{
-	document.getElementById('story'+idx).style.display='';
+function showStory(indx){
+	getCounts(useStory);
 }
+function findWordInText(txt,words) {
+	let find = words.split(' ');
+	for(let w=0; w<find.length; w++){
+		if (txt.toLowerCase().includes(find[w].toLowerCase())) { 
+			return true;
+		};
+	};
+	return false;
+}
+function showLeksika(show){
+	let lis = document.querySelectorAll('li[mat=true]');
+	for (let li of lis) {
+		if(show){
+			li.style.display = 'none';
+		}else{
+			if(!show)li.style.display = '';
+		};
+	};
+}
+function showFindWord(find){
+	let elems = document.querySelectorAll('li');
+	for (let li of elems) {
+		if(findWordInText(li.getAttribute('story_txt'), find)) {
+			li.setAttribute('find', true);
+			li.style.display = '';
+		}else{
+			li.setAttribute('find', false);
+			li.style.display = 'none';
+		};
+	};
+}
+</script>
+</head>
+<body>
+<div id="contents" class="contents"></div>
+<div id="texts" class="textstory">
+	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
+</div>
+</body>
+<script>
+document.getElementById('searchText').onkeydown = function() {
+	if (event.keyCode == 27) {
+		document.getElementById('searchText').value='';
+		getCounts();
+	};
+};
+document.getElementById('searchText').oninput = function() {	
+	if(document.getElementById('searchText').value.trim().length>=3) {
+		showFindWord(document.getElementById('searchText').value.trim());
+	};
+};
+document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
 </html>
