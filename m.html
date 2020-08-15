@@ -56,6 +56,7 @@ li {
 }
 .textstory {
 	font-size: calc(0.8vw + 0.8vh + 0.8vmin);
+	display: 'none';
 }
 .find {
 	width: 25%; 
@@ -195,9 +196,10 @@ function showContents(){
 		request.onload = function () {
 			name_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('story_txt',name_story);
+//			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story;
+//			li.innerHTML = name_story;
+			li.innerHTML = name_story+'<div id="txt_'+nx+'" class="textstory">'+name_story+'</div>';
 		};
 		li.setAttribute('onclick', 'showStory('+nx+')');
 		ul.append(li);
