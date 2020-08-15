@@ -92,7 +92,7 @@ function showContents() {
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = story.slice(0, name_story.indexOf('\n')-1);
 			li.setAttribute('onclick', 'showStory('+nx+')');
-			li.innerHTML = name_story + '<p id="story'+nx+'" class="text">'+story+'</p>';
+			li.innerHTML = name_story; // + '<p id="story'+nx+'" class="text">'+story+'</p>';
 			ul.append(li);
 			nx++;
 		};
