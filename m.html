@@ -56,41 +56,7 @@ li {
 }
 .textstory {
 	font-size: calc(0.8vw + 0.8vh + 0.8vmin);
-	display: none;
-}
-.find {
-	width: 25%; 
-	background-color: #f3f9fe;
-}
-fieldset{
-	font-size:1em;
-	border: 1px solid #333;
-	padding: 10px;
-	border-radius: 10px;
-}
-fieldset legend{
-  padding: 0 1em;
-}
-.subst {
-	background-image: url('img/magnifying.svg');
-	background-repeat: no-repeat;
-	background-position-x: right;
-	background-size: contain;
-	background-color: #e4effc;
-	border: inherit;
-	float: right;
-	width: 87%;
-}
-.magnifying {
-	height: 16px;
-	width: auto;
-}
-.menu2prn {
-	position: fixed; 
-	visibility: hidden; 
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #7abdfa;
+	display: 'none';
 }
 </style>
 <script>
@@ -139,8 +105,6 @@ function clear(elem) {
 function getCounts(e) {
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let elems = document.getElementsByTagName('li');
-	let story2book = getCookie('book');
-	if(story2book===undefined) story2book ='';
 	for(let i=0; i<elems.length; i++) {
 		let elem_id = elems[i].getAttribute('id');
 		let elem_no = parseInt(elems[i].getAttribute('txt'));
@@ -149,38 +113,9 @@ function getCounts(e) {
 		}else{
 			elems[i].style.backgroundColor='#ffffff';
 		};
-		if(elems[i].getAttribute('book')) {
-			elems[i].style.backgroundImage = 'url(img/book.svg)';
-			elems[i].style.backgroundRepeat='no-repeat';
-			elems[i].style.backgroundSize='contain';
-			elems[i].style.backgroundPositionX='right';
-		}else{
-			elems[i].style.backgroundImage = 'none';
-		};
-/*
-		if(document.getElementById('leksika').checked && elems[i].getAttribute('mat')) {
-			elems[i].style.display = 'none';
-		}else{
-			elems[i].style.display = '';
-		};
-		if(document.getElementById('searchText').value.trim().length>=3) {
-			if(findWordInText(elems[i].getAttribute('story_txt'),document.getElementById('searchText').value.trim())) {
-				elems[i].setAttribute('find', true);
-				elems[i].style.display = '';
-			}else{
-				elems[i].setAttribute('find', false);
-				elems[i].style.display = 'none';
-			};
-		}else{
-			elems[i].setAttribute('find', false);
-			elems[i].style.display = '';
-		};
-*/
 	};
-//	if(arguments.length==1) e.style.backgroundColor='#ddf3cb';
 }
 function showContents(){
-	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
@@ -201,8 +136,6 @@ function showContents(){
 			li.setAttribute('onclick', 'showStory('+nx+')');
 			ul.append(li);
 		};
-//		li.setAttribute('onclick', 'showStory('+nx+')');
-//		ul.append(li);
 		nx++;
 	};
 	getCounts();
