@@ -119,9 +119,11 @@ function showContents(){
 	let ul = document.createElement("ul");
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
+	let i=0;
 	let name_story = '';
 	let txt_story = '';
-	while (nx<=max_idx){
+	while (nx<=max_idx) {
+		i = nx;
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
@@ -134,6 +136,7 @@ function showContents(){
 			name_story = story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story; //+'<div id="txt_'+nx+'" class="textstory">'+story+'</div>';
 			li.setAttribute('onclick', 'showStory('+nx+')');
+			alert('nx='+nx+'\ni='+i+'\nname='+name_story);
 			ul.append(li);
 		};
 		nx++;
