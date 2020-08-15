@@ -17,6 +17,7 @@
 		overflow: auto;
 		word-break: break-all;
 		font-size: calc(0.7vw + 1vh + 1vmin);
+		cursor: pointer;
 }
 .text {
 		top: 20px;
@@ -90,7 +91,7 @@ function showContents() {
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story + '<p id="story'+nx+'" class="text">'+request.response+'</p>';
-			li.setAttribute('onClick', 'showStory(nx)');
+			li.setAttribute('onclick', 'showStory('+nx+')');
 		};
 		ul.append(li);
 		nx++;
