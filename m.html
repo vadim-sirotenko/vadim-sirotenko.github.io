@@ -69,9 +69,6 @@ function setCookie(name, value, options = {}) {
 <div id="catalog"></div>
 </body>
 <script>
-function showStory(idx) {
-	document.getElementById('story'+idx).style.display='';
-}
 function showContents() {
 	let markedPage = (getCookie('read')!=undefined)?getCookie('read'):'';
 	let ul = document.createElement("ul");
@@ -99,6 +96,9 @@ function showContents() {
 		ul.append(li);
 		nx++;
 	};
+}
+function showStory(idx)	{
+	document.getElementById('story'+idx).style.display='';
 }
 showContents();
 </script>
