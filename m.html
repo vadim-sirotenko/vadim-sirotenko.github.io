@@ -32,13 +32,6 @@ html, body {
 	margin: 0;
 	top: 0px;
 	left: 0px;
-/*	background-image: url('img/author.jpg');
-	background-size: 20% auto;
-	background-position-x: left;
-	background-position-y: bottom;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-*/
 }
 li {
 	cursor: pointer;
@@ -123,7 +116,6 @@ function showContents(){
 	let name_story = '';
 	let txt_story = '';
 	while (nx<=max_idx) {
-		i = nx;
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
@@ -131,19 +123,14 @@ function showContents(){
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
-//			let story = request.response;
+			name_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			name_story = request.response.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story;
-			li.setAttribute('onclick', 'showStory(this.id)');
-			let div = document.createElement('div');
-			div.setAttribute('id','txt_'+nx);
-			div.className = 'textstory';
-			div.innerHTML = request.response;
-			li.append(div);
-			alert('nx='+nx+'\ni='+i+'\nname='+name_story);
-			ul.append(li);
+			li.setAttribute('story_txt',name_story);
+			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+			li.innerHTML = name_story+'<span class="textstory">'+request.response+'</span>';
 		};
+		li.setAttribute('onclick', 'showStory(this.getAttribute(\'txt\')');
+		ul.append(li);
 		nx++;
 	};
 //	getCounts();
