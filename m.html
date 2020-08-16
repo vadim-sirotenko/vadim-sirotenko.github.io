@@ -78,6 +78,18 @@ span {
 	border-radius: 10px;
 	background-color: #7abdfa;
 }
+#arrowTop {
+	height: 9px;
+	width: 14px;
+	color: green;
+	position: fixed;
+	top: 5px;
+	left: 10px;
+	cursor: pointer;
+}
+#arrowTop::before {
+	content: '▲';
+}
 </style>
 <script>
 var max_idx=210;
@@ -219,6 +231,12 @@ document.getElementById('searchText').onkeydown = function() {
 		showFindWord();
 	};
 };
+arrowTop.onclick = function() {
+	window.scrollTo(pageXOffset, 0);
+};
+window.addEventListener('scroll', function() {
+	arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+});
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
