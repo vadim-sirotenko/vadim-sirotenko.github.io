@@ -39,6 +39,8 @@ html, body {
 	margin: 0;
 	top: 0px;
 	left: 0px;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 li {
 	color: 'navy';
@@ -106,7 +108,6 @@ function showContents(){
 	while (nx<=max_idx) {
 		let li = document.createElement("li");
 		let i = 'txt_'+nx;
-//		alert(i);
 		li.setAttribute('id', 'li_'+nx);
 		li.setAttribute('txt', nx);
 		let request = new XMLHttpRequest;
@@ -126,7 +127,6 @@ function showContents(){
 	};
 }
 function showStory(indx){
-//	alert('id='+indx);
 	indx.style.display=(indx.style.display==='')?'none':'';
 }
 </script>
