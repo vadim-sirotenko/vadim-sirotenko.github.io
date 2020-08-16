@@ -1,130 +1,140 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="img/swa.ico" type="image/x-icon">
-<title>Разные истории и сказки.&nbsp;¯\_(ツ)_/¯</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="author" content="Вадим Сиротенко">
-<meta name="title" content="Другой взгляд на миры">
-<meta name="description" content="Рассказы">
-<meta name="keywords" content="абсурд, жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
-<meta property="og:url" content="https://vadim-sirotenko.github.io/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Рассказики" />
-<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
-<meta property="og:image" content="https://vadim-sirotenko.github.io/img/author.jpg" />
-<meta property="og:locale" content="ru_RU" />
-<meta property="fb:app_id" content="1559991960821213" />
-<meta property="fb:pages" content="108221997181803">
-<style>
-html, body {
-	height: 100%;
-	width: 100%;
-	min-height:100%;	
-	color: 'navy';
-	user-select: none;
-	margin: 0px;
-	overflow: hidden;
-	position: fixed;
-	background-color: #ffffff;
-	min-height:100%;
-	margin: 0;
-	top: 0px;
-	left: 0px;
-}
-li {
-	cursor: pointer;
-	margin-bottom: 1em;
-	background-color: #ffffff;
-}
-.contents {
-	width: 100%; 
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	overflow: auto;
-	word-break: break-all;
-	font-size: calc(0.7vw + 1vh + 1vmin);
-}
-.textstory {
-	font-size: calc(0.8vw + 0.8vh + 0.8vmin);
-	display: 'none';
-}
-</style>
-<script>
-var max_idx=10;
-var idx=1;
-document.oncontextmenu = function (){return false};
-function foo(n, glue, str) {
-	return ('00000' + str).slice(-n);
-}
-function getCookie(name) {
-	let matches = document.cookie.match(new RegExp(
-    	"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-	));
- 	return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-function setCookie(name, value, options = {}) {
-  options = {
-	path: '/',
-	'max-age': 3600*24*35
-  };
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-  document.cookie = updatedCookie;
-}
-function getUrlVars() {
-	var vars = {};
-	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-		vars[key] = value;
-	});
-	return vars;
-}
-function showContents(){
-	let ul = document.createElement("ul");
-	document.getElementById('contents').prepend(ul);
-	let nx=1;
-	while (nx<=max_idx) {
-		let li = document.createElement("li");
-		let i = 'txt_'+nx;
-//		alert(i);
-		li.setAttribute('id', 'li_'+nx);
-		li.setAttribute('txt', nx);
-		let request = new XMLHttpRequest;
-		request.open('GET', 'text/'+nx+'.txt', true);
-		request.responseType = 'text/HTML';
-		request.send();
-		request.onload = function () {
-			let name_story = request.response;
-			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story+'<span id="'+i+'" style="display: none">'+request.response+'</span>';
-		};
-		li.setAttribute('onclick', 'showStory('+i+')');
-		ul.append(li);
-		nx++;
-	};
-}
-function showStory(indx){
-//	alert('id='+indx);
-	indx.style.display=(indx.style.display==='')?'none':'';
-}
-</script>
-</head>
-<body>
-<div id="contents" class="contents"></div>
-</body>
-<script>
-showContents();
-</script>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="img/swa.ico" type="image/x-icon">
+		<title>Разные истории и сказки.&nbsp;¯\_(ツ)_/¯</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="author" content="Вадим Сиротенко">
+		<meta name="title" content="Другой взгляд на миры">
+		<meta name="description" content="Рассказы">
+		<meta name="keywords" content="абсурд, жизнь, сказка, сказки, космос, анекдот, истории, смех, юмор">
+		<meta property="og:url" content="https://vadim-sirotenko.github.io/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Рассказики" />
+		<meta property="og:description" content="Сказки. Рассказики. Похождения по иным мирам, пришельцы на Земле" />
+		<meta property="og:image" content="https://vadim-sirotenko.github.io/img/author.jpg" />
+		<meta property="og:locale" content="ru_RU" />
+		<meta property="fb:app_id" content="1559991960821213" />
+		<meta property="fb:pages" content="108221997181803">
+		<style>
+			html, body {
+				height: 100%;
+				width: 100%;
+				min-height: 100%;
+				color: 'navy';
+				user-select: none;
+				margin: 0px;
+				overflow: hidden;
+				position: fixed;
+				background-color: #ffffff;
+				min-height: 100%;
+				margin: 0;
+				top: 0px;
+				left: 0px;
+			}
+			li {
+				cursor: pointer;
+				margin-bottom: 1em;
+				background-color: #ffffff;
+			}
+			.contents {
+				width: 100%;
+				height: 100%;
+				top: 0px;
+				left: 0px;
+				overflow: auto;
+				word-break: break-all;
+				font-size: calc(0.7vw + 1vh + 1vmin);
+			}
+			.textstory {
+				font-size: calc(0.8vw + 0.8vh + 0.8vmin);
+				display: 'none';
+			}
+		</style>
+		<script>
+			var max_idx=10;
+			var idx=1;
+			document.oncontextmenu = function () {return false};
+			function foo(n, glue, str)
+			{
+				return ('00000' + str).slice(-n);
+			}
+			function getCookie(name)
+			{
+				let matches = document.cookie.match(new RegExp(
+				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+				));
+				return matches ? decodeURIComponent(matches[1]) : undefined;
+			}
+			function setCookie(name, value, options = {})
+			{
+				options = {
+					path: '/',
+					'max-age': 3600*24*35
+				};
+				if (options.expires instanceof Date) {
+					options.expires = options.expires.toUTCString();
+				}
+				let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+				for (let optionKey in options) {
+					updatedCookie += "; " + optionKey;
+					let optionValue = options[optionKey];
+					if (optionValue !== true) {
+						updatedCookie += "=" + optionValue;
+					}
+				}
+				document.cookie = updatedCookie;
+			}
+			function getUrlVars()
+			{
+				var vars = {};
+				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+					vars[key] = value;
+				});
+				return vars;
+			}
+			function showContents()
+			{
+				let ul = document.createElement("ul");
+				document.getElementById('contents').prepend(ul);
+				let nx=1;
+				while (nx<=max_idx) {
+					let li = document.createElement("li");
+					let i = 'txt_'+nx;
+					//		alert(i);
+					li.setAttribute('id', 'li_'+nx);
+					li.setAttribute('txt', nx);
+					let request = new XMLHttpRequest;
+					request.open('GET', 'text/'+nx+'.txt', true);
+					request.send();
+					request.onload = function () {
+						let name_story = request.response;
+						li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
+						name_story = name_story.slice(0, name_story.indexOf('\n')-1);
+//						li.innerHTML = name_story+'<span id="'+i+'" style="display: none">'+request.response+'</span>';
+						li.innerHTML = name_story+'<span id="'+i+'" style="display: none"></span>';
+						let span = document.createElement('span');
+						span.setAttribute('id',i);
+						span.innerHTML = request.response;
+						li.append(span);
+					};
+					li.setAttribute('onclick', 'showStory('+i+')');
+					ul.append(li);
+					nx++;
+				};
+			}
+			function showStory(indx)
+			{
+				//	alert('id='+indx);
+				indx.style.display=(indx.style.display==='')?'none':'';
+			}
+		</script>
+	</head>
+	<body>
+		<div id="contents" class="contents"></div>
+	</body>
+	<script>
+		showContents();
+	</script>
 </html>
