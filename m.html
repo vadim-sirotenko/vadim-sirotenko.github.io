@@ -140,6 +140,8 @@ function showContents(){
 }
 function showStory(indx){
 	indx.style.display=(indx.style.display==='')?'none':'';
+	document.getElementsByTagName('body')[0].style.background = 'none';
+	document.getElementsByTagName('body')[0].style.backgroundImage = 'url(img/author1.jpg)';
 	document.getElementsByTagName('body')[0].style.backgroundSize = '14% auto';
 	document.getElementsByTagName('body')[0].style.backgroundPositionX = 'right';
 	document.getElementsByTagName('body')[0].style.backgroundPositionY = 'bottom';
