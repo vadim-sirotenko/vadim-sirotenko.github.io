@@ -160,7 +160,7 @@ function findWordInText(txt, words) {
 function showFindWord(find) {
 	let elems = document.querySelectorAll('li');
 		for (let li of elems) {
-			if (find !== undefined && findWordInText(li.getAttribute('story_txt'), find)) {
+			if (find !== undefined && findWordInText(li.innerHTML, find)) {
 				li.setAttribute('find', true);
 				li.style.display = '';
 			} else {
