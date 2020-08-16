@@ -144,7 +144,7 @@ function showContents(){
 }
 function showStory(indx){
 	indx.style.display=(indx.style.display==='')?'none':'';
-	indx.scrollIntoView(top);
+	indx.parentElement.scrollIntoView(top);
 }
 function showLeksika(show) {
 	let lis = document.querySelectorAll('li[mat=true]');
