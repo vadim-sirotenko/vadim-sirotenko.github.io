@@ -203,6 +203,8 @@ document.getElementById('searchText').oninput = function() {
 	if (document.getElementById('searchText').value.trim().length>=3) {
 		showFindWord(document.getElementById('searchText').value.trim());
 	};
+};
+document.getElementById('searchText').onkeydown = function() {
 	if (event.keyCode == 27) {
 		document.getElementById('searchText').value='';
 		showFindWord();
