@@ -129,15 +129,15 @@ function showContents(){
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
 			li.innerHTML = name_story+'<span id="'+i+'" style="display: none">'+request.response+'</span>';
 		};
-		li.setAttribute('onclick', 'showStory(this.getAttribute(\'txt\')');
+		li.setAttribute('onclick', 'showStory('+i+')');
 		ul.append(li);
 		nx++;
 	};
 //	getCounts();
 }
 function showStory(indx){
-	alert('id=txt_'+parseInt(indx));
-	document.getElementById('txt_'+parseInt(indx)).style.display='';
+	alert('id='+indx);
+	document.getElementById(indx).style.display='';
 //	getCounts(useStory);
 }
 function findWordInText(txt,words) {
