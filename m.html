@@ -109,7 +109,8 @@ function showContents(){
 			let name_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story+'<p><span id="'+i+'" style="display: none">'+request.response+'</span></p>';
+//			li.innerHTML = name_story+'<p><span id="'+i+'" style="display: none">'+request.response+'</span></p>';
+			li.innerHTML = name_story+'<span id="'+i+'" style="display: none">'+request.response.slice(name_story.length+1).replace(/\n/g, "<br>")+'</span>';
 		};
 		li.setAttribute('onclick', 'showStory('+i+')');
 		ul.append(li);
