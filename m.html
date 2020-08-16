@@ -116,6 +116,7 @@
 						li.innerHTML = name_story+'<span id="'+i+'" style="display: none"></span>';
 						let span = document.createElement('span');
 						span.setAttribute('id',i);
+						span.style.display = 'none';
 						span.innerHTML = request.response;
 						li.append(span);
 					};
