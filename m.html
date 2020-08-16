@@ -113,8 +113,6 @@ function showContents(){
 	document.getElementById('contents').prepend(ul);
 	let nx=1;
 	let i=0;
-	let name_story = '';
-	let txt_story = '';
 	while (nx<=max_idx) {
 		let li = document.createElement("li");
 		li.setAttribute('id', 'li_'+nx);
@@ -123,11 +121,11 @@ function showContents(){
 		request.open('GET', 'text/'+nx+'.txt', true);
 		request.send();
 		request.onload = function () {
-			name_story = request.response;
+			let name_story = request.response;
 			li.setAttribute('mat',["ебат", "ебич", "блять", "бляцтво", "бляд", "издец", "ахуй", "нихуя", "пизд"].some(e => ~request.response.indexOf(e)));
-			li.setAttribute('story_txt',name_story);
+//			li.setAttribute('story_txt',name_story);
 			name_story = name_story.slice(0, name_story.indexOf('\n')-1);
-			li.innerHTML = name_story+'<span class="textstory">'+request.response+'</span>';
+			li.innerHTML = name_story+'<span style="display: none">'+request.response+'</span>';
 		};
 		li.setAttribute('onclick', 'showStory(this.getAttribute(\'txt\')');
 		ul.append(li);
