@@ -29,13 +29,17 @@ html, body {
 	position: fixed;
 	background-color: #ffffff;
 	background: url('img/author1.jpg');
+	background-size: 40% auto;
+	background-position-x: center ;
+	background-position-y: center;
+/*
 	background-size: 14% auto;
 	background-position-x: right;
 	background-position-y: bottom;
+*/
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-blend-mode: screen;
-/*	flter: brightness(0.7); */
 	min-height:100%;
 	margin: 0;
 	top: 0px;
@@ -136,6 +140,9 @@ function showContents(){
 }
 function showStory(indx){
 	indx.style.display=(indx.style.display==='')?'none':'';
+	document.getElementsByTagName('body')[0].style.background-size: 14% auto;
+	document.getElementsByTagName('body')[0].style.background-position-x: right;
+	document.getElementsByTagName('body')[0].style.background-position-y: bottom;
 }
 function showLeksika(show) {
 	let lis = document.querySelectorAll('li[mat=true]');
