@@ -29,11 +29,6 @@ html, body {
 	position: fixed;
 	background-color: #ffffff;
 	background: url('img/author1.jpg');
-/*
-	background-size: 40% auto;
-	background-position-x: center ;
-	background-position-y: center;
-*/
 	background-size: 14% auto;
 	background-position-x: right;
 	background-position-y: bottom;
@@ -214,6 +209,7 @@ function choiceStory(e) {
 </head>
 <body>
 <div id="contents" class="contents"></div>
+<div id="arrowTop" hidden></div>
 <div id="floatMenu">
 	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
 	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
