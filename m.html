@@ -63,6 +63,13 @@ li {
 	color: 'navy';
 	display: 'none';
 }
+#floatMenu {
+	position: fixed;
+	visibility: hidden;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #7abdfa;
+}
 </style>
 <script>
 var max_idx=210;
@@ -130,12 +137,80 @@ function showContents(){
 function showStory(indx){
 	indx.style.display=(indx.style.display==='')?'none':'';
 }
+function showLeksika(show) {
+	let lis = document.querySelectorAll('li[mat=true]');
+	for (let li of lis) {
+		if (show) {
+			li.style.display = 'none';
+		} else {
+			if (!show)
+				li.style.display = '';
+			};
+		};
+}
+function findWordInText(txt, words) {
+	let find = words.split(' ');
+	for (let w=0; w<find.length; w++) {
+		if (txt.toLowerCase().includes(find[w].toLowerCase())) {
+			return true;
+		};
+	};
+	return false;
+}
+function showFindWord(find) {
+	let elems = document.querySelectorAll('li');
+		for (let li of elems) {
+			if (find !== undefined && findWordInText(li.innerHTML, find)) {
+				li.setAttribute('find', true);
+				li.style.display = '';
+			} else {
+				li.setAttribute('find', false);
+				li.style.display = 'none';
+			};
+			if (find === undefined) {
+				li.setAttribute('find', false);
+				li.style.display = '';
+			};
+	};
+}
+function choiceStory(e) {
+	document.getElementById('floatMenu').style.top = e.clientY + 'px';
+	document.getElementById('floatMenu').style.left = e.clientX + 'px';
+	if (parseInt(document.getElementById('floatMenu').style.left)+document.getElementById('floatMenu').offsetWidth >= document.getElementById('contents').offsetWidth) {
+		document.getElementById('floatMenu').style.left = document.getElementById('contents').offsetWidth-document.getElementById('floatMenu').offsetWidth-5 + 'px';
+	};
+	document.getElementById('floatMenu').style.visibility = 'visible';
+	setTimeout(() => document.getElementById('floatMenu').style.visibility='hidden' , 10000);
+			
+	document.getElementById('selAll').oninput = function(){
+		setTimeout(() => document.getElementById('floatMenu').style.visibility='hidden' , 2000);
+	};
+	document.getElementById('floatMenu').onblur = function(){
+		setTimeout(() => document.getElementById('floatMenu').style.visibility='hidden' , 2000);
+	};
+}
 </script>
 </head>
 <body>
 <div id="contents" class="contents"></div>
+<div id="floatMenu">
+	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
+	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
+</div>
 </body>
 <script>
+document.getElementById('searchText').oninput = function() {
+	if (document.getElementById('searchText').value.trim().length>=3) {
+		showFindWord(document.getElementById('searchText').value.trim());
+	};
+};
+document.getElementById('searchText').onkeydown = function() {
+	if (event.keyCode == 27) {
+		document.getElementById('searchText').value='';
+		showFindWord();
+	};
+};
+document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
 showContents();
 </script>
 </html>
