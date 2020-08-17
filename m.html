@@ -73,6 +73,16 @@ span {
 	border-radius: 10px;
 	background-color: #7abdfa;
 }
+.subst {
+	background-image: url('img/magnifying.svg');
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-size: contain;
+	background-color: #e4effc;
+	border: inherit;
+	float: right;
+	width: 87%;
+}
 #arrowTop {
 	height: 9px;
 	width: 14px;
@@ -211,7 +221,7 @@ function choiceStory(e) {
 <div id="arrowTop" hidden></div>
 <div id="contents" class="contents"></div>
 <div id="floatMenu">
-	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/></div>
+	<div>Поиск <input id="searchText" class="subst" type="text" placeholder="текст поиска"/><sup><span title="Вводите текст по словам.\nПокажутся рассказы, в которых\nнайдётся  любое слово из введенных">?</span></sup></div>
 	<div><label>Убрать нецензурную лексику <input id="leksika" class="" type="checkbox" onclick="showLeksika(this.checked)"/></label></div>
 </div>
 </body>
