@@ -244,6 +244,7 @@ window.addEventListener('scroll', function() {
 	arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
 });
 document.getElementById('contents').addEventListener('contextmenu', choiceStory, false);
+document.getElementsByTagName('body')[0].addEventListener('touchend', choiceStory, false);
 showContents();
 </script>
 </html>
