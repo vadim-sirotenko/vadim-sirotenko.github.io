@@ -436,8 +436,6 @@ function showLeksika(show){
 	for (let li of lis) {
 		if(show){
 			li.style.display = 'none';
-			elem.style.backgroundImage = 'none';	/* new */
-			elem.setAttribute('book',false);
 		}else{
 			if(!show)li.style.display = '';
 		};
@@ -452,9 +450,6 @@ function showFindWord(find){
 		}else{
 			li.setAttribute('find', false);
 			li.style.display = 'none';
-
-			elem.style.backgroundImage = 'none';	/* new */
-			elem.setAttribute('book',false);
 		};
 	};
 }
