@@ -125,6 +125,14 @@ li {
 	height: auto;
 	cursor: pointer;
 }
+.cookie_info {
+	position: absolute;
+	bottom: 16%;
+	right: 0%;
+	cursor: pointer;
+	width: 5%;
+	height: auto;
+}
 .beer {
 	position: absolute;
 	bottom: 25%;
@@ -493,6 +501,7 @@ function selectedAll2book(sign){
 <div id="texts" class="textstory">
 	<iframe id="showText" frameborder="no" scrolling="auto" seamless width="100%" height="100%" style="font-size:14px;" src=""></iframe>
 </div>
+<img class="cookie_info" src="img/cookies.svg" title="Использование cookies" onclick="onclick="document.getElementById('showText').src='cookies.html'">
 <img class="beer" src="img/bonus.svg" title="Поблагодарить автора" onclick="document.getElementById('showText').src='https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D1%8C&targets-hint=&default-sum=50&button-text=13&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=41001144863751';">
 <img class="description" src="img/description.svg" title="Описание работы и формирование электронной книжки" onclick="document.getElementById('showText').src='description.html';">
 <span class="reader_age"  title="В тексте рассказов встречается обсценная лексика (матершинка&#9786;)" onclick="document.getElementById('showText').src='about.html';">18+</span>
